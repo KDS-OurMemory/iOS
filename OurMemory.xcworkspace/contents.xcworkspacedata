@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../common/snsWrapper/snsWrapper.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OurMemoryTask/OurMemoryTask.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OurMemory.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
