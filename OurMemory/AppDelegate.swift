@@ -7,18 +7,16 @@
 
 import UIKit
 import CoreData
-import Firebase
+import FirebaseCore
 import FirebaseMessaging
-import snsWrapper
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
-
-
-
+    var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        KaKaoLoginWrapper.shared.initWithKakaoSDK()
+//        KaKaoLoginWrapper.shared.initWithKakaoSDK()
         
         
         FirebaseApp.configure()
@@ -30,14 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in})
         application.registerForRemoteNotifications()
-        
+        let storyboard = UIStoryboard(name: "Intro", bundle: nil)
+                let root = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
+        let nvc = UINavigationController(rootViewController: root)
+        self.window?.rootViewController = nvc
         // Override point for customization after application launch.
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return KaKaoLoginWrapper.shared.isKakaoAcountLoginCallBack(url:url)
-    }
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        return KaKaoLoginWrapper.shared.isKakaoAcountLoginCallBack(url:url)
+//    }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.map { String(format: "%02x", $0) }.joined()

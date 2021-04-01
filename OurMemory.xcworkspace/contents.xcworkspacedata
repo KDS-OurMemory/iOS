@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../common/snsWrapper/snsWrapper.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:OurMemoryTask/OurMemoryTask.xcodeproj">
    </FileRef>
    <FileRef

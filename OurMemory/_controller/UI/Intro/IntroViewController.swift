@@ -7,20 +7,12 @@
 
 import UIKit
 
-protocol IntroViewControllerInterface {
-    var introCtl:IntroContract { get }
-}
-
-class IntroViewController: UIViewController,IntroViewControllerInterface {
+class IntroViewController: BaseViewController {
     
-    var introCtl: IntroContract = CtlMaker().createDataControllerWithContract(contract: ctls.eContractIntro, view: self) as! IntroContract
+//    var introCtl: IntroContract = CtlMaker().createDataControllerWithContract(contract: ctls.eContractIntro, view: self) as! IntroContract
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        let vc = RoomDetailViewController().inittailizeSubViewClass()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-}
-
-extension IntroViewController: IntroView {
-    
 }
