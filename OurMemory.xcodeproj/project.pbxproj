@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		35F2481957AC13741FB1C6C8 /* Pods_OurMemory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C7DC6C9C51216DED785C4DC /* Pods_OurMemory.framework */; };
 		39771960AAFA66F882A30533 /* Pods_OurMemoryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F1199045D537D17AE840A9 /* Pods_OurMemoryTests.framework */; };
+		735A72DB261B55D30088960F /* RoomDetailCalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A72D9261B55D30088960F /* RoomDetailCalCollectionViewCell.swift */; };
+		735A72DC261B55D30088960F /* RoomDetailCalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735A72DA261B55D30088960F /* RoomDetailCalCollectionViewCell.xib */; };
+		735A72E2261B5AF40088960F /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A72E0261B5AF40088960F /* DatePickerViewController.swift */; };
+		735A72E3261B5AF40088960F /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735A72E1261B5AF40088960F /* DatePickerViewController.xib */; };
 		739300002608E84000651586 /* RoomDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7393FFFE2608E84000651586 /* RoomDetailViewController.xib */; };
 		739300042608E8ED00651586 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739300032608E8ED00651586 /* BaseViewController.swift */; };
 		7393FFF92608E81A00651586 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393FFF72608E81A00651586 /* FriendViewController.swift */; };
@@ -77,6 +81,10 @@
 		6C5A82B7FBAC5E428C530DB9 /* Pods-OurMemory-OurMemoryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OurMemory-OurMemoryUITests.debug.xcconfig"; path = "Target Support Files/Pods-OurMemory-OurMemoryUITests/Pods-OurMemory-OurMemoryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		71DF96BDDED8360CFB303749 /* Pods-OurMemoryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OurMemoryTests.debug.xcconfig"; path = "Target Support Files/Pods-OurMemoryTests/Pods-OurMemoryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		732C871426077ACF00EEEE57 /* OurMemory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OurMemory-Bridging-Header.h"; sourceTree = "<group>"; };
+		735A72D9261B55D30088960F /* RoomDetailCalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailCalCollectionViewCell.swift; sourceTree = "<group>"; };
+		735A72DA261B55D30088960F /* RoomDetailCalCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomDetailCalCollectionViewCell.xib; sourceTree = "<group>"; };
+		735A72E0261B5AF40088960F /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		735A72E1261B5AF40088960F /* DatePickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
 		739300032608E8ED00651586 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7393FFF72608E81A00651586 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		7393FFF82608E81A00651586 /* FriendViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendViewController.xib; sourceTree = "<group>"; };
@@ -154,6 +162,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		735A72DF261B5AA40088960F /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				735A72E0261B5AF40088960F /* DatePickerViewController.swift */,
+				735A72E1261B5AF40088960F /* DatePickerViewController.xib */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
 		739C01B925B7221D00C5A2D6 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +239,7 @@
 		73C03E3425DD3B9200319AC0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				735A72DF261B5AA40088960F /* DatePicker */,
 				73FC5CFE25E7FE420050D68E /* _Base */,
 				73FC5CA925E7FB840050D68E /* Intro */,
 				73FC5CAA25E7FB8D0050D68E /* Login */,
@@ -292,6 +310,8 @@
 			children = (
 				7393FFFD2608E84000651586 /* RoomDetailViewController.swift */,
 				7393FFFE2608E84000651586 /* RoomDetailViewController.xib */,
+				735A72D9261B55D30088960F /* RoomDetailCalCollectionViewCell.swift */,
+				735A72DA261B55D30088960F /* RoomDetailCalCollectionViewCell.xib */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -426,6 +446,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				735A72E3261B5AF40088960F /* DatePickerViewController.xib in Resources */,
 				7393FFFA2608E81A00651586 /* FriendViewController.xib in Resources */,
 				73C03E5425DD3C2B00319AC0 /* ScheduleViewController.xib in Resources */,
 				73C03E4D25DD3BE300319AC0 /* RoomTableViewController.xib in Resources */,
@@ -436,6 +457,7 @@
 				739C01D225B7221F00C5A2D6 /* Assets.xcassets in Resources */,
 				73C03E4625DD3BC700319AC0 /* MainViewController.xib in Resources */,
 				739C01CD25B7221D00C5A2D6 /* Intro.storyboard in Resources */,
+				735A72DC261B55D30088960F /* RoomDetailCalCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,8 +586,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73C03E3E25DD3BBB00319AC0 /* LoginViewController.swift in Sources */,
+				735A72E2261B5AF40088960F /* DatePickerViewController.swift in Sources */,
 				739C01D025B7221D00C5A2D6 /* OurMemory.xcdatamodeld in Sources */,
 				739300042608E8ED00651586 /* BaseViewController.swift in Sources */,
+				735A72DB261B55D30088960F /* RoomDetailCalCollectionViewCell.swift in Sources */,
 				73AF8ECC25CEEAC600893AF6 /* NetworkManager.swift in Sources */,
 				73C03E3725DD3BAC00319AC0 /* IntroViewController.swift in Sources */,
 				73C03E5325DD3C2B00319AC0 /* ScheduleViewController.swift in Sources */,

@@ -7,7 +7,17 @@
 
 import UIKit
 
-class RommDetailDateComponentsModel: NSObject {
+enum WEEKDAYS:Int8 {
+    case MONDAY = 0
+    case TUESDAY
+    case WEDNESDAY
+    case THURSDAY
+    case FRIDAY
+    case SATURDAY
+    case SUNDAY
+}
+
+class RoomDetailDateComponentsModel: NSObject {
     let date = Date();
     let cal = Calendar.current;
     var components:DateComponents!
@@ -16,41 +26,167 @@ class RommDetailDateComponentsModel: NSObject {
         self.components = self.cal.dateComponents([.year,.month,.day], from: self.date)
     }
     
+    func getComponentsDate() -> Date {
+        if let date = self.components.date
+        {
+            return date
+        }
+        return Date()
+    }
+    
     func getCurrentDate() -> DateComponents {
          return self.cal.dateComponents([.year,.month,.day], from: self.date)
     }
     
-    func getDayCntOfMonth() -> Int {
-        if let dayCnt = self.cal.ordinality(of: .day, in: .month, for: date) {
+    func getDayCntOfMonth() -> Int? {
+        if let dayCnt = self.cal.ordinality(of: .day, in: .month, for: self.getComponentsDate()) {
             return dayCnt
         }
-        
-        return 0
+        return nil
     }
     
-    func getToday() -> Int {
+    func getFirstDate() -> Date? {
+        if let date = self.cal.dateComponents([.year,.month], from: self.getComponentsDate()).date
+        {
+            return date
+        }
+        return nil
+    }
+    
+    func getFirstWeekDay() -> Int? {
+        if let firstWeekDay = self.cal.dateComponents([.year,.month], from: self.getComponentsDate()).weekday {
+            return firstWeekDay
+        }
+        return nil
+    }
+    
+    func prevMonthDate() -> Date {
+        return self.cal.date(byAdding: .day, value: -1, to: self.getFirstDate()!)!
+    }
+
+    func prevMonthLastDay() -> Int? {
+        if let lastDay = self.cal.dateComponents([.day], from: self.prevMonthDate()).day {
+            return lastDay
+        }
+        return nil
+    }
+
+    func prevMonthLastWeekDay() -> Int? {
+        if let lastWeekDay = self.cal.dateComponents([.day], from: self.prevMonthDate()).weekday {
+            return lastWeekDay
+        }
+        return nil
+    }
+    
+    func getMonth() -> Int? {
+        if let month = self.components.month
+        {
+            return month
+        }
+        return nil
+    }
+    
+    func getYear() -> Int? {
+        if let year = self.components.year
+        {
+            return year
+        }
+        return nil
+    }
+    
+    func getToday() -> Int? {
         if let day = self.getCurrentDate().day {
             return day
         }
-        
+        return nil
+    }
+    
+    func getWeekToDay() -> Int? {
+        if let weekDay = self.getCurrentDate().weekday
+        {
+            return weekDay
+        }
+        return nil
+    }
+    
+    func getCurrentMonthCnt() -> Int {
         return 0
     }
     
+    func setMonth(month:Int) {
+        self.components.setValue(month, for: .month)
+    }
+    
+    func setDay(day:Int) {
+        self.components.setValue(day, for: .day)
+    }
 }
 
-class RoomDetailCtl: NSObject {
-    let roomDetailModel:RommDetailDateComponentsModel = RommDetailDateComponentsModel()
+class RoomDetailCtl
+{
+    let roomDetailModel:RoomDetailDateComponentsModel = RoomDetailDateComponentsModel()
+    var view:RoomDetailViewContract?
     
-    func getDayCntOfMonth() -> Int {
+    init(view:RoomDetailViewContract) {
+        self.view = view
+    }
+    
+    func onViewDidLoad() {
+        if let view = self.view
+        {
+            if let year = self.getYear(), let month = self.getMonth()
+            {
+                view.updateYearAndMonth(year: year, month: month)
+            }
+            view.setUpLayout()
+            view.setUpDefine()
+        }
+        
+    }
+    
+    func getYear() -> Int? {
+        return self.roomDetailModel.getYear()
+    }
+    
+    func getMonth() -> Int? {
+        return self.roomDetailModel.getMonth()
+    }
+    
+    func getDayCntOfMonth() -> Int? {
         return self.roomDetailModel.getDayCntOfMonth()
     }
     
-    func getToday() -> Int {
+    func getToday() -> Int? {
         return self.roomDetailModel.getToday()
+    }
+    
+    func getWeekToDay() -> Int? {
+        return self.roomDetailModel.getWeekToDay()
+    }
+    
+    func setMonth(month:Int) {
+        self.roomDetailModel.setMonth(month: month)
+    }
+    
+    func setDay(day:Int) {
+        self.roomDetailModel.setDay(day: day)
     }
 }
 
-class RoomDetailViewController: BaseViewController {
+protocol RoomDetailViewContract {
+    func updateYearAndMonth(year:Int ,month: Int)
+    func setUpLayout()
+    func setUpDefine()
+}
+
+class RoomDetailCtlMaker {
+    func configure(roomDetailView:RoomDetailViewController) {
+        let ctl = RoomDetailCtl.init(view: roomDetailView)
+        roomDetailView.roomDetailCtl = ctl
+    }
+}
+
+class RoomDetailViewController: BaseViewController, RoomDetailViewContract {
 
     @IBOutlet weak var sideMenuBtn: UIButton!
     @IBOutlet var topViewHeightConstraints: NSLayoutConstraint!
@@ -71,10 +207,16 @@ class RoomDetailViewController: BaseViewController {
     
     var contentsViewCenterY:CGFloat!
     
+    let roomDetailCtlMaker:RoomDetailCtlMaker = RoomDetailCtlMaker()
+    var roomDetailCtl:RoomDetailCtl?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpLayout()
-        setUpDefine()
+        roomDetailCtlMaker.configure(roomDetailView: self)
+        
+        roomDetailCtl?.onViewDidLoad()
+        
+        
     }
     
     func setUpDefine() {
@@ -90,8 +232,20 @@ class RoomDetailViewController: BaseViewController {
         upandDownView.isUserInteractionEnabled = true
         gesture.delegate = self
         
+        self.originalCal.delegate = self
+//        self.originalCal.dataSource = self
+        
+        self.moveCal.delegate = self
+//        self.moveCal.dataSource = self
+        
     }
 
+    // MARK: ViewContract
+    
+    func updateYearAndMonth(year:Int ,month: Int) {
+        self.detePickerBtn.setTitle("\(year).\(month)", for: UIControl.State.normal)
+    }
+    
 }
 
 extension RoomDetailViewController:UIGestureRecognizerDelegate {
@@ -121,3 +275,20 @@ extension RoomDetailViewController:UIGestureRecognizerDelegate {
     }
 
 }
+
+extension RoomDetailViewController: UICollectionViewDelegate {
+    
+}
+
+//extension RoomDetailViewController: UICollectionViewDataSource {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//
+//
+//}
