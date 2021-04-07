@@ -7,11 +7,38 @@
 
 import UIKit
 
-class RoomDetailCalCollectionViewCell: UICollectionViewCell {
+enum dateState {
+    case prev
+    case current
+    case next
+    case unknown
+}
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+struct calCellData {
+    let num:String
+    let state:dateState
+}
+
+class RoomDetailCalCollectionViewCell: UICollectionViewCell,roomDetailCalCell {
+    @IBOutlet weak var viewLine: UIView!
+    @IBOutlet weak var dateNumLbl: UILabel!
+    
+    func setDate(date:calCellData) {
+        dateNumLbl.text = date.num
+        switch date.state {
+        case .prev:
+            
+            break
+        case .current:
+            break
+        case .next:
+            break
+        default:
+            break
+        }
     }
-
+    
+    func setViewLine(flag:Bool) {
+        self.viewLine.isHidden = flag
+    }
 }

@@ -8,26 +8,29 @@
 import UIKit
 
 enum WEEKDAYS:Int8 {
-    case MONDAY = 0
+    case SUNDAY = 1
+    case MONDAY
     case TUESDAY
     case WEDNESDAY
     case THURSDAY
     case FRIDAY
     case SATURDAY
-    case SUNDAY
 }
 
 class RoomDetailDateComponentsModel: NSObject {
     let date = Date();
     let cal = Calendar.current;
     var components:DateComponents!
+    var monthDateCal:[calCellData] = []
 
     override init() {
+        super.init()
         self.components = self.cal.dateComponents([.year,.month,.day], from: self.date)
+        self.setCalendarDate()
     }
     
     func getComponentsDate() -> Date {
-        if let date = self.components.date
+        if let date = self.cal.date(from: self.components)
         {
             return date
         }
@@ -45,13 +48,13 @@ class RoomDetailDateComponentsModel: NSObject {
         return nil
     }
     
-    func getFirstDate() -> Date? {
-        if let date = self.cal.dateComponents([.year,.month], from: self.getComponentsDate()).date
-        {
-            return date
-        }
-        return nil
-    }
+//    func getFirstDate() -> Date? {
+//        if let date = self.cal.dateComponents([.year,.month], from: self.getComponentsDate()).date
+//        {
+//            return date
+//        }
+//        return nil
+//    }
     
     func getFirstWeekDay() -> Int? {
         if let firstWeekDay = self.cal.dateComponents([.year,.month], from: self.getComponentsDate()).weekday {
@@ -61,7 +64,7 @@ class RoomDetailDateComponentsModel: NSObject {
     }
     
     func prevMonthDate() -> Date {
-        return self.cal.date(byAdding: .day, value: -1, to: self.getFirstDate()!)!
+        return self.cal.date(byAdding: .day, value: -1, to: self.getComponentsDate())!
     }
 
     func prevMonthLastDay() -> Int? {
@@ -76,6 +79,17 @@ class RoomDetailDateComponentsModel: NSObject {
             return lastWeekDay
         }
         return nil
+    }
+    
+    func nextMonthDate() -> Date {
+        return self.cal.date(byAdding: DateComponents(month:+1,day: 1), to: self.getComponentsDate())!
+    }
+    
+    func nextMonthFirstWeekDay() -> Int? {
+        if let weekDay = self.cal.dateComponents([.day], from: self.nextMonthDate()).weekday {
+            return weekDay
+        }
+        return 0
     }
     
     func getMonth() -> Int? {
@@ -108,18 +122,70 @@ class RoomDetailDateComponentsModel: NSObject {
         }
         return nil
     }
+//
+//    func getCurrentMonthCnt() -> Int {
+//        if let weekDay = self.getWeekToDay(), let daycntofmonth = self.getDayCntOfMonth(), let monthlastWeekDay = self.prevMonthLastWeekDay() {
+//           return 7 - weekDay + daycntofmonth + 7 - monthlastWeekDay
+//        }
+//        return 0
+//    }
     
-    func getCurrentMonthCnt() -> Int {
-        return 0
+    func setCalendarDate() {
+        self.monthDateCal.removeAll()
+        if let prevLastWeekday = self.prevMonthLastWeekDay() {
+            if prevLastWeekday < 7 {
+                if let prevLastDay = self.prevMonthLastDay() {
+                    var temparr:[calCellData] = []
+                    for prevDay in 0..<prevLastWeekday
+                    {
+                        let num:String = "\(prevLastDay - prevDay)"
+                        let data = calCellData(num: num, state: dateState.prev)
+                        temparr.append(data)
+                    }
+                    self.monthDateCal = temparr.reversed()
+                }
+            }
+        }
+        
+        if let monthCnt = self.getDayCntOfMonth() {
+            for day in 1...monthCnt {
+                let data = calCellData(num: "\(day)", state: dateState.current)
+                self.monthDateCal.append(data)
+            }
+        }
+        
+        if let nextFirstWeekday = self.nextMonthFirstWeekDay() {
+            if nextFirstWeekday > 1 {
+                for day in nextFirstWeekday...7 {
+                    let data = calCellData(num: "\(day)", state: dateState.next)
+                    self.monthDateCal.append(data)
+                }
+            }
+        }
+        
+    }
+    
+    func getCalendarDate() -> [calCellData] {
+        return self.monthDateCal
+    }
+    
+    func getCalendarDateCnt() -> Int {
+        return self.monthDateCal.count
     }
     
     func setMonth(month:Int) {
         self.components.setValue(month, for: .month)
+        self.setCalendarDate()
     }
     
     func setDay(day:Int) {
         self.components.setValue(day, for: .day)
     }
+}
+
+protocol roomDetailCalCell {
+    func setDate(date:calCellData)
+    func setViewLine(flag:Bool)
 }
 
 class RoomDetailCtl
@@ -142,6 +208,10 @@ class RoomDetailCtl
             view.setUpDefine()
         }
         
+    }
+    
+    func configure(cell:roomDetailCalCell,date:calCellData) {
+        cell.setDate(date: date)
     }
     
     func getYear() -> Int? {
@@ -171,6 +241,15 @@ class RoomDetailCtl
     func setDay(day:Int) {
         self.roomDetailModel.setDay(day: day)
     }
+    
+    func getCalendarDate() -> [calCellData] {
+        return self.roomDetailModel.getCalendarDate()
+    }
+    
+    func getCalendarCnt() -> Int {
+        return self.roomDetailModel.getCalendarDateCnt()
+    }
+   
 }
 
 protocol RoomDetailViewContract {
@@ -178,14 +257,14 @@ protocol RoomDetailViewContract {
     func setUpLayout()
     func setUpDefine()
 }
-
+// MARK: CtlConfigure
 class RoomDetailCtlMaker {
     func configure(roomDetailView:RoomDetailViewController) {
         let ctl = RoomDetailCtl.init(view: roomDetailView)
         roomDetailView.roomDetailCtl = ctl
     }
 }
-
+// MARK: View
 class RoomDetailViewController: BaseViewController, RoomDetailViewContract {
 
     @IBOutlet weak var sideMenuBtn: UIButton!
@@ -233,10 +312,10 @@ class RoomDetailViewController: BaseViewController, RoomDetailViewContract {
         gesture.delegate = self
         
         self.originalCal.delegate = self
-//        self.originalCal.dataSource = self
+        self.originalCal.dataSource = self
         
         self.moveCal.delegate = self
-//        self.moveCal.dataSource = self
+        self.moveCal.dataSource = self
         
     }
 
@@ -280,15 +359,23 @@ extension RoomDetailViewController: UICollectionViewDelegate {
     
 }
 
-//extension RoomDetailViewController: UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//
-//
-//}
+extension RoomDetailViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let dayCnt = self.roomDetailCtl?.getCalendarCnt() {
+            return dayCnt
+        }
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomDetailCalCollectionViewCell", for: indexPath) as! RoomDetailCalCollectionViewCell
+        if let data = self.roomDetailCtl?.getCalendarDate(){
+            self.roomDetailCtl?.configure(cell: cell, date: data[indexPath.row])
+        }
+        
+        return cell
+    }
+
+
+}
