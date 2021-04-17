@@ -7,10 +7,13 @@
 
 import Foundation
 
+enum NETPATH :String{
+    case PATH_USER = "/v1/user/"
+}
+
 class IntroNetModel:BaseNetModel {
     
     var data:introModel!
-    var path:String = "/v1/user/"
     
     override init() {
         super.init()
@@ -29,11 +32,11 @@ class IntroNetModel:BaseNetModel {
         let isBirthdayOpen :Bool
     }
     
-    func tryRequestRestfulAPI(completion: @escaping (Bool) -> Void ) {
-        if let snsId = UserDefaults.standard.string(forKey: "userSnsID"){
-            let param:RequestParam = .url(["snsId":snsId])
+    func tryRequestLoginIntro (completion: @escaping (Bool) -> Void ) {
+        if let snsId = UserDefaults.standard.string(forKey: "userSnsID") ,let snsType = UserDefaults.standard.string(forKey: "userSnsType") {
+            let param:RequestParam = .url(["snsId":snsId,"snsType":snsType])
             
-            self.reqeustRestFulApi(method: HTTPMethod.get, path: self.path, params: param) { (result: Result< introModel, Error>) in
+            self.reqeustRestFulApi(method: HTTPMethod.get, path: NETPATH.PATH_USER.rawValue, params: param) { (result: Result< introModel, Error>) in
                 switch result
                 {
                 case .success(let data) :
@@ -46,7 +49,30 @@ class IntroNetModel:BaseNetModel {
                     break
                 }
             }
+        }else {
+            completion(false)
         }
-        
     }
+    
+    func tryRequestPushTokenReflash (completion: @escaping (Bool) -> Void ) {
+        if let userId = UserDefaults.standard.string(forKey: "userID"), let pustToken = UserDefaults.standard.string(forKey: "userID"){
+            var param:RequestParam = .url(["userId":userId])
+            param = .body(["pushToken": pustToken])
+            self.reqeustRestFulApi(method: HTTPMethod.get, path: NETPATH.PATH_USER.rawValue, params: param) { (result: Result< introModel, Error>) in
+                switch result
+                {
+                case .success(let data) :
+                    self.data = data
+                    
+                    completion(true)
+                    break
+                case .failure(let error) :
+                    print("Intro network Request Error ======>" + error.localizedDescription)
+                    completion(false)
+                    break
+                }
+            }
+        }
+    }
+    
 }

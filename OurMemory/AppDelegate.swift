@@ -14,6 +14,7 @@ import FirebaseMessaging
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
 //        KaKaoLoginWrapper.shared.initWithKakaoSDK()
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
                 let root = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
         let nvc = UINavigationController(rootViewController: root)
         self.window?.rootViewController = nvc
+        Router.defaultRouter.setupAppNavigation(appNavigation: MyAppNavigation())
         // Override point for customization after application launch.
         return true
     }
@@ -45,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         print(String(format:"[Log] deviceToken : %@", deviceTokenString))
         
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(String(format: "[Log] Failed to get Push Noti %@", error.localizedDescription))
     }
     
     // MARK: Notification
@@ -152,5 +158,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         }
     }
 
+}
+
+// MARK: UIViewController Router
+
+extension UIViewController {
+    @objc func onReadyPushVC() {
+        
+    }
+}
+
+struct MyAppNavigation: AppNavigation {
+    func navigate(_ navigation: Navigation, from: UIViewController, to: UIViewController) {
+        to.onReadyPushVC()
+        from.navigationController?.pushViewController(to, animated: true)
+    }
+    
+    func viewcontrollerForNavigation(navigation: Navigation) -> UIViewController {
+        if let navigation = navigation as? NEXTVIEW {
+            switch navigation {
+            case .NEXTVIEW_LOGIN:
+                return LoginViewController().initiailizeSubViewClass()
+            case .NEXTVIEW_MAIN:
+                return MainViewController()
+            case .NEXTVIEW_FRIENDSLIST:
+                return FriendViewController()
+            case .NEXTVIEW_ROOMLIST:
+                return RoomTableViewController()
+            case .NEXTVIEW_ROOMDETAIL:
+                return RoomDetailViewController()
+            case .NEXTVIEW_SCHEDULE:
+                return ScheduleViewController()
+            }
+            
+        }
+        return UIViewController()
+    }
 }
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7328CFBA262AF87400B821BD /* viewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328CFB9262AF87400B821BD /* viewContract.swift */; };
+		7328CFBD262AF87F00B821BD /* dataContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328CFBC262AF87F00B821BD /* dataContract.swift */; };
+		7328CFC1262AFF1000B821BD /* dataEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328CFC0262AFF1000B821BD /* dataEnum.swift */; };
+		7328CFC4262B141B00B821BD /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328CFC3262B141B00B821BD /* Router.swift */; };
 		732C870F2607749D00EEEE57 /* IntroContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C870E2607749D00EEEE57 /* IntroContract.swift */; };
 		732C8712260774D300EEEE57 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C8711260774D300EEEE57 /* IntroView.swift */; };
 		732C872326077E2600EEEE57 /* CtlMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C872226077E2600EEEE57 /* CtlMaker.swift */; };
@@ -38,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7328CFB9262AF87400B821BD /* viewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewContract.swift; sourceTree = "<group>"; };
+		7328CFBC262AF87F00B821BD /* dataContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataContract.swift; sourceTree = "<group>"; };
+		7328CFC0262AFF1000B821BD /* dataEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataEnum.swift; sourceTree = "<group>"; };
+		7328CFC3262B141B00B821BD /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		732C870E2607749D00EEEE57 /* IntroContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroContract.swift; sourceTree = "<group>"; };
 		732C8711260774D300EEEE57 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		732C872226077E2600EEEE57 /* CtlMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CtlMaker.swift; sourceTree = "<group>"; };
@@ -72,6 +80,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7328CFB8262AF85600B821BD /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				7328CFB9262AF87400B821BD /* viewContract.swift */,
+				7328CFBC262AF87F00B821BD /* dataContract.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		7328CFBF262AFEFC00B821BD /* constans */ = {
+			isa = PBXGroup;
+			children = (
+				7328CFC0262AFF1000B821BD /* dataEnum.swift */,
+			);
+			path = constans;
+			sourceTree = "<group>";
+		};
 		739572A22605D6C4006E810E /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,11 +175,13 @@
 		73FC5CC325E7FC0B0050D68E /* OurMemoryTask */ = {
 			isa = PBXGroup;
 			children = (
+				7328CFBF262AFEFC00B821BD /* constans */,
 				739572A22605D6C4006E810E /* model */,
 				73FC5CCE25E7FCC80050D68E /* controller */,
 				73FC5CC425E7FC0B0050D68E /* OurMemoryTask.h */,
 				73FC5CC525E7FC0B0050D68E /* Info.plist */,
 				732C872226077E2600EEEE57 /* CtlMaker.swift */,
+				7328CFC3262B141B00B821BD /* Router.swift */,
 			);
 			path = OurMemoryTask;
 			sourceTree = "<group>";
@@ -264,6 +291,7 @@
 		73FC5CEA25E7FD6D0050D68E /* _Base */ = {
 			isa = PBXGroup;
 			children = (
+				7328CFB8262AF85600B821BD /* contract */,
 				73FC5CEB25E7FD7C0050D68E /* BaseCtl.swift */,
 			);
 			path = _Base;
@@ -382,14 +410,18 @@
 				732C8712260774D300EEEE57 /* IntroView.swift in Sources */,
 				73FC5CF925E7FE160050D68E /* roomContract.swift in Sources */,
 				73FC5CF525E7FE020050D68E /* roomCtl.swift in Sources */,
+				7328CFC1262AFF1000B821BD /* dataEnum.swift in Sources */,
 				73FC5D0725E7FEAA0050D68E /* scheduleView.swift in Sources */,
 				732C870F2607749D00EEEE57 /* IntroContract.swift in Sources */,
 				739572B02605DA13006E810E /* BaseNetModel.swift in Sources */,
 				739572BC2605E78E006E810E /* Reqeust.swift in Sources */,
 				73FC5CF225E7FDC10050D68E /* mainContract.swift in Sources */,
+				7328CFC4262B141B00B821BD /* Router.swift in Sources */,
 				73FC5CEF25E7FDB30050D68E /* mainView.swift in Sources */,
+				7328CFBA262AF87400B821BD /* viewContract.swift in Sources */,
 				739572AC2605D9C4006E810E /* IntroNetModel.swift in Sources */,
 				73FC5D0025E7FE9F0050D68E /* scheduleContract.swift in Sources */,
+				7328CFBD262AF87F00B821BD /* dataContract.swift in Sources */,
 				73FC5CFC25E7FE230050D68E /* roomView.swift in Sources */,
 				73FC5CEC25E7FD7C0050D68E /* BaseCtl.swift in Sources */,
 				73FC5CE825E7FD5F0050D68E /* mainCtl.swift in Sources */,

@@ -7,9 +7,13 @@
 
 import UIKit
 
-class BaseCtl: NSObject {
+class BaseCtl {
 
-    override init() {
+    var view:viewContract!
+    
+    init(view:viewContract) {
+        self.view = view
+        self.__init__()
     }
     
     func __init__() {

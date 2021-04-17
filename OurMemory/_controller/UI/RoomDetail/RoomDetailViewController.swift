@@ -18,7 +18,7 @@ enum WEEKDAYS:Int8 {
 }
 
 class RoomDetailDateComponentsModel: NSObject {
-    let date = Date();
+    var date = Date();
     let cal = Calendar.current;
     var components:DateComponents!
     var monthDateCal:[calCellData] = []
@@ -26,7 +26,7 @@ class RoomDetailDateComponentsModel: NSObject {
     override init() {
         super.init()
         self.components = self.cal.dateComponents([.year,.month,.day], from: self.date)
-        self.setCalendarDate()
+        self.setMonthofCal()
     }
     
     func getComponentsDate() -> Date {
@@ -41,55 +41,51 @@ class RoomDetailDateComponentsModel: NSObject {
          return self.cal.dateComponents([.year,.month,.day], from: self.date)
     }
     
-    func getDayCntOfMonth() -> Int? {
-        if let dayCnt = self.cal.ordinality(of: .day, in: .month, for: self.getComponentsDate()) {
-            return dayCnt
-        }
-        return nil
+    var startOfDay:Date {
+        return Calendar.current.startOfDay(for: self.date)
     }
     
-//    func getFirstDate() -> Date? {
-//        if let date = self.cal.dateComponents([.year,.month], from: self.getComponentsDate()).date
-//        {
-//            return date
-//        }
-//        return nil
-//    }
-    
-    func getFirstWeekDay() -> Int? {
-        if let firstWeekDay = self.cal.dateComponents([.year,.month], from: self.getComponentsDate()).weekday {
-            return firstWeekDay
-        }
-        return nil
+    var startOfMonth: Date {
+        
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents([.year, .month], from:  self.date)
+        
+        return  calendar.date(from: components)!
     }
     
-    func prevMonthDate() -> Date {
-        return self.cal.date(byAdding: .day, value: -1, to: self.getComponentsDate())!
-    }
-
-    func prevMonthLastDay() -> Int? {
-        if let lastDay = self.cal.dateComponents([.day], from: self.prevMonthDate()).day {
-            return lastDay
-        }
-        return nil
-    }
-
-    func prevMonthLastWeekDay() -> Int? {
-        if let lastWeekDay = self.cal.dateComponents([.day], from: self.prevMonthDate()).weekday {
-            return lastWeekDay
-        }
-        return nil
+    var endOfDay: Date {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.current.date(byAdding: components, to: self.startOfDay)!
     }
     
-    func nextMonthDate() -> Date {
-        return self.cal.date(byAdding: DateComponents(month:+1,day: 1), to: self.getComponentsDate())!
+    var endOfMonth: Date {
+        var components = DateComponents()
+        components.month = 1
+        components.second = -1
+        return Calendar(identifier: .gregorian).date(byAdding: components, to: self.startOfMonth)!
     }
     
-    func nextMonthFirstWeekDay() -> Int? {
-        if let weekDay = self.cal.dateComponents([.day], from: self.nextMonthDate()).weekday {
-            return weekDay
-        }
-        return 0
+    var prevLastDayOfMonth: Date {
+        let calendar = Calendar(identifier: .gregorian)
+        var components = calendar.dateComponents([.year, .month, .day], from: self.date)
+        components.day = 0
+        return calendar.date(from: components)!
+    }
+    
+    var nextFirstDayOfMonth: Date {
+        let calendar = Calendar(identifier: .gregorian)
+        var components = calendar.dateComponents([.year, .month, .day], from: self.date)
+        components.month = components.month! + 1
+        components.day = 1
+        return calendar.date(from: components)!
+    }
+    
+    func isMonday() -> Bool {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents([.weekday], from:  self.date)
+        return components.weekday == 2
     }
     
     func getMonth() -> Int? {
@@ -122,47 +118,37 @@ class RoomDetailDateComponentsModel: NSObject {
         }
         return nil
     }
-//
-//    func getCurrentMonthCnt() -> Int {
-//        if let weekDay = self.getWeekToDay(), let daycntofmonth = self.getDayCntOfMonth(), let monthlastWeekDay = self.prevMonthLastWeekDay() {
-//           return 7 - weekDay + daycntofmonth + 7 - monthlastWeekDay
-//        }
-//        return 0
-//    }
+
+    func setMonth(month:Int) {
+        self.components.setValue(month, for: .month)
+        if let date = self.cal.date(from: self.components) {
+            self.date = date
+            self.setMonthofCal()
+        }
+    }
     
-    func setCalendarDate() {
-        self.monthDateCal.removeAll()
-        if let prevLastWeekday = self.prevMonthLastWeekDay() {
-            if prevLastWeekday < 7 {
-                if let prevLastDay = self.prevMonthLastDay() {
-                    var temparr:[calCellData] = []
-                    for prevDay in 0..<prevLastWeekday
-                    {
-                        let num:String = "\(prevLastDay - prevDay)"
-                        let data = calCellData(num: num, state: dateState.prev)
-                        temparr.append(data)
-                    }
-                    self.monthDateCal = temparr.reversed()
-                }
-            }
+    func setDay(day:Int) {
+        self.components.setValue(day, for: .day)
+        if let date = self.cal.date(from: self.components) {
+            self.date = date
         }
-        
-        if let monthCnt = self.getDayCntOfMonth() {
-            for day in 1...monthCnt {
-                let data = calCellData(num: "\(day)", state: dateState.current)
-                self.monthDateCal.append(data)
-            }
-        }
-        
-        if let nextFirstWeekday = self.nextMonthFirstWeekDay() {
-            if nextFirstWeekday > 1 {
-                for day in nextFirstWeekday...7 {
-                    let data = calCellData(num: "\(day)", state: dateState.next)
-                    self.monthDateCal.append(data)
-                }
-            }
-        }
-        
+    }
+ 
+    func getDayofDate(date:Date) -> Int {
+        return cal.dateComponents([.day], from: date).day!
+    }
+    
+    func getWeekDayofDate(date:Date) -> Int {
+        return cal.dateComponents([.weekday], from: date).weekday!
+    }
+    
+    func getWeekCntofMonth() -> Int {
+         var calendar = Calendar(identifier: .gregorian)
+         calendar.firstWeekday = 1
+         let weekRange = calendar.range(of: .weekOfMonth,
+                                        in: .month,
+                                        for: self.date)
+         return weekRange!.count
     }
     
     func getCalendarDate() -> [calCellData] {
@@ -173,19 +159,46 @@ class RoomDetailDateComponentsModel: NSObject {
         return self.monthDateCal.count
     }
     
-    func setMonth(month:Int) {
-        self.components.setValue(month, for: .month)
-        self.setCalendarDate()
+    func setMonthofCal() {
+        self.monthDateCal.removeAll()
+        let prevWeekday = self.getWeekDayofDate(date: self.prevLastDayOfMonth)
+        if prevWeekday < 7
+        {
+            for weekDay in 1...prevWeekday {
+                let day = self.getDayofDate(date: self.prevLastDayOfMonth) - (prevWeekday - weekDay)
+                let data = calCellData(num: "\(day)", state: dateState.prev, weekDay: WEEKDAYS(rawValue: Int8(weekDay))!, weekPoint: self.monthDateCal.count/7)
+                self.monthDateCal.append(data);
+            }
+        }
+        
+        var currentWeekDay = self.getWeekDayofDate(date: self.startOfMonth)
+        for day in self.getDayofDate(date: self.startOfMonth)...self.getDayofDate(date: self.endOfMonth) {
+            let data = calCellData(num: "\(day)", state: dateState.current, weekDay: WEEKDAYS(rawValue: Int8(currentWeekDay))!, weekPoint: self.monthDateCal.count/7)
+            if currentWeekDay == 7 {
+                currentWeekDay = 1
+            }else {
+                currentWeekDay += 1
+            }
+            self.monthDateCal.append(data)
+        }
+        
+        if self.getWeekDayofDate(date: self.nextFirstDayOfMonth) > 1 {
+            var day = 1
+            for weekDay in self.getWeekDayofDate(date: self.nextFirstDayOfMonth)...7
+            {
+                let data = calCellData(num: "\(day)", state: dateState.next, weekDay: WEEKDAYS(rawValue: Int8(weekDay))!, weekPoint: self.monthDateCal.count/7)
+                day += 1
+                self.monthDateCal.append(data)
+            }
+        }
     }
     
-    func setDay(day:Int) {
-        self.components.setValue(day, for: .day)
-    }
+    
 }
 
 protocol roomDetailCalCell {
     func setDate(date:calCellData)
-    func setViewLine(flag:Bool)
+    func changeStateCell(data:calCellData,state:ROOMDETAILSCROLLPOINT)
 }
 
 class RoomDetailCtl
@@ -204,14 +217,19 @@ class RoomDetailCtl
             {
                 view.updateYearAndMonth(year: year, month: month)
             }
-            view.setUpLayout()
             view.setUpDefine()
+            view.setUpLayout()
+            
         }
         
     }
     
     func configure(cell:roomDetailCalCell,date:calCellData) {
         cell.setDate(date: date)
+    }
+    
+    func changeState(cell:roomDetailCalCell,data:calCellData,state:ROOMDETAILSCROLLPOINT){
+        cell.changeStateCell(data: data, state: state)
     }
     
     func getYear() -> Int? {
@@ -222,9 +240,6 @@ class RoomDetailCtl
         return self.roomDetailModel.getMonth()
     }
     
-    func getDayCntOfMonth() -> Int? {
-        return self.roomDetailModel.getDayCntOfMonth()
-    }
     
     func getToday() -> Int? {
         return self.roomDetailModel.getToday()
@@ -250,6 +265,19 @@ class RoomDetailCtl
         return self.roomDetailModel.getCalendarDateCnt()
     }
    
+    func getWeekCntofMonth() -> Int {
+        return self.roomDetailModel.getWeekCntofMonth()
+    }
+}
+
+enum ROOMDETAILSCROLLPOINT {
+    case TOPMIDTOP
+    case TOPMIDBOT
+    case MID
+    case BOTMIDTOP
+    case BOTMIDBOT
+    case OUTSCREEN
+    case UNKWNON
 }
 
 protocol RoomDetailViewContract {
@@ -274,17 +302,20 @@ class RoomDetailViewController: BaseViewController, RoomDetailViewContract {
     
     @IBOutlet weak var showCalList: UIButton!
     
-    @IBOutlet var originalCal: UICollectionView!
-    
     @IBOutlet var moveCal: UICollectionView!
     @IBOutlet var moveCalHeightConstraints: NSLayoutConstraint!
     
     @IBOutlet var upandDownView: UIView!
+    @IBOutlet weak var weekDaysStackView: UIStackView!
     
     var screenWidth:CGFloat!
     var screenHeight:CGFloat!
     
+    var contentScreenHeight:CGFloat!
     var contentsViewCenterY:CGFloat!
+    
+    var contentsviewTop:CGFloat!
+    var movecalOriginSize:CGFloat!
     
     let roomDetailCtlMaker:RoomDetailCtlMaker = RoomDetailCtlMaker()
     var roomDetailCtl:RoomDetailCtl?
@@ -294,29 +325,43 @@ class RoomDetailViewController: BaseViewController, RoomDetailViewContract {
         roomDetailCtlMaker.configure(roomDetailView: self)
         
         roomDetailCtl?.onViewDidLoad()
+        let nib = UINib(nibName: "RoomDetailCalCollectionViewCell", bundle: nil)
+    
+        self.moveCal.register(nib, forCellWithReuseIdentifier: "RoomDetailCalCollectionViewCell")
         
-        
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in
+            self.moveCal.collectionViewLayout.invalidateLayout()
+        }
     }
     
     func setUpDefine() {
         screenWidth = self.view.frame.size.width
         screenHeight = self.view.frame.size.height
         
-        contentsViewCenterY = (self.screenHeight-self.topViewHeightConstraints.constant)*0.7
+        contentScreenHeight = self.screenHeight-self.topViewHeightConstraints.constant - self.weekDaysStackView.frame.size.height-50
+        contentsViewCenterY = self.contentScreenHeight*0.5
+        contentsviewTop = self.weekDaysStackView.frame.origin.y
     }
     
     func setUpLayout() {
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.wasDragged(gestureRecognizer:)))
-        upandDownView.addGestureRecognizer(gesture)
-        upandDownView.isUserInteractionEnabled = true
-        gesture.delegate = self
         
-        self.originalCal.delegate = self
-        self.originalCal.dataSource = self
-        
+        let calGesture = UIPanGestureRecognizer(target: self, action: #selector(self.wasCalDragged(gestureRecognizer:)))
+        self.moveCal.addGestureRecognizer(calGesture)
         self.moveCal.delegate = self
         self.moveCal.dataSource = self
         
+        self.movecalOriginSize = self.contentsViewCenterY - self.contentsviewTop
+        self.moveCalHeightConstraints.constant = self.movecalOriginSize
+        calGesture.delegate = self
+        
+        let viewGesture = UIPanGestureRecognizer(target: self, action: #selector(self.wasViewDragged(gestureRecognizer:)))
+        upandDownView.addGestureRecognizer(viewGesture)
+        upandDownView.isUserInteractionEnabled = true
+        viewGesture.delegate = self
     }
 
     // MARK: ViewContract
@@ -329,13 +374,69 @@ class RoomDetailViewController: BaseViewController, RoomDetailViewContract {
 
 extension RoomDetailViewController:UIGestureRecognizerDelegate {
     
-    @objc func wasDragged(gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func wasCalDragged(gestureRecognizer: UIPanGestureRecognizer) {
+        let translation = gestureRecognizer.translation(in: self.view)
         if gestureRecognizer.state == UIGestureRecognizer.State.began || gestureRecognizer.state == UIGestureRecognizer.State.changed {
-            let translation = gestureRecognizer.translation(in: self.view)
-               print(translation.y)
+            if(gestureRecognizer.view!.center.y <= self.contentsViewCenterY) || (gestureRecognizer.view!.center.y >= self.contentsviewTop ) {
+                
+                if self.upandDownView.frame.origin.y > self.contentsViewCenterY
+                {
+                    self.moveCalHeightConstraints.constant = self.moveCalHeightConstraints.constant + translation.y
+                }
+                if self.upandDownView.frame.origin.y <= self.screenHeight
+                {
+                    self.upandDownView.frame.origin.y = self.upandDownView.frame.origin.y - translation.y
+                }
+                if self.moveCalHeightConstraints.constant > self.contentScreenHeight {
+                    self.moveCalHeightConstraints.constant = self.contentScreenHeight
+                }
+                
+                self.moveCal.reloadData()
+                self.moveCal.collectionViewLayout.invalidateLayout()
+    
+            }
+            else {
+                gestureRecognizer.view!.frame.origin.y = self.contentsviewTop
+            }
+
+            gestureRecognizer.setTranslation(CGPoint(x:0,y:0), in: self.view)
+        }else if gestureRecognizer.state == UIGestureRecognizer.State.ended {
+            if (self.contentsViewCenterY..<self.contentsViewCenterY*1.5).contains(self.upandDownView.frame.origin.y)  {
+                UIView.animate(withDuration: 0.5) {
+                    self.moveCalHeightConstraints.constant = self.movecalOriginSize
+                    self.upandDownView.frame.origin.y = self.contentsViewCenterY
+                } completion: { _ in
+                    self.moveCal.reloadData()
+                    self.moveCal.collectionViewLayout.invalidateLayout()
+                }
+
+            }
+            else {
+                UIView.animate(withDuration: 0.5) {
+                    self.moveCalHeightConstraints.constant = self.contentScreenHeight
+                    self.upandDownView.frame.origin.y = self.screenHeight
+                }
+            }
+        }
+    }
+    
+    @objc func wasViewDragged(gestureRecognizer: UIPanGestureRecognizer) {
+        let translation = gestureRecognizer.translation(in: self.view)
+           print(translation.y)
+        
+//        print(gestureRecognizer.view?.frame.origin.y)
+        if gestureRecognizer.state == UIGestureRecognizer.State.began || gestureRecognizer.state == UIGestureRecognizer.State.changed {
             if(gestureRecognizer.view!.center.y > self.contentsViewCenterY) {
                 gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x, y: gestureRecognizer.view!.center.y+translation.y)
-                self.moveCalHeightConstraints.constant = self.moveCalHeightConstraints.constant + translation.y
+                if (gestureRecognizer.view?.frame.origin.y)! > self.contentsViewCenterY
+                {
+                    self.moveCalHeightConstraints.constant = self.moveCalHeightConstraints.constant + translation.y
+                    UIView.animate(withDuration: 0.2) {
+                        self.moveCal.reloadData()
+                        self.moveCal.collectionViewLayout.invalidateLayout()
+                    }
+                    
+                }
             }
             else {
                 gestureRecognizer.view!.center = CGPoint(x:gestureRecognizer.view!.center.x, y:self.contentsViewCenterY+1)
@@ -343,16 +444,64 @@ extension RoomDetailViewController:UIGestureRecognizerDelegate {
 
             gestureRecognizer.setTranslation(CGPoint(x:0,y:0), in: self.view)
         }else if gestureRecognizer.state == UIGestureRecognizer.State.ended {
-            if (self.contentsViewCenterY...self.contentsViewCenterY*1.5).contains(gestureRecognizer.view!.center.y) {
-                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x, y: self.contentsViewCenterY)
-            }else if (self.contentsViewCenterY*1.5...self.contentsViewCenterY*3).contains(gestureRecognizer.view!.center.y) {
-                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x, y: self.contentsViewCenterY*2)
-            }else {
-                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x, y: self.contentsViewCenterY*3)
+            if (self.contentsviewTop..<self.contentsViewCenterY/1.5).contains(gestureRecognizer.view!.frame.origin.y) {
+                UIView.animate(withDuration: 0.5) {
+                    gestureRecognizer.view?.frame.origin.y = self.contentsviewTop
+                }
+            }else if (self.contentsViewCenterY/1.5..<self.contentsViewCenterY).contains((gestureRecognizer.view?.frame.origin.y)!)  {
+                UIView.animate(withDuration: 0.5) {
+                    gestureRecognizer.view?.frame.origin.y = self.contentsViewCenterY
+                    self.moveCalHeightConstraints.constant = (gestureRecognizer.view?.frame.origin.y)! - self.contentsviewTop
+                    UIView.animate(withDuration: 0.5) {
+                        self.moveCal.reloadData()
+                        self.moveCal.collectionViewLayout.invalidateLayout()
+                    }
+                }
+            }else if (self.contentsViewCenterY..<self.contentsViewCenterY*1.5).contains((gestureRecognizer.view?.frame.origin.y)!)  {
+                UIView.animate(withDuration: 0.5) {
+                    self.moveCalHeightConstraints.constant = self.movecalOriginSize
+                    gestureRecognizer.view?.frame.origin.y = self.contentsViewCenterY
+                } completion: { _ in
+                    UIView.animate(withDuration: 0.5) {
+                        self.moveCal.reloadData()
+                        self.moveCal.collectionViewLayout.invalidateLayout()
+                    }
+                }
+
+            }
+            else {
+                UIView.animate(withDuration: 0.5) {
+                    gestureRecognizer.view?.frame.origin.y = self.screenHeight
+                    self.moveCalHeightConstraints.constant = (gestureRecognizer.view?.frame.origin.y)! - self.contentsviewTop
+                    UIView.animate(withDuration: 0.5) {
+                        self.moveCal.reloadData()
+                        self.moveCal.collectionViewLayout.invalidateLayout()
+                    }
+                }
             }
         }
+        
     }
+    
+    func checkScrollPoint(ypoint:CGFloat) -> ROOMDETAILSCROLLPOINT {
 
+        if (ypoint == self.contentsViewCenterY)
+        {
+            return ROOMDETAILSCROLLPOINT.MID
+        }
+        if (self.contentsviewTop..<self.contentsViewCenterY/1.5).contains(ypoint) {
+            return ROOMDETAILSCROLLPOINT.TOPMIDTOP
+        }else if (self.contentsViewCenterY/1.5..<self.contentsViewCenterY).contains(ypoint) {
+            return ROOMDETAILSCROLLPOINT.TOPMIDBOT
+        }else if (self.contentsViewCenterY..<self.contentsViewCenterY*1.5).contains(ypoint) {
+            return ROOMDETAILSCROLLPOINT.BOTMIDTOP
+        }else if (self.contentsViewCenterY*1.5..<self.screenHeight).contains(ypoint) {
+            return ROOMDETAILSCROLLPOINT.BOTMIDBOT
+        }else{
+            return ROOMDETAILSCROLLPOINT.OUTSCREEN
+        }
+    
+    }
 }
 
 extension RoomDetailViewController: UICollectionViewDelegate {
@@ -372,10 +521,28 @@ extension RoomDetailViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomDetailCalCollectionViewCell", for: indexPath) as! RoomDetailCalCollectionViewCell
         if let data = self.roomDetailCtl?.getCalendarDate(){
             self.roomDetailCtl?.configure(cell: cell, date: data[indexPath.row])
+            self.roomDetailCtl?.changeState(cell: cell, data: data[indexPath.row], state: self.checkScrollPoint(ypoint: self.upandDownView.frame.origin.y))
         }
         
         return cell
     }
 
 
+}
+
+extension RoomDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let weekcnt = CGFloat((self.roomDetailCtl?.getWeekCntofMonth())!)
+        let height = collectionView.frame.size.height / weekcnt
+        return CGSize(width: self.screenWidth/7, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    
+    
+    
 }

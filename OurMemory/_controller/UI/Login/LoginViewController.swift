@@ -8,7 +8,7 @@
 import UIKit
 import OurMemoryTask
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,9 +12,12 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true;
+        if #available(iOS 13.0, *) {
+            self.overrideUserInterfaceStyle = .light
+        } 
     }
-
-    func inittailizeSubView() -> Self {
+    
+    func initiailizeSubView() -> Self {
         
         func instantiateFromNib<T: UIViewController>() -> T {
             return T.init(nibName: String(describing: T.self), bundle: nil)
@@ -23,7 +26,7 @@ class BaseViewController: UIViewController {
         return instantiateFromNib()
     }
     
-    func inittailizeSubViewClass() -> Self {
+    func initiailizeSubViewClass() -> Self {
         
         func loadNibInViewController<T: UIViewController>() -> T {
             let nib = UINib(nibName: String(describing:T.self), bundle: nil)

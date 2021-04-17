@@ -16,14 +16,16 @@ class IntroCtl: BaseCtl {
     }
 }
 
+// MARK: dataContract
+
 extension IntroCtl: IntroContract {
     
-    public func requestIntroData() {
-        self.netModel.tryRequestRestfulAPI { (flag) in
-            if flag == true {
-                
+    func requestIntroData() {
+        self.netModel.tryRequestLoginIntro { (flag) in
+            if flag {
+                self.view.showNEXTVC(vc: NEXTVIEW.NEXTVIEW_MAIN, data: nil)
             }else {
-                
+                self.view.showNEXTVC(vc: NEXTVIEW.NEXTVIEW_LOGIN, data: nil)
             }
         }
     }

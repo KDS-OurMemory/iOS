@@ -17,14 +17,14 @@ public enum ctls {
     case eContractSchedule
 }
 
-public class CtlMaker: NSObject {
+open class CtlMaker: NSObject {
 
-    public func createDataControllerWithContract<T>(contract:ctls,view:T) -> Any? {
-        var retVal:Any!
+    open func createDataControllerWithContract<T>(contract:ctls,view:T) -> dataContract? {
+        var retVal:dataContract!
         switch contract {
         case .eContractIntro:
-            if T.self is IntroView.Type {
-                retVal = IntroCtl()
+            if let _ = view as? IntroView {
+                retVal = IntroCtl(view: view as! viewContract)
             }
             break
         case .eContractLogin:

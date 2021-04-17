@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol IntroContract {
-    
+public protocol IntroContract: dataContract {
+    func requestIntroData()
 }
