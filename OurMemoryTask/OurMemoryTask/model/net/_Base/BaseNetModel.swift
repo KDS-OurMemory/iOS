@@ -12,7 +12,7 @@ class BaseNetModel {
     let session = URLSession.shared
     
     struct dataRequest : Request {
-        let standardURL = "http://13.125.146.53/"
+        let standardURL = "https://ourmemory.ddns.net:8443"
         let session = URLSession.shared
         var method: HTTPMethod
         var params: RequestParam
@@ -26,23 +26,54 @@ class BaseNetModel {
     }
     
     func reqeustRestFulApi<T: Codable>(method:HTTPMethod,path:String, params:RequestParam ,completion: @escaping (Result<T, Error>) -> Void) {
+        
         guard let url = dataRequest(method: method, path: path, param: params).urlRequest()?.url else { return }
-        session.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let responseData = data else { return }
-            let decoder = JSONDecoder()
-            do {
-                let response = try decoder.decode(T.self, from: responseData)
-                completion(.success(response))
-            } catch {
-                print("---> err: \(error.localizedDescription)")
-                completion(.failure(error))
-            }
-        }.resume()
+        guard let request = dataRequest(method: method, path: path, param: params).urlRequest() else {return}
+        
+        switch method {
+        case .get:
+            session.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let responseData = data else { return }
+                let decoder = JSONDecoder()
+                do {
+                    let response = try decoder.decode(T.self, from: responseData)
+                    print("response by : { \n \(response) \n }")
+                    completion(.success(response))
+                } catch {
+                    print("---> err: \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+            }.resume()
+            break
+        case .post:
+            session.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let responseData = data else { return }
+                let decoder = JSONDecoder()
+                do {
+                    let response = try decoder.decode(T.self, from: responseData)
+                    print("response by : \(T.self) { \n \(response) \n }")
+                    completion(.success(response))
+                } catch {
+                    print("---> err: \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+            }.resume()
+            break
+        default:
+            break
+        }
+        
+        
     }
     
    

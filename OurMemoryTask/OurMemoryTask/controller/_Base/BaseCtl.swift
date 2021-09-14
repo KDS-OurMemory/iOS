@@ -7,11 +7,13 @@
 
 import UIKit
 
-class BaseCtl {
+class BaseCtl:NSObject {
 
-    var view:viewContract!
+    var view:ViewContract!
+    var collection:BaseCollectionCtl!
     
-    init(view:viewContract) {
+    init(view:ViewContract) {
+        super.init()
         self.view = view
         self.__init__()
     }
@@ -19,4 +21,6 @@ class BaseCtl {
     func __init__() {
         print("재정의 매소드")
     }
+    
+    
 }

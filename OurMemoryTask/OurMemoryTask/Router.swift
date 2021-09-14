@@ -40,12 +40,15 @@ public class DefaultRouter: IsRouter {
     }
     
     public func navigate(_ navigation: Navigation, from: UIViewController) {
-        if let toVC = appNavigation?.viewcontrollerForNavigation(navigation: navigation) {
-            appNavigation?.navigate(navigation, from: from, to: toVC)
-            for b in didNavigateBlocks {
-                b(navigation)
+        DispatchQueue.main.async { [self] in
+            if let toVC = appNavigation?.viewcontrollerForNavigation(navigation: navigation) {
+                appNavigation?.navigate(navigation, from: from, to: toVC)
+                for b in didNavigateBlocks {
+                    b(navigation)
+                }
             }
         }
+        
     }
     
     public func didNavigate(block: @escaping (Navigation) -> Void) {

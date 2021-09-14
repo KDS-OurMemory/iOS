@@ -25,8 +25,8 @@ enum NetworError: Error {
 }
 
 enum RequestParam {
-    case body([String: String])
-    case url([String: String])
+    case body([String: Any?])
+    case url([String: Any?])
 }
 
 protocol Request {
@@ -45,6 +45,7 @@ extension Request {
     func urlRequest() -> URLRequest? {
         let url = URL(string: path)!
         var request = URLRequest(url: url)
+        
         // method
         request.httpMethod = method.name
         // header
@@ -56,12 +57,14 @@ extension Request {
         case .body(let params):
             let bodyData = try? JSONSerialization.data(withJSONObject: params, options: [])
             if let data = bodyData {
+                print("request \(params) in body =================>")
                 request.httpBody = data
             }
         case .url(let params):
-            let queryParams = params.map { URLQueryItem(name: $0.key, value: $0.value) }
+            let queryParams = params.map { URLQueryItem(name: $0.key, value: $0.value as? String) }
             var components = URLComponents(string: path)
             components?.queryItems = queryParams
+            print("request \(params) in url =================>")
             request.url = components?.url
         }
         return request

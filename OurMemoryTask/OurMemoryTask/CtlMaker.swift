@@ -19,15 +19,18 @@ public enum ctls {
 
 open class CtlMaker: NSObject {
 
-    open func createDataControllerWithContract<T>(contract:ctls,view:T) -> dataContract? {
-        var retVal:dataContract!
+    open func createDataControllerWithContract<T>(contract:ctls,view:T) -> DataContract? {
+        var retVal:DataContract!
         switch contract {
         case .eContractIntro:
             if let _ = view as? IntroView {
-                retVal = IntroCtl(view: view as! viewContract)
+                retVal = IntroCtl(view: view as! ViewContract)
             }
             break
         case .eContractLogin:
+            if let _ = view as? LoginView {
+                retVal = LoginCtl(view: view as! ViewContract)
+            }
             break
         case .eContractMain:
             break

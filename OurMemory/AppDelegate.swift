@@ -10,15 +10,13 @@ import CoreData
 import FirebaseCore
 import FirebaseMessaging
 
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        KaKaoLoginWrapper.shared.initWithKakaoSDK()
-        
+        KaKaoLoginWrapper.shared.initWithKakaoSDK()
         
         FirebaseApp.configure()
         
@@ -38,9 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         return true
     }
     
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-//        return KaKaoLoginWrapper.shared.isKakaoAcountLoginCallBack(url:url)
-//    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return KaKaoLoginWrapper.shared.isKakaoAcountLoginCallBack(url:url)
+    }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.map { String(format: "%02x", $0) }.joined()
@@ -65,51 +63,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
+            let saveDataModel:AppSaveDataModel = AppSaveDataModel()
+            saveDataModel.saveFCMTokenData(fcmToken:token)
         let dataDic:[String:String] = ["token":token]
             NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil,userInfo: dataDic)
+            
         }
-        
-        Messaging.messaging().token(completion: { token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-              } else if let token = token {
-                print("FCM registration token: \(token)")
-                let test:[String:Any] = [
-                             "snsId": "testId_004",
-                             "snsType": 3,
-                             "pushToken": token,
-                             "name": "김동영",
-                             "birthday": "0724",
-                             "isSolar": true,
-                             "isBirthdayOpen": "true"
-                ]
-                if let url = URL(string: "http://13.125.146.53:8080/OurMemory/v1/signUp/") {
-                    var request = URLRequest(url: url)
-                    request.httpMethod = "POST"
-                    
-                    let jsondata = try? JSONSerialization.data(withJSONObject: test, options: [.prettyPrinted])
-                    request.httpBody = jsondata
-                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                    request.addValue("application/json", forHTTPHeaderField: "Accept")
-                    
-                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                        guard let data = data, error == nil else {
-                            print(error?.localizedDescription ?? "No data")
-                            return
-                        }
-                        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                        if let responseJSON = responseJSON as? [String: Any] {
-                            print(responseJSON)
-                        }
-                    }
-
-                    task.resume()
-                    
-                }
-              }
-        })
-        
-       
         
     }
 
@@ -175,12 +134,13 @@ struct MyAppNavigation: AppNavigation {
     }
     
     func viewcontrollerForNavigation(navigation: Navigation) -> UIViewController {
+        
         if let navigation = navigation as? NEXTVIEW {
             switch navigation {
             case .NEXTVIEW_LOGIN:
                 return LoginViewController().initiailizeSubViewClass()
             case .NEXTVIEW_MAIN:
-                return MainViewController()
+                return MainViewController().initiailizeSubViewClass()
             case .NEXTVIEW_FRIENDSLIST:
                 return FriendViewController()
             case .NEXTVIEW_ROOMLIST:

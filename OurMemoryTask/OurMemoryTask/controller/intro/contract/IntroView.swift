@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol IntroView: viewContract {
+public protocol IntroView: ViewContract {
     
 }
