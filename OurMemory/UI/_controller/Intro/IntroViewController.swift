@@ -11,18 +11,28 @@ class IntroViewController: BaseViewController {
     
     var introCtl:IntroContract?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if self.introCtl == nil {
-            self.prepareView()
-        }
-        
+    override func viewWillAppear(_ animated: Bool) {
+        self.prepareViewWithData(data: nil)
+        super.viewWillAppear(animated)
     }
     
-    private func prepareView() {
-        introCtl = (CtlMaker().createDataControllerWithContract(contract: ctls.eContractIntro, view: self) as? IntroContract)
-        if let ctl = self.introCtl {
-            ctl.requestIntroData()
+    override func getDataContract() -> DataContract? {
+        return self.introCtl
+    }
+    
+    override func prepareViewWithData(data: Any?) {
+        if self.getDataContract() == nil {
+            introCtl = (CtlMaker().createDataControllerWithContract(contract: ctls.eContractIntro, view: self,data: data) as? IntroContract)
+            
+        }
+    }
+    
+    override func showNextVC(vc:NEXTVIEW,data:Any?) {
+        switch vc {
+        case .NEXTVIEW_POP,.NEXTVIEW_LOGIN:
+            self.navigate(vc, data: data)
+        default:
+            break
         }
     }
     
@@ -32,16 +42,5 @@ extension IntroViewController: IntroView {
     
     // MARK: viewContract
     
-    func showNEXTVC(vc:NEXTVIEW,data:[NSObject]?) {
-        switch vc {
-        case .NEXTVIEW_MAIN:
-            self.navigate(NEXTVIEW.NEXTVIEW_MAIN)
-            break
-        case .NEXTVIEW_LOGIN:
-            self.navigate(NEXTVIEW.NEXTVIEW_LOGIN)
-            
-        default:
-            break
-        }
-    }
+    
 }

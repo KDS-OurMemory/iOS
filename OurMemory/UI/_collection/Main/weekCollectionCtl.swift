@@ -7,7 +7,7 @@
 
 import UIKit
 
-class weekCollectionCtl: BaseCollectionCtl {
+class weekCollectionCtl: BaseCollectionAdapter {
 //    var mainVC:MainViewController = MainViewController()
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         0

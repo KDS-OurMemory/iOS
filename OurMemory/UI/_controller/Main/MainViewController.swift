@@ -13,40 +13,44 @@ class MainViewController: BaseViewController {
     @IBOutlet var roomCollectionView: UICollectionView!
     @IBOutlet weak var nowPlanLbl: UILabel!
     @IBOutlet weak var nextPlanLbl: UILabel!
+    var tabbar:TabbarView!
     
     var mainCtl:MainContract?
     var mainCollectionCtl:weekCollectionCtl = weekCollectionCtl()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func getDataContract() -> DataContract? {
+        return self.mainCtl
     }
-
-    override func onReadyPushVC() {
-        if self.mainCtl == nil {
-            self.prepareView()
-        }
-        if let ctl = self.mainCtl {
-            ctl.tryGetMyRommListRequest()
-        }
-    }
-
     
-    private func prepareView() {
-        mainCtl = CtlMaker().createDataControllerWithContract(contract: .eContractMain, view: self) as? MainContract
-        if let ctl = self.mainCtl {
-            ctl.setCollectionView(collection: roomCollectionView, collectionCtl: self.mainCollectionCtl)
+    override func prepareViewWithData(data: Any?) {
+        if self.getDataContract() == nil {
+            mainCtl = CtlMaker().createDataControllerWithContract(contract: .eContractMain, view: self, data: data) as? MainContract
         }
     }
     
+    override func showNextVC(vc: NEXTVIEW, data: Any?) {
+        
+        switch vc {
+        default:
+            break
+        }
+    }
 
 }
 
 extension MainViewController: MainView {
-    func showNEXTVC(vc: NEXTVIEW, data: [NSObject]?) {
-        
+    
+    func updateNotiCnt(items: [UInt : Int]) {
+        if let tabbar = self.tabbar {
+            tabbar.updateNotiItemWithCnt(items: items)
+        }
+    }
+    
+    func setTabbarView(tabView: UIView) {
+        if let tabbar = tabView as? TabbarView {
+            self.tabbar = tabbar
+            self.view.addSubview(tabView)
+        }
     }
     
     func reloadCollectionView() {

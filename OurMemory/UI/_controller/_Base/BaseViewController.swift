@@ -36,8 +36,53 @@ class BaseViewController: UIViewController {
         return loadNibInViewController()
     }
     
+    func getDataContract() -> DataContract? {
+        return nil
+    }
+    
+    func prepareViewWithData(data: Any?) {
+        
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func showNextVC(vc: NEXTVIEW, data: Any?) {
+        
+    }
+    
+    func showNetworkErrorAlert() {
+        let alertCtl:UIAlertController = UIAlertController(title: "", message: "네트워크 연결이 원할하지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+        alertCtl.show(self, sender: Any?.self);
+    }
+    
+    func showAlertMsgWithTitle(title:String,msg:String) {
+        let alertCtl:UIAlertController = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+        alertCtl.show(self, sender: Any?.self);
+    }
+    
+    func showAlertMsgWithTitleAndActions(title:String,msg:String, actions: [String:(UIAlertAction) -> Void]) {
+        var alertActions:[UIAlertAction] = []
+        for (key,action) in actions {
+            let action:UIAlertAction = UIAlertAction(title: key, style: .default, handler: action)
+            alertActions.append(action)
+        }
+        let alertCtl:UIAlertController = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+        for alertAction in alertActions {
+            alertCtl.addAction(alertAction)
+        }
+        alertCtl.show(self, sender: Any?.self);
+        
+    }
+    
+    func showFadeOutMsgView(msg:String) {
+        let msgView:FadeView = FadeView(frame: CGRect.zero)
+        msgView.setMsg(msg: msg)
+        self.view.addSubview(msgView)
+        msgView.fadeIn()
+        msgView.fadeOut()
+        
     }
 
 }

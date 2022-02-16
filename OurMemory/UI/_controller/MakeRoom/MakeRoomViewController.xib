@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="Bi5-gc-PAz" customClass="MakeRoomViewController" customModule="OurMemory" customModuleProvider="target">
+            <view key="view" contentMode="scaleToFill" id="9B0-Es-SLi">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2R-GY-9aD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="Y3y-YP-JfT"/>
+                        </constraints>
+                    </view>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CxM-Hi-saG" customClass="BaseScrollView" customModule="OurMemory" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="104" width="414" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="cxQ-WN-2Gu"/>
+                        </constraints>
+                    </scrollView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="KNa-Da-Utj">
+                        <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BQ8-r3-43J">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <viewLayoutGuide key="safeArea" id="uJ8-jA-n9P"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="uJ8-jA-n9P" firstAttribute="trailing" secondItem="CxM-Hi-saG" secondAttribute="trailing" id="8Y6-6K-mMu"/>
+                    <constraint firstItem="e2R-GY-9aD" firstAttribute="leading" secondItem="uJ8-jA-n9P" secondAttribute="leading" id="Mpr-UJ-CW7"/>
+                    <constraint firstItem="KNa-Da-Utj" firstAttribute="leading" secondItem="uJ8-jA-n9P" secondAttribute="leading" id="PLV-kI-GtS"/>
+                    <constraint firstItem="e2R-GY-9aD" firstAttribute="top" secondItem="uJ8-jA-n9P" secondAttribute="top" id="PVA-to-bhZ"/>
+                    <constraint firstItem="uJ8-jA-n9P" firstAttribute="trailing" secondItem="e2R-GY-9aD" secondAttribute="trailing" id="RR1-wv-wZt"/>
+                    <constraint firstItem="uJ8-jA-n9P" firstAttribute="bottom" secondItem="KNa-Da-Utj" secondAttribute="bottom" id="ZGp-hW-NBQ"/>
+                    <constraint firstItem="CxM-Hi-saG" firstAttribute="leading" secondItem="uJ8-jA-n9P" secondAttribute="leading" id="i6Z-L3-ost"/>
+                    <constraint firstItem="KNa-Da-Utj" firstAttribute="top" secondItem="e2R-GY-9aD" secondAttribute="bottom" id="nKh-y6-1Ah"/>
+                    <constraint firstItem="CxM-Hi-saG" firstAttribute="top" secondItem="e2R-GY-9aD" secondAttribute="bottom" id="vTY-Ev-alI"/>
+                    <constraint firstItem="uJ8-jA-n9P" firstAttribute="trailing" secondItem="KNa-Da-Utj" secondAttribute="trailing" id="z5S-92-aj8"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="selectItemSv" destination="CxM-Hi-saG" id="sxL-NE-ZHq"/>
+                <outlet property="topViewContainer" destination="e2R-GY-9aD" id="1BG-EH-cn1"/>
+                <outlet property="userListCollectionView" destination="KNa-Da-Utj" id="1ra-sw-4sG"/>
+            </connections>
+            <point key="canvasLocation" x="13.043478260869566" y="4.6875"/>
+        </viewController>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,7 +30,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="iy5-P8-ymb">
-                        <rect key="frame" x="0.0" y="537" width="375" height="80"/>
+                        <rect key="frame" x="0.0" y="517" width="375" height="80"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="Rx9-2x-GU1"/>
@@ -42,16 +42,8 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a39-Ud-Vjy">
-                        <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="F2t-MI-QVb"/>
-                        </constraints>
-                        <items/>
-                    </tabBar>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVf-LR-r5B">
-                        <rect key="frame" x="5" y="160" width="180" height="347"/>
+                        <rect key="frame" x="5" y="160" width="180" height="327"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nby-Fy-cMb">
                                 <rect key="frame" x="5" y="5" width="170" height="21"/>
@@ -68,7 +60,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wi9-Bn-c4g">
-                        <rect key="frame" x="190" y="160" width="180" height="347"/>
+                        <rect key="frame" x="190" y="160" width="180" height="327"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etc-zi-elo">
                                 <rect key="frame" x="5" y="5" width="170" height="21"/>
@@ -91,18 +83,15 @@
                     <constraint firstItem="iy5-P8-ymb" firstAttribute="top" secondItem="wi9-Bn-c4g" secondAttribute="bottom" constant="30" id="1Jy-rW-hVM"/>
                     <constraint firstItem="iy5-P8-ymb" firstAttribute="top" secondItem="SVf-LR-r5B" secondAttribute="bottom" constant="30" id="4by-tU-bEe"/>
                     <constraint firstItem="wi9-Bn-c4g" firstAttribute="leading" secondItem="mFe-mG-3MU" secondAttribute="centerX" constant="2.5" id="5fL-Xd-u3C"/>
-                    <constraint firstItem="a39-Ud-Vjy" firstAttribute="leading" secondItem="mFe-mG-3MU" secondAttribute="leading" id="7LD-dv-BU7"/>
-                    <constraint firstItem="a39-Ud-Vjy" firstAttribute="top" secondItem="iy5-P8-ymb" secondAttribute="bottom" id="CP5-s3-vt1"/>
                     <constraint firstAttribute="centerX" secondItem="SVf-LR-r5B" secondAttribute="trailing" constant="2.5" id="EQT-rn-l26"/>
                     <constraint firstItem="xHT-ek-NOr" firstAttribute="trailing" secondItem="wi9-Bn-c4g" secondAttribute="trailing" constant="5" id="GaI-X4-4aU"/>
                     <constraint firstItem="ooG-fk-GsQ" firstAttribute="leading" secondItem="mFe-mG-3MU" secondAttribute="leading" id="Ms4-ZP-ZxP"/>
                     <constraint firstItem="ooG-fk-GsQ" firstAttribute="top" secondItem="mFe-mG-3MU" secondAttribute="top" id="SIv-hn-Fpp"/>
-                    <constraint firstAttribute="trailing" secondItem="a39-Ud-Vjy" secondAttribute="trailing" id="TNx-I5-lpa"/>
                     <constraint firstItem="wi9-Bn-c4g" firstAttribute="top" secondItem="ooG-fk-GsQ" secondAttribute="bottom" constant="30" id="UED-dZ-QbI"/>
                     <constraint firstAttribute="trailing" secondItem="ooG-fk-GsQ" secondAttribute="trailing" id="Xmf-yc-ocQ"/>
                     <constraint firstItem="iy5-P8-ymb" firstAttribute="leading" secondItem="mFe-mG-3MU" secondAttribute="leading" id="Yfi-N7-SlT"/>
                     <constraint firstAttribute="trailing" secondItem="iy5-P8-ymb" secondAttribute="trailing" id="Yse-Cc-SIc"/>
-                    <constraint firstItem="xHT-ek-NOr" firstAttribute="bottom" secondItem="a39-Ud-Vjy" secondAttribute="bottom" id="gqR-fE-5dS"/>
+                    <constraint firstItem="xHT-ek-NOr" firstAttribute="bottom" secondItem="iy5-P8-ymb" secondAttribute="bottom" constant="70" id="bS5-Xw-Xnv"/>
                     <constraint firstItem="SVf-LR-r5B" firstAttribute="top" secondItem="ooG-fk-GsQ" secondAttribute="bottom" constant="30" id="nhq-NP-bN6"/>
                     <constraint firstItem="SVf-LR-r5B" firstAttribute="leading" secondItem="xHT-ek-NOr" secondAttribute="leading" constant="5" id="tTQ-hs-enF"/>
                 </constraints>

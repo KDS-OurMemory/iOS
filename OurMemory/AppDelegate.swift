@@ -7,25 +7,27 @@
 
 import UIKit
 import CoreData
-import FirebaseCore
 import FirebaseMessaging
+import FirebaseCore
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        KaKaoLoginWrapper.shared.initWithKakaoSDK()
-        
         FirebaseApp.configure()
-        
+
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         
         let authOptions:UNAuthorizationOptions = [.alert,.sound,.badge]
         
-        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in})
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { didAllow, _ in
+            if didAllow {
+                UserDefaults.standard.setValue(didAllow, forKey: "push")
+            }
+        })
         application.registerForRemoteNotifications()
         let storyboard = UIStoryboard(name: "Intro", bundle: nil)
                 let root = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
@@ -37,7 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return KaKaoLoginWrapper.shared.isKakaoAcountLoginCallBack(url:url)
+        if let naviVc = self.window?.rootViewController as? UINavigationController {
+            if let vc = naviVc.viewControllers.first as? LoginView {
+                return vc.openUrlForSnsLogin(url: url)
+            }
+        }
+        return false
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -54,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     // MARK: Notification
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.badge,.sound,.alert])
+        completionHandler([.badge,.sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -63,13 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
-            let saveDataModel:AppSaveDataModel = AppSaveDataModel()
-            saveDataModel.saveFCMTokenData(fcmToken:token)
+            
+            UserDefaults.standard.setValue(token, forKey: "fcmToken")
+            print(UserDefaults.standard.string(forKey: "fcmToken"))
         let dataDic:[String:String] = ["token":token]
             NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil,userInfo: dataDic)
-            
+
         }
-        
+
     }
 
     // MARK: - Core Data stack
@@ -118,41 +126,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
 }
-
-// MARK: UIViewController Router
-
-extension UIViewController {
-    @objc func onReadyPushVC() {
-        
-    }
-}
-
-struct MyAppNavigation: AppNavigation {
-    func navigate(_ navigation: Navigation, from: UIViewController, to: UIViewController) {
-        to.onReadyPushVC()
-        from.navigationController?.pushViewController(to, animated: true)
-    }
-    
-    func viewcontrollerForNavigation(navigation: Navigation) -> UIViewController {
-        
-        if let navigation = navigation as? NEXTVIEW {
-            switch navigation {
-            case .NEXTVIEW_LOGIN:
-                return LoginViewController().initiailizeSubViewClass()
-            case .NEXTVIEW_MAIN:
-                return MainViewController().initiailizeSubViewClass()
-            case .NEXTVIEW_FRIENDSLIST:
-                return FriendViewController()
-            case .NEXTVIEW_ROOMLIST:
-                return RoomTableViewController()
-            case .NEXTVIEW_ROOMDETAIL:
-                return RoomDetailViewController()
-            case .NEXTVIEW_SCHEDULE:
-                return ScheduleViewController()
-            }
-            
-        }
-        return UIViewController()
-    }
-}
-

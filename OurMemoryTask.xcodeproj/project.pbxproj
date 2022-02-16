@@ -1,0 +1,1895 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		70C5AC118E843BD2F3A10836 /* Pods_OurMemoryTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488356BAC1273401D2280C0F /* Pods_OurMemoryTask.framework */; };
+		73187055278D594700B2D95F /* OurMemoryErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187054278D594700B2D95F /* OurMemoryErrorData.swift */; };
+		73187059278D7B7700B2D95F /* CheckMyInfoNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187058278D7B7700B2D95F /* CheckMyInfoNetModel.swift */; };
+		7318705C278D7C9900B2D95F /* ModifyUserInfoNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318705B278D7C9900B2D95F /* ModifyUserInfoNetModel.swift */; };
+		7318705F278D7D0300B2D95F /* DeleteUserNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318705E278D7D0300B2D95F /* DeleteUserNetModel.swift */; };
+		73187062278D879900B2D95F /* UploadMyProfileNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187061278D879900B2D95F /* UploadMyProfileNetModel.swift */; };
+		73187065278D87CE00B2D95F /* DeleteMyProfileNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187064278D87CE00B2D95F /* DeleteMyProfileNetModel.swift */; };
+		73187068278D883C00B2D95F /* ModifyPushTokenNetmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187067278D883C00B2D95F /* ModifyPushTokenNetmodel.swift */; };
+		73187078278D8BE800B2D95F /* InquiryFriendListNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187077278D8BE800B2D95F /* InquiryFriendListNetModel.swift */; };
+		7318707A278D8BFA00B2D95F /* AcceptRequestFriendNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187079278D8BFA00B2D95F /* AcceptRequestFriendNetModel.swift */; };
+		7318707C278D8C0E00B2D95F /* CancelRequestFriendNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318707B278D8C0E00B2D95F /* CancelRequestFriendNetModel.swift */; };
+		7318707E278D8C2000B2D95F /* AddAgainFriendsNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318707D278D8C2000B2D95F /* AddAgainFriendsNetModel.swift */; };
+		73187080278D8C4300B2D95F /* RequestFriendNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318707F278D8C4300B2D95F /* RequestFriendNetModel.swift */; };
+		73187082278D8C7D00B2D95F /* ChangeFriendStatusNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187081278D8C7D00B2D95F /* ChangeFriendStatusNetModel.swift */; };
+		73187084278D8C8E00B2D95F /* DeleteFriendsNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187083278D8C8E00B2D95F /* DeleteFriendsNetModel.swift */; };
+		73187086278D8CA000B2D95F /* SearchForFriendsNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187085278D8CA000B2D95F /* SearchForFriendsNetModel.swift */; };
+		7318708D278D913C00B2D95F /* InquiryRoomListNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318708C278D913C00B2D95F /* InquiryRoomListNetModel.swift */; };
+		7318708F278D915600B2D95F /* SearchForRoomNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318708E278D915600B2D95F /* SearchForRoomNetModel.swift */; };
+		73187091278D917400B2D95F /* ModifyRoomInfoNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187090278D917400B2D95F /* ModifyRoomInfoNetModel.swift */; };
+		73187093278D918A00B2D95F /* TransferringRoomOwnerNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187092278D918A00B2D95F /* TransferringRoomOwnerNetModel.swift */; };
+		73187095278D919A00B2D95F /* DeleteMyRoomNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187094278D919A00B2D95F /* DeleteMyRoomNetModel.swift */; };
+		73187099278D91F900B2D95F /* MakeRoomNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187098278D91F900B2D95F /* MakeRoomNetModel.swift */; };
+		731870A2278D96A700B2D95F /* InquiryScheduleListNetMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870A1278D96A700B2D95F /* InquiryScheduleListNetMode.swift */; };
+		731870A4278D96B400B2D95F /* AddScheduleNetMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870A3278D96B400B2D95F /* AddScheduleNetMode.swift */; };
+		731870A6278D96C600B2D95F /* AttendanceSettingScheduleNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870A5278D96C600B2D95F /* AttendanceSettingScheduleNetModel.swift */; };
+		731870A8278D970B00B2D95F /* SearchForIndividuallySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870A7278D970B00B2D95F /* SearchForIndividuallySchedule.swift */; };
+		731870AA278D973F00B2D95F /* ShareScheduleNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870A9278D973F00B2D95F /* ShareScheduleNetModel.swift */; };
+		731870AC278D975200B2D95F /* DeleteScheduleNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870AB278D975200B2D95F /* DeleteScheduleNetModel.swift */; };
+		731870AE278D976700B2D95F /* ModifyScheduleNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870AD278D976700B2D95F /* ModifyScheduleNetModel.swift */; };
+		731870B2278D97D600B2D95F /* DeleteNoticeNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870B1278D97D600B2D95F /* DeleteNoticeNetModel.swift */; };
+		731870B4278D97E900B2D95F /* InquiryNoticeListNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870B3278D97E900B2D95F /* InquiryNoticeListNetModel.swift */; };
+		731870BB278D983300B2D95F /* AddTodoNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870BA278D983300B2D95F /* AddTodoNetModel.swift */; };
+		731870BD278D984500B2D95F /* SearchForTodoNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870BC278D984500B2D95F /* SearchForTodoNetModel.swift */; };
+		731870BF278D985400B2D95F /* ModifyTodoNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870BE278D985400B2D95F /* ModifyTodoNetModel.swift */; };
+		731870C1278D986400B2D95F /* DeleteTodoNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870C0278D986400B2D95F /* DeleteTodoNetModel.swift */; };
+		731870C3278D987400B2D95F /* InquiryTodoListNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870C2278D987400B2D95F /* InquiryTodoListNetModel.swift */; };
+		731870C6279454EA00B2D95F /* SignupCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870C5279454EA00B2D95F /* SignupCtl.swift */; };
+		731870C927945A6700B2D95F /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870C827945A6700B2D95F /* SignupModel.swift */; };
+		731870CC279466E900B2D95F /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870CB279466E900B2D95F /* SignupView.swift */; };
+		731870CE279466F900B2D95F /* SignupContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731870CD279466F900B2D95F /* SignupContract.swift */; };
+		7319C83F2656B0170080DF5F /* BaseCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7319C83E2656B0170080DF5F /* BaseCollectionAdapter.swift */; };
+		7328CFBD262AF87F00B821BD /* DataContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328CFBC262AF87F00B821BD /* DataContract.swift */; };
+		7328CFC1262AFF1000B821BD /* dataEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328CFC0262AFF1000B821BD /* dataEnum.swift */; };
+		7328F0092641068B000E081C /* dataVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7328F0082641068B000E081C /* dataVO.swift */; };
+		732C870F2607749D00EEEE57 /* IntroContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C870E2607749D00EEEE57 /* IntroContract.swift */; };
+		732C8712260774D300EEEE57 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C8711260774D300EEEE57 /* IntroView.swift */; };
+		732C872326077E2600EEEE57 /* CtlMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C872226077E2600EEEE57 /* CtlMaker.swift */; };
+		734FAEF826481EA70013520D /* getMyRoomNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FAEF726481EA70013520D /* getMyRoomNetModel.swift */; };
+		734FAEFC26482AA70013520D /* dateComponentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FAEFB26482AA70013520D /* dateComponentsModel.swift */; };
+		73515098263EA14B008F3427 /* LoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73515097263EA14B008F3427 /* LoginContract.swift */; };
+		7351509C263EA155008F3427 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351509B263EA155008F3427 /* LoginView.swift */; };
+		7351509F263EA191008F3427 /* LoginCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351509E263EA191008F3427 /* LoginCtl.swift */; };
+		735150A2263EA21A008F3427 /* AppSaveDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735150A1263EA21A008F3427 /* AppSaveDataModel.swift */; };
+		735150A7263EABBE008F3427 /* IntroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735150A6263EABBE008F3427 /* IntroModel.swift */; };
+		735150AB263EB686008F3427 /* LoginNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735150AA263EB686008F3427 /* LoginNetModel.swift */; };
+		735150AF263EC8ED008F3427 /* SharedUserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735150AE263EC8ED008F3427 /* SharedUserDataModel.swift */; };
+		73631E9227BC9E2E00084A1C /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73631E9127BC9E2E00084A1C /* Interface.swift */; };
+		7376EC17265A6D00001DB54A /* BaseCollectionAdapterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376EC16265A6D00001DB54A /* BaseCollectionAdapterContract.swift */; };
+		7376EC2A265A9181001DB54A /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376EC29265A9181001DB54A /* MainModel.swift */; };
+		738AA88E27B631C6009B85D7 /* SelectAlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA88D27B631C6009B85D7 /* SelectAlarmModel.swift */; };
+		738AA89127B6A774009B85D7 /* SelectColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA89027B6A774009B85D7 /* SelectColorModel.swift */; };
+		739572A02605CE53006E810E /* IntroCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7395729F2605CE53006E810E /* IntroCtl.swift */; };
+		739572AC2605D9C4006E810E /* IntroNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739572AB2605D9C4006E810E /* IntroNetModel.swift */; };
+		739572B02605DA13006E810E /* BaseNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739572AF2605DA13006E810E /* BaseNetModel.swift */; };
+		739572BC2605E78E006E810E /* Reqeust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739572BB2605E78E006E810E /* Reqeust.swift */; };
+		739C518E27B0C51000701949 /* SharedListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C518D27B0C51000701949 /* SharedListContract.swift */; };
+		739C519027B0C52300701949 /* SharedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C518F27B0C52300701949 /* SharedListView.swift */; };
+		739C519227B0C53300701949 /* SharedListCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C519127B0C53300701949 /* SharedListCtl.swift */; };
+		739C519627B0C77C00701949 /* SelectAlramTimeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C519527B0C77C00701949 /* SelectAlramTimeContract.swift */; };
+		739C519827B0C78600701949 /* SelectAlramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C519727B0C78600701949 /* SelectAlramView.swift */; };
+		739C519A27B0C7B200701949 /* SelectAlramCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C519927B0C7B200701949 /* SelectAlramCtl.swift */; };
+		739C519F27B0C87E00701949 /* SelectColorContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C519E27B0C87E00701949 /* SelectColorContract.swift */; };
+		739C51A127B0C8C200701949 /* SelectColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51A027B0C8C200701949 /* SelectColorView.swift */; };
+		739C51A327B0C8CF00701949 /* SelectColorCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51A227B0C8CF00701949 /* SelectColorCtl.swift */; };
+		739C51A627B0C8F800701949 /* SelectSharedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51A527B0C8F800701949 /* SelectSharedContract.swift */; };
+		739C51A827B0C90300701949 /* SelectSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51A727B0C90300701949 /* SelectSharedView.swift */; };
+		739C51AA27B0E08B00701949 /* SelectSharedCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51A927B0E08B00701949 /* SelectSharedCtl.swift */; };
+		739C51AF27B10C8900701949 /* SelectDateContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51AE27B10C8900701949 /* SelectDateContract.swift */; };
+		739C51B227B10CAC00701949 /* SelectDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51B127B10CAC00701949 /* SelectDateView.swift */; };
+		739C51B427B10CBB00701949 /* SelectDateCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51B327B10CBB00701949 /* SelectDateCtl.swift */; };
+		739C51B627B10D0B00701949 /* BaseDatePickerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51B527B10D0B00701949 /* BaseDatePickerContract.swift */; };
+		739C51BA27B1105200701949 /* AddFriendContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51B927B1105200701949 /* AddFriendContract.swift */; };
+		739C51BC27B1105E00701949 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51BB27B1105E00701949 /* AddFriendView.swift */; };
+		739C51BE27B1106D00701949 /* AddFriendCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51BD27B1106D00701949 /* AddFriendCtl.swift */; };
+		739C51C227B1185000701949 /* AddRoomContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51C127B1185000701949 /* AddRoomContract.swift */; };
+		739C51C427B1185B00701949 /* AddRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51C327B1185B00701949 /* AddRoomView.swift */; };
+		739C51C627B1187E00701949 /* AddRoomCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51C527B1187E00701949 /* AddRoomCtl.swift */; };
+		739DBF8526403CB80005FE03 /* SignUpIdNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DBF8426403CB80005FE03 /* SignUpIdNetModel.swift */; };
+		739DBF8A264047C90005FE03 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DBF89264047C90005FE03 /* LoginModel.swift */; };
+		73A719BD27BB3FC8005C3069 /* kakaoWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A719BC27BB3FC8005C3069 /* kakaoWrapper.swift */; };
+		73A9B6D327B3ECD4001A856C /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9B6D227B3ECD4001A856C /* ScheduleData.swift */; };
+		73A9B6D627B3ECEB001A856C /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9B6D527B3ECEB001A856C /* BaseObject.swift */; };
+		73A9B6D827B3EDF0001A856C /* ScheduleDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9B6D727B3EDF0001A856C /* ScheduleDataBinder.swift */; };
+		73A9B6DA27B3EF96001A856C /* ScheduleData+BinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9B6D927B3EF96001A856C /* ScheduleData+BinderView.swift */; };
+		73A9B6DD27B3F493001A856C /* AddScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9B6DC27B3F493001A856C /* AddScheduleModel.swift */; };
+		73B5618727BBA38800A7C830 /* ViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5618627BBA38800A7C830 /* ViewContract.swift */; };
+		73E639EC2666770B00088E8A /* Encodable+asDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E639EB2666770B00088E8A /* Encodable+asDictionary.swift */; };
+		73EA3C7927A963BD005AD3FA /* OptionSet+bitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3C7827A963BD005AD3FA /* OptionSet+bitMask.swift */; };
+		73EA3CAA27AF9A15005AD3FA /* FriendContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CA927AF9A15005AD3FA /* FriendContract.swift */; };
+		73EA3CAC27AF9A2D005AD3FA /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CAB27AF9A2D005AD3FA /* FriendView.swift */; };
+		73EA3CAE27AF9A53005AD3FA /* FriendCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CAD27AF9A53005AD3FA /* FriendCtl.swift */; };
+		73EA3CB727AF9BF6005AD3FA /* NotiContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CB627AF9BF6005AD3FA /* NotiContract.swift */; };
+		73EA3CB927AF9C03005AD3FA /* NotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CB827AF9C03005AD3FA /* NotiView.swift */; };
+		73EA3CBB27AF9C0E005AD3FA /* NotiCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CBA27AF9C0E005AD3FA /* NotiCtl.swift */; };
+		73EA3CBE27AF9C2F005AD3FA /* ButkitListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CBD27AF9C2F005AD3FA /* ButkitListContract.swift */; };
+		73EA3CC027AF9C3A005AD3FA /* ButkitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CBF27AF9C3A005AD3FA /* ButkitListView.swift */; };
+		73EA3CC227AF9C48005AD3FA /* ButkitListCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CC127AF9C48005AD3FA /* ButkitListCtl.swift */; };
+		73EA3CC527AF9C5B005AD3FA /* OurMemoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CC427AF9C5B005AD3FA /* OurMemoryContract.swift */; };
+		73EA3CC727AF9C67005AD3FA /* OurMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CC627AF9C67005AD3FA /* OurMemoryView.swift */; };
+		73EA3CC927AF9C73005AD3FA /* OurMemoryCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CC827AF9C73005AD3FA /* OurMemoryCtl.swift */; };
+		73EA3CCC27AF9C89005AD3FA /* MyMemoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CCB27AF9C89005AD3FA /* MyMemoryContract.swift */; };
+		73EA3CCE27AF9C95005AD3FA /* MyMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CCD27AF9C95005AD3FA /* MyMemoryView.swift */; };
+		73EA3CD027AF9CB9005AD3FA /* MyMemoryCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CCF27AF9CB9005AD3FA /* MyMemoryCtl.swift */; };
+		73EA3CD327AF9CCC005AD3FA /* TodoListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CD227AF9CCC005AD3FA /* TodoListContract.swift */; };
+		73EA3CD527AF9CD7005AD3FA /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CD427AF9CD7005AD3FA /* TodoListView.swift */; };
+		73EA3CD727AF9CE5005AD3FA /* TodoListCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CD627AF9CE5005AD3FA /* TodoListCtl.swift */; };
+		73EA3CDA27AF9D00005AD3FA /* AddScheduleContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CD927AF9D00005AD3FA /* AddScheduleContract.swift */; };
+		73EA3CDC27AF9D0D005AD3FA /* AddScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CDB27AF9D0D005AD3FA /* AddScheduleView.swift */; };
+		73EA3CDE27AF9D1D005AD3FA /* AddScheduleCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CDD27AF9D1D005AD3FA /* AddScheduleCtl.swift */; };
+		73EA3CE127AFB399005AD3FA /* RoomDetailContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CE027AFB399005AD3FA /* RoomDetailContract.swift */; };
+		73EA3CE327AFB3B1005AD3FA /* RommDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CE227AFB3B1005AD3FA /* RommDetailView.swift */; };
+		73EA3CE827AFB5BB005AD3FA /* MyProfileContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CE727AFB5BB005AD3FA /* MyProfileContract.swift */; };
+		73EA3CEA27AFB5C8005AD3FA /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CE927AFB5C8005AD3FA /* MyProfileView.swift */; };
+		73EA3CEC27AFB5D5005AD3FA /* MyProfileCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CEB27AFB5D5005AD3FA /* MyProfileCtl.swift */; };
+		73EA3CEE27AFB659005AD3FA /* RoomDetailCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3CED27AFB659005AD3FA /* RoomDetailCtl.swift */; };
+		73F18BEC279965860002D9C4 /* BaseDatePickerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F18BEB279965860002D9C4 /* BaseDatePickerAdapter.swift */; };
+		73F18BEF279A559C0002D9C4 /* DateComponentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F18BEE279A559C0002D9C4 /* DateComponentModel.swift */; };
+		73F18BF1279A599E0002D9C4 /* constBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F18BF0279A599E0002D9C4 /* constBlock.swift */; };
+		73F18BF4279FE70E0002D9C4 /* SharedUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F18BF3279FE70E0002D9C4 /* SharedUserData.swift */; };
+		73F18BF8279FF4ED0002D9C4 /* SharedUserData+BinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F18BF7279FF4ED0002D9C4 /* SharedUserData+BinderView.swift */; };
+		73FC5CC625E7FC0B0050D68E /* OurMemoryTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 73FC5CC425E7FC0B0050D68E /* OurMemoryTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73FC5CE825E7FD5F0050D68E /* MainCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CE725E7FD5F0050D68E /* MainCtl.swift */; };
+		73FC5CEC25E7FD7C0050D68E /* BaseCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CEB25E7FD7C0050D68E /* BaseCtl.swift */; };
+		73FC5CEF25E7FDB30050D68E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CEE25E7FDB30050D68E /* MainView.swift */; };
+		73FC5CF225E7FDC10050D68E /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CF125E7FDC10050D68E /* MainContract.swift */; };
+		73FC5CF525E7FE020050D68E /* RoomCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CF425E7FE020050D68E /* RoomCtl.swift */; };
+		73FC5CF925E7FE160050D68E /* RoomContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CF825E7FE160050D68E /* RoomContract.swift */; };
+		73FC5CFC25E7FE230050D68E /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CFB25E7FE230050D68E /* RoomView.swift */; };
+		73FC5D0025E7FE9F0050D68E /* ScheduleContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5CFF25E7FE9F0050D68E /* ScheduleContract.swift */; };
+		73FC5D0725E7FEAA0050D68E /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5D0625E7FEAA0050D68E /* ScheduleView.swift */; };
+		73FC5D0A25E7FEBB0050D68E /* ScheduleCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC5D0925E7FEBB0050D68E /* ScheduleCtl.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		488356BAC1273401D2280C0F /* Pods_OurMemoryTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OurMemoryTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73187054278D594700B2D95F /* OurMemoryErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurMemoryErrorData.swift; sourceTree = "<group>"; };
+		73187058278D7B7700B2D95F /* CheckMyInfoNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMyInfoNetModel.swift; sourceTree = "<group>"; };
+		7318705B278D7C9900B2D95F /* ModifyUserInfoNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserInfoNetModel.swift; sourceTree = "<group>"; };
+		7318705E278D7D0300B2D95F /* DeleteUserNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserNetModel.swift; sourceTree = "<group>"; };
+		73187061278D879900B2D95F /* UploadMyProfileNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMyProfileNetModel.swift; sourceTree = "<group>"; };
+		73187064278D87CE00B2D95F /* DeleteMyProfileNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyProfileNetModel.swift; sourceTree = "<group>"; };
+		73187067278D883C00B2D95F /* ModifyPushTokenNetmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPushTokenNetmodel.swift; sourceTree = "<group>"; };
+		73187077278D8BE800B2D95F /* InquiryFriendListNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryFriendListNetModel.swift; sourceTree = "<group>"; };
+		73187079278D8BFA00B2D95F /* AcceptRequestFriendNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptRequestFriendNetModel.swift; sourceTree = "<group>"; };
+		7318707B278D8C0E00B2D95F /* CancelRequestFriendNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelRequestFriendNetModel.swift; sourceTree = "<group>"; };
+		7318707D278D8C2000B2D95F /* AddAgainFriendsNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAgainFriendsNetModel.swift; sourceTree = "<group>"; };
+		7318707F278D8C4300B2D95F /* RequestFriendNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFriendNetModel.swift; sourceTree = "<group>"; };
+		73187081278D8C7D00B2D95F /* ChangeFriendStatusNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeFriendStatusNetModel.swift; sourceTree = "<group>"; };
+		73187083278D8C8E00B2D95F /* DeleteFriendsNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFriendsNetModel.swift; sourceTree = "<group>"; };
+		73187085278D8CA000B2D95F /* SearchForFriendsNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForFriendsNetModel.swift; sourceTree = "<group>"; };
+		7318708C278D913C00B2D95F /* InquiryRoomListNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryRoomListNetModel.swift; sourceTree = "<group>"; };
+		7318708E278D915600B2D95F /* SearchForRoomNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForRoomNetModel.swift; sourceTree = "<group>"; };
+		73187090278D917400B2D95F /* ModifyRoomInfoNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRoomInfoNetModel.swift; sourceTree = "<group>"; };
+		73187092278D918A00B2D95F /* TransferringRoomOwnerNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferringRoomOwnerNetModel.swift; sourceTree = "<group>"; };
+		73187094278D919A00B2D95F /* DeleteMyRoomNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyRoomNetModel.swift; sourceTree = "<group>"; };
+		73187098278D91F900B2D95F /* MakeRoomNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomNetModel.swift; sourceTree = "<group>"; };
+		731870A1278D96A700B2D95F /* InquiryScheduleListNetMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryScheduleListNetMode.swift; sourceTree = "<group>"; };
+		731870A3278D96B400B2D95F /* AddScheduleNetMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleNetMode.swift; sourceTree = "<group>"; };
+		731870A5278D96C600B2D95F /* AttendanceSettingScheduleNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceSettingScheduleNetModel.swift; sourceTree = "<group>"; };
+		731870A7278D970B00B2D95F /* SearchForIndividuallySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForIndividuallySchedule.swift; sourceTree = "<group>"; };
+		731870A9278D973F00B2D95F /* ShareScheduleNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareScheduleNetModel.swift; sourceTree = "<group>"; };
+		731870AB278D975200B2D95F /* DeleteScheduleNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteScheduleNetModel.swift; sourceTree = "<group>"; };
+		731870AD278D976700B2D95F /* ModifyScheduleNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyScheduleNetModel.swift; sourceTree = "<group>"; };
+		731870B1278D97D600B2D95F /* DeleteNoticeNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNoticeNetModel.swift; sourceTree = "<group>"; };
+		731870B3278D97E900B2D95F /* InquiryNoticeListNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryNoticeListNetModel.swift; sourceTree = "<group>"; };
+		731870BA278D983300B2D95F /* AddTodoNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoNetModel.swift; sourceTree = "<group>"; };
+		731870BC278D984500B2D95F /* SearchForTodoNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForTodoNetModel.swift; sourceTree = "<group>"; };
+		731870BE278D985400B2D95F /* ModifyTodoNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTodoNetModel.swift; sourceTree = "<group>"; };
+		731870C0278D986400B2D95F /* DeleteTodoNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTodoNetModel.swift; sourceTree = "<group>"; };
+		731870C2278D987400B2D95F /* InquiryTodoListNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryTodoListNetModel.swift; sourceTree = "<group>"; };
+		731870C5279454EA00B2D95F /* SignupCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupCtl.swift; sourceTree = "<group>"; };
+		731870C827945A6700B2D95F /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		731870CB279466E900B2D95F /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		731870CD279466F900B2D95F /* SignupContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupContract.swift; sourceTree = "<group>"; };
+		7319C83E2656B0170080DF5F /* BaseCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionAdapter.swift; sourceTree = "<group>"; };
+		7328CFBC262AF87F00B821BD /* DataContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContract.swift; sourceTree = "<group>"; };
+		7328CFC0262AFF1000B821BD /* dataEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataEnum.swift; sourceTree = "<group>"; };
+		7328F0082641068B000E081C /* dataVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataVO.swift; sourceTree = "<group>"; };
+		732C870E2607749D00EEEE57 /* IntroContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroContract.swift; sourceTree = "<group>"; };
+		732C8711260774D300EEEE57 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		732C872226077E2600EEEE57 /* CtlMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CtlMaker.swift; sourceTree = "<group>"; };
+		734FAEF726481EA70013520D /* getMyRoomNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMyRoomNetModel.swift; sourceTree = "<group>"; };
+		734FAEFB26482AA70013520D /* dateComponentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateComponentsModel.swift; sourceTree = "<group>"; };
+		73515097263EA14B008F3427 /* LoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContract.swift; sourceTree = "<group>"; };
+		7351509B263EA155008F3427 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7351509E263EA191008F3427 /* LoginCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCtl.swift; sourceTree = "<group>"; };
+		735150A1263EA21A008F3427 /* AppSaveDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSaveDataModel.swift; sourceTree = "<group>"; };
+		735150A6263EABBE008F3427 /* IntroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroModel.swift; sourceTree = "<group>"; };
+		735150AA263EB686008F3427 /* LoginNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetModel.swift; sourceTree = "<group>"; };
+		735150AE263EC8ED008F3427 /* SharedUserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserDataModel.swift; sourceTree = "<group>"; };
+		73631E9127BC9E2E00084A1C /* Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
+		7376EC16265A6D00001DB54A /* BaseCollectionAdapterContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionAdapterContract.swift; sourceTree = "<group>"; };
+		7376EC29265A9181001DB54A /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		738AA88D27B631C6009B85D7 /* SelectAlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAlarmModel.swift; sourceTree = "<group>"; };
+		738AA89027B6A774009B85D7 /* SelectColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorModel.swift; sourceTree = "<group>"; };
+		7395729F2605CE53006E810E /* IntroCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCtl.swift; sourceTree = "<group>"; };
+		739572AB2605D9C4006E810E /* IntroNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroNetModel.swift; sourceTree = "<group>"; };
+		739572AF2605DA13006E810E /* BaseNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetModel.swift; sourceTree = "<group>"; };
+		739572BB2605E78E006E810E /* Reqeust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reqeust.swift; sourceTree = "<group>"; };
+		739C518D27B0C51000701949 /* SharedListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedListContract.swift; sourceTree = "<group>"; };
+		739C518F27B0C52300701949 /* SharedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedListView.swift; sourceTree = "<group>"; };
+		739C519127B0C53300701949 /* SharedListCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedListCtl.swift; sourceTree = "<group>"; };
+		739C519527B0C77C00701949 /* SelectAlramTimeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAlramTimeContract.swift; sourceTree = "<group>"; };
+		739C519727B0C78600701949 /* SelectAlramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAlramView.swift; sourceTree = "<group>"; };
+		739C519927B0C7B200701949 /* SelectAlramCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAlramCtl.swift; sourceTree = "<group>"; };
+		739C519E27B0C87E00701949 /* SelectColorContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorContract.swift; sourceTree = "<group>"; };
+		739C51A027B0C8C200701949 /* SelectColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorView.swift; sourceTree = "<group>"; };
+		739C51A227B0C8CF00701949 /* SelectColorCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorCtl.swift; sourceTree = "<group>"; };
+		739C51A527B0C8F800701949 /* SelectSharedContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSharedContract.swift; sourceTree = "<group>"; };
+		739C51A727B0C90300701949 /* SelectSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSharedView.swift; sourceTree = "<group>"; };
+		739C51A927B0E08B00701949 /* SelectSharedCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSharedCtl.swift; sourceTree = "<group>"; };
+		739C51AE27B10C8900701949 /* SelectDateContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateContract.swift; sourceTree = "<group>"; };
+		739C51B127B10CAC00701949 /* SelectDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateView.swift; sourceTree = "<group>"; };
+		739C51B327B10CBB00701949 /* SelectDateCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateCtl.swift; sourceTree = "<group>"; };
+		739C51B527B10D0B00701949 /* BaseDatePickerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDatePickerContract.swift; sourceTree = "<group>"; };
+		739C51B927B1105200701949 /* AddFriendContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendContract.swift; sourceTree = "<group>"; };
+		739C51BB27B1105E00701949 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		739C51BD27B1106D00701949 /* AddFriendCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCtl.swift; sourceTree = "<group>"; };
+		739C51C127B1185000701949 /* AddRoomContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomContract.swift; sourceTree = "<group>"; };
+		739C51C327B1185B00701949 /* AddRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomView.swift; sourceTree = "<group>"; };
+		739C51C527B1187E00701949 /* AddRoomCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomCtl.swift; sourceTree = "<group>"; };
+		739DBF8426403CB80005FE03 /* SignUpIdNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIdNetModel.swift; sourceTree = "<group>"; };
+		739DBF89264047C90005FE03 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		73A719BC27BB3FC8005C3069 /* kakaoWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kakaoWrapper.swift; sourceTree = "<group>"; };
+		73A9B6D227B3ECD4001A856C /* ScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleData.swift; sourceTree = "<group>"; };
+		73A9B6D527B3ECEB001A856C /* BaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
+		73A9B6D727B3EDF0001A856C /* ScheduleDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataBinder.swift; sourceTree = "<group>"; };
+		73A9B6D927B3EF96001A856C /* ScheduleData+BinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleData+BinderView.swift"; sourceTree = "<group>"; };
+		73A9B6DC27B3F493001A856C /* AddScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleModel.swift; sourceTree = "<group>"; };
+		73B5618627BBA38800A7C830 /* ViewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContract.swift; sourceTree = "<group>"; };
+		73E639EB2666770B00088E8A /* Encodable+asDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+asDictionary.swift"; sourceTree = "<group>"; };
+		73EA3C7827A963BD005AD3FA /* OptionSet+bitMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionSet+bitMask.swift"; sourceTree = "<group>"; };
+		73EA3CA927AF9A15005AD3FA /* FriendContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContract.swift; sourceTree = "<group>"; };
+		73EA3CAB27AF9A2D005AD3FA /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
+		73EA3CAD27AF9A53005AD3FA /* FriendCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCtl.swift; sourceTree = "<group>"; };
+		73EA3CB627AF9BF6005AD3FA /* NotiContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiContract.swift; sourceTree = "<group>"; };
+		73EA3CB827AF9C03005AD3FA /* NotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiView.swift; sourceTree = "<group>"; };
+		73EA3CBA27AF9C0E005AD3FA /* NotiCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiCtl.swift; sourceTree = "<group>"; };
+		73EA3CBD27AF9C2F005AD3FA /* ButkitListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButkitListContract.swift; sourceTree = "<group>"; };
+		73EA3CBF27AF9C3A005AD3FA /* ButkitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButkitListView.swift; sourceTree = "<group>"; };
+		73EA3CC127AF9C48005AD3FA /* ButkitListCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButkitListCtl.swift; sourceTree = "<group>"; };
+		73EA3CC427AF9C5B005AD3FA /* OurMemoryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurMemoryContract.swift; sourceTree = "<group>"; };
+		73EA3CC627AF9C67005AD3FA /* OurMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurMemoryView.swift; sourceTree = "<group>"; };
+		73EA3CC827AF9C73005AD3FA /* OurMemoryCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurMemoryCtl.swift; sourceTree = "<group>"; };
+		73EA3CCB27AF9C89005AD3FA /* MyMemoryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMemoryContract.swift; sourceTree = "<group>"; };
+		73EA3CCD27AF9C95005AD3FA /* MyMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMemoryView.swift; sourceTree = "<group>"; };
+		73EA3CCF27AF9CB9005AD3FA /* MyMemoryCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMemoryCtl.swift; sourceTree = "<group>"; };
+		73EA3CD227AF9CCC005AD3FA /* TodoListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListContract.swift; sourceTree = "<group>"; };
+		73EA3CD427AF9CD7005AD3FA /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
+		73EA3CD627AF9CE5005AD3FA /* TodoListCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCtl.swift; sourceTree = "<group>"; };
+		73EA3CD927AF9D00005AD3FA /* AddScheduleContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleContract.swift; sourceTree = "<group>"; };
+		73EA3CDB27AF9D0D005AD3FA /* AddScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleView.swift; sourceTree = "<group>"; };
+		73EA3CDD27AF9D1D005AD3FA /* AddScheduleCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleCtl.swift; sourceTree = "<group>"; };
+		73EA3CE027AFB399005AD3FA /* RoomDetailContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailContract.swift; sourceTree = "<group>"; };
+		73EA3CE227AFB3B1005AD3FA /* RommDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RommDetailView.swift; sourceTree = "<group>"; };
+		73EA3CE727AFB5BB005AD3FA /* MyProfileContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileContract.swift; sourceTree = "<group>"; };
+		73EA3CE927AFB5C8005AD3FA /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		73EA3CEB27AFB5D5005AD3FA /* MyProfileCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCtl.swift; sourceTree = "<group>"; };
+		73EA3CED27AFB659005AD3FA /* RoomDetailCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailCtl.swift; sourceTree = "<group>"; };
+		73F18BEB279965860002D9C4 /* BaseDatePickerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDatePickerAdapter.swift; sourceTree = "<group>"; };
+		73F18BEE279A559C0002D9C4 /* DateComponentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentModel.swift; sourceTree = "<group>"; };
+		73F18BF0279A599E0002D9C4 /* constBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constBlock.swift; sourceTree = "<group>"; };
+		73F18BF3279FE70E0002D9C4 /* SharedUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserData.swift; sourceTree = "<group>"; };
+		73F18BF7279FF4ED0002D9C4 /* SharedUserData+BinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SharedUserData+BinderView.swift"; sourceTree = "<group>"; };
+		73FC5CC125E7FC0B0050D68E /* OurMemoryTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OurMemoryTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73FC5CC425E7FC0B0050D68E /* OurMemoryTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OurMemoryTask.h; sourceTree = "<group>"; };
+		73FC5CC525E7FC0B0050D68E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73FC5CE725E7FD5F0050D68E /* MainCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCtl.swift; sourceTree = "<group>"; };
+		73FC5CEB25E7FD7C0050D68E /* BaseCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCtl.swift; sourceTree = "<group>"; };
+		73FC5CEE25E7FDB30050D68E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		73FC5CF125E7FDC10050D68E /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
+		73FC5CF425E7FE020050D68E /* RoomCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCtl.swift; sourceTree = "<group>"; };
+		73FC5CF825E7FE160050D68E /* RoomContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomContract.swift; sourceTree = "<group>"; };
+		73FC5CFB25E7FE230050D68E /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		73FC5CFF25E7FE9F0050D68E /* ScheduleContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleContract.swift; sourceTree = "<group>"; };
+		73FC5D0625E7FEAA0050D68E /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		73FC5D0925E7FEBB0050D68E /* ScheduleCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCtl.swift; sourceTree = "<group>"; };
+		BBF459FF5AD225BBA95682B3 /* Pods-OurMemoryTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OurMemoryTask.debug.xcconfig"; path = "Target Support Files/Pods-OurMemoryTask/Pods-OurMemoryTask.debug.xcconfig"; sourceTree = "<group>"; };
+		FFB8E69D3F34B4AA7887E91D /* Pods-OurMemoryTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OurMemoryTask.release.xcconfig"; path = "Target Support Files/Pods-OurMemoryTask/Pods-OurMemoryTask.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73FC5CBE25E7FC0B0050D68E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70C5AC118E843BD2F3A10836 /* Pods_OurMemoryTask.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A0F434496969E667BA5F69F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BBF459FF5AD225BBA95682B3 /* Pods-OurMemoryTask.debug.xcconfig */,
+				FFB8E69D3F34B4AA7887E91D /* Pods-OurMemoryTask.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		10D49CD5AE28C41F652D2845 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				488356BAC1273401D2280C0F /* Pods_OurMemoryTask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		730401722644399A00762993 /* makeRoom */ = {
+			isa = PBXGroup;
+			children = (
+				73187098278D91F900B2D95F /* MakeRoomNetModel.swift */,
+			);
+			path = makeRoom;
+			sourceTree = "<group>";
+		};
+		7310D95927730A5600D0A67A /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				73A719BA27BB3FB0005C3069 /* sns */,
+				738AA88F27B6A75A009B85D7 /* SelectColor */,
+				738AA88C27B6318A009B85D7 /* SelectAlarm */,
+				73A9B6DB27B3F473001A856C /* addSchedule */,
+				73F18BED279A558B0002D9C4 /* date */,
+				735150A4263EA9C9008F3427 /* common */,
+				735150A5263EAB9C008F3427 /* intro */,
+				739DBF88264047B10005FE03 /* login */,
+				731870C727945A4E00B2D95F /* signup */,
+				7376EC28265A915C001DB54A /* main */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		73187056278D597000B2D95F /* error */ = {
+			isa = PBXGroup;
+			children = (
+				73187054278D594700B2D95F /* OurMemoryErrorData.swift */,
+			);
+			path = error;
+			sourceTree = "<group>";
+		};
+		73187057278D7B5800B2D95F /* checkMyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				73187058278D7B7700B2D95F /* CheckMyInfoNetModel.swift */,
+			);
+			path = checkMyInfo;
+			sourceTree = "<group>";
+		};
+		7318705A278D7C5D00B2D95F /* modifyUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7318705B278D7C9900B2D95F /* ModifyUserInfoNetModel.swift */,
+			);
+			path = modifyUserInfo;
+			sourceTree = "<group>";
+		};
+		7318705D278D7CE800B2D95F /* deleteUser */ = {
+			isa = PBXGroup;
+			children = (
+				7318705E278D7D0300B2D95F /* DeleteUserNetModel.swift */,
+			);
+			path = deleteUser;
+			sourceTree = "<group>";
+		};
+		73187060278D874C00B2D95F /* uploadMyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				73187061278D879900B2D95F /* UploadMyProfileNetModel.swift */,
+			);
+			path = uploadMyProfile;
+			sourceTree = "<group>";
+		};
+		73187063278D87B600B2D95F /* deleteMyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				73187064278D87CE00B2D95F /* DeleteMyProfileNetModel.swift */,
+			);
+			path = deleteMyProfile;
+			sourceTree = "<group>";
+		};
+		73187066278D87EA00B2D95F /* modifyPushToken */ = {
+			isa = PBXGroup;
+			children = (
+				73187067278D883C00B2D95F /* ModifyPushTokenNetmodel.swift */,
+			);
+			path = modifyPushToken;
+			sourceTree = "<group>";
+		};
+		73187069278D885F00B2D95F /* _User */ = {
+			isa = PBXGroup;
+			children = (
+				735150A9263EB658008F3427 /* login */,
+				739DBF8326403C980005FE03 /* signup */,
+				73187057278D7B5800B2D95F /* checkMyInfo */,
+				7318705A278D7C5D00B2D95F /* modifyUserInfo */,
+				7318705D278D7CE800B2D95F /* deleteUser */,
+				73187060278D874C00B2D95F /* uploadMyProfile */,
+				73187063278D87B600B2D95F /* deleteMyProfile */,
+				73187066278D87EA00B2D95F /* modifyPushToken */,
+			);
+			path = _User;
+			sourceTree = "<group>";
+		};
+		7318706A278D88F400B2D95F /* _Room */ = {
+			isa = PBXGroup;
+			children = (
+				7318708B278D90F400B2D95F /* inquiryRoomList */,
+				730401722644399A00762993 /* makeRoom */,
+				7318708A278D909300B2D95F /* searchForRoom */,
+				73187089278D908100B2D95F /* modifyRoomInfo */,
+				73187088278D903200B2D95F /* transferringRoomOwner */,
+				73187087278D8FE500B2D95F /* deleteMyRoom */,
+				734FAEF626481E8A0013520D /* getMyRooms */,
+			);
+			path = _Room;
+			sourceTree = "<group>";
+		};
+		7318706B278D892100B2D95F /* _Friend */ = {
+			isa = PBXGroup;
+			children = (
+				73187073278D8AC200B2D95F /* inquiryFriendList */,
+				73187072278D8A9400B2D95F /* acceptRequestFriend */,
+				73187071278D8A5900B2D95F /* cancelRequestFriend */,
+				73187070278D8A2A00B2D95F /* addAgainFriends */,
+				7318706F278D89F300B2D95F /* requestFriend */,
+				7318706E278D89E300B2D95F /* changeFriendStatus */,
+				7318706D278D898E00B2D95F /* deleteFriends */,
+				7318706C278D896300B2D95F /* searchForFriends */,
+			);
+			path = _Friend;
+			sourceTree = "<group>";
+		};
+		7318706C278D896300B2D95F /* searchForFriends */ = {
+			isa = PBXGroup;
+			children = (
+				73187085278D8CA000B2D95F /* SearchForFriendsNetModel.swift */,
+			);
+			path = searchForFriends;
+			sourceTree = "<group>";
+		};
+		7318706D278D898E00B2D95F /* deleteFriends */ = {
+			isa = PBXGroup;
+			children = (
+				73187083278D8C8E00B2D95F /* DeleteFriendsNetModel.swift */,
+			);
+			path = deleteFriends;
+			sourceTree = "<group>";
+		};
+		7318706E278D89E300B2D95F /* changeFriendStatus */ = {
+			isa = PBXGroup;
+			children = (
+				73187081278D8C7D00B2D95F /* ChangeFriendStatusNetModel.swift */,
+			);
+			path = changeFriendStatus;
+			sourceTree = "<group>";
+		};
+		7318706F278D89F300B2D95F /* requestFriend */ = {
+			isa = PBXGroup;
+			children = (
+				7318707F278D8C4300B2D95F /* RequestFriendNetModel.swift */,
+			);
+			path = requestFriend;
+			sourceTree = "<group>";
+		};
+		73187070278D8A2A00B2D95F /* addAgainFriends */ = {
+			isa = PBXGroup;
+			children = (
+				7318707D278D8C2000B2D95F /* AddAgainFriendsNetModel.swift */,
+			);
+			path = addAgainFriends;
+			sourceTree = "<group>";
+		};
+		73187071278D8A5900B2D95F /* cancelRequestFriend */ = {
+			isa = PBXGroup;
+			children = (
+				7318707B278D8C0E00B2D95F /* CancelRequestFriendNetModel.swift */,
+			);
+			path = cancelRequestFriend;
+			sourceTree = "<group>";
+		};
+		73187072278D8A9400B2D95F /* acceptRequestFriend */ = {
+			isa = PBXGroup;
+			children = (
+				73187079278D8BFA00B2D95F /* AcceptRequestFriendNetModel.swift */,
+			);
+			path = acceptRequestFriend;
+			sourceTree = "<group>";
+		};
+		73187073278D8AC200B2D95F /* inquiryFriendList */ = {
+			isa = PBXGroup;
+			children = (
+				73187077278D8BE800B2D95F /* InquiryFriendListNetModel.swift */,
+			);
+			path = inquiryFriendList;
+			sourceTree = "<group>";
+		};
+		73187074278D8B6700B2D95F /* _Memory */ = {
+			isa = PBXGroup;
+			children = (
+				731870A0278D954A00B2D95F /* inquiryScheduleList */,
+				7318709F278D953F00B2D95F /* addSchedule */,
+				7318709E278D949A00B2D95F /* attendanceSettingSchedule */,
+				7318709D278D93F600B2D95F /* searchForIndividuallySchedule */,
+				7318709C278D93EF00B2D95F /* shareSchedule */,
+				7318709B278D93E000B2D95F /* deleteSchedule */,
+				7318709A278D93CF00B2D95F /* modifySchedule */,
+			);
+			path = _Memory;
+			sourceTree = "<group>";
+		};
+		73187075278D8B8400B2D95F /* _Notice */ = {
+			isa = PBXGroup;
+			children = (
+				731870B0278D97A700B2D95F /* deleteNotice */,
+				731870AF278D979A00B2D95F /* inquiryNoticeList */,
+			);
+			path = _Notice;
+			sourceTree = "<group>";
+		};
+		73187076278D8B9000B2D95F /* _Todo */ = {
+			isa = PBXGroup;
+			children = (
+				731870B9278D982000B2D95F /* addTodo */,
+				731870B8278D981400B2D95F /* searchForTodo */,
+				731870B7278D980800B2D95F /* modifyTodo */,
+				731870B6278D97FE00B2D95F /* deleteTodo */,
+				731870B5278D97F200B2D95F /* inquiryTodoList */,
+			);
+			path = _Todo;
+			sourceTree = "<group>";
+		};
+		73187087278D8FE500B2D95F /* deleteMyRoom */ = {
+			isa = PBXGroup;
+			children = (
+				73187094278D919A00B2D95F /* DeleteMyRoomNetModel.swift */,
+			);
+			path = deleteMyRoom;
+			sourceTree = "<group>";
+		};
+		73187088278D903200B2D95F /* transferringRoomOwner */ = {
+			isa = PBXGroup;
+			children = (
+				73187092278D918A00B2D95F /* TransferringRoomOwnerNetModel.swift */,
+			);
+			path = transferringRoomOwner;
+			sourceTree = "<group>";
+		};
+		73187089278D908100B2D95F /* modifyRoomInfo */ = {
+			isa = PBXGroup;
+			children = (
+				73187090278D917400B2D95F /* ModifyRoomInfoNetModel.swift */,
+			);
+			path = modifyRoomInfo;
+			sourceTree = "<group>";
+		};
+		7318708A278D909300B2D95F /* searchForRoom */ = {
+			isa = PBXGroup;
+			children = (
+				7318708E278D915600B2D95F /* SearchForRoomNetModel.swift */,
+			);
+			path = searchForRoom;
+			sourceTree = "<group>";
+		};
+		7318708B278D90F400B2D95F /* inquiryRoomList */ = {
+			isa = PBXGroup;
+			children = (
+				7318708C278D913C00B2D95F /* InquiryRoomListNetModel.swift */,
+			);
+			path = inquiryRoomList;
+			sourceTree = "<group>";
+		};
+		7318709A278D93CF00B2D95F /* modifySchedule */ = {
+			isa = PBXGroup;
+			children = (
+				731870AD278D976700B2D95F /* ModifyScheduleNetModel.swift */,
+			);
+			path = modifySchedule;
+			sourceTree = "<group>";
+		};
+		7318709B278D93E000B2D95F /* deleteSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				731870AB278D975200B2D95F /* DeleteScheduleNetModel.swift */,
+			);
+			path = deleteSchedule;
+			sourceTree = "<group>";
+		};
+		7318709C278D93EF00B2D95F /* shareSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				731870A9278D973F00B2D95F /* ShareScheduleNetModel.swift */,
+			);
+			path = shareSchedule;
+			sourceTree = "<group>";
+		};
+		7318709D278D93F600B2D95F /* searchForIndividuallySchedule */ = {
+			isa = PBXGroup;
+			children = (
+				731870A7278D970B00B2D95F /* SearchForIndividuallySchedule.swift */,
+			);
+			path = searchForIndividuallySchedule;
+			sourceTree = "<group>";
+		};
+		7318709E278D949A00B2D95F /* attendanceSettingSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				731870A5278D96C600B2D95F /* AttendanceSettingScheduleNetModel.swift */,
+			);
+			path = attendanceSettingSchedule;
+			sourceTree = "<group>";
+		};
+		7318709F278D953F00B2D95F /* addSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				731870A3278D96B400B2D95F /* AddScheduleNetMode.swift */,
+			);
+			path = addSchedule;
+			sourceTree = "<group>";
+		};
+		731870A0278D954A00B2D95F /* inquiryScheduleList */ = {
+			isa = PBXGroup;
+			children = (
+				731870A1278D96A700B2D95F /* InquiryScheduleListNetMode.swift */,
+			);
+			path = inquiryScheduleList;
+			sourceTree = "<group>";
+		};
+		731870AF278D979A00B2D95F /* inquiryNoticeList */ = {
+			isa = PBXGroup;
+			children = (
+				731870B3278D97E900B2D95F /* InquiryNoticeListNetModel.swift */,
+			);
+			path = inquiryNoticeList;
+			sourceTree = "<group>";
+		};
+		731870B0278D97A700B2D95F /* deleteNotice */ = {
+			isa = PBXGroup;
+			children = (
+				731870B1278D97D600B2D95F /* DeleteNoticeNetModel.swift */,
+			);
+			path = deleteNotice;
+			sourceTree = "<group>";
+		};
+		731870B5278D97F200B2D95F /* inquiryTodoList */ = {
+			isa = PBXGroup;
+			children = (
+				731870C2278D987400B2D95F /* InquiryTodoListNetModel.swift */,
+			);
+			path = inquiryTodoList;
+			sourceTree = "<group>";
+		};
+		731870B6278D97FE00B2D95F /* deleteTodo */ = {
+			isa = PBXGroup;
+			children = (
+				731870C0278D986400B2D95F /* DeleteTodoNetModel.swift */,
+			);
+			path = deleteTodo;
+			sourceTree = "<group>";
+		};
+		731870B7278D980800B2D95F /* modifyTodo */ = {
+			isa = PBXGroup;
+			children = (
+				731870BE278D985400B2D95F /* ModifyTodoNetModel.swift */,
+			);
+			path = modifyTodo;
+			sourceTree = "<group>";
+		};
+		731870B8278D981400B2D95F /* searchForTodo */ = {
+			isa = PBXGroup;
+			children = (
+				731870BC278D984500B2D95F /* SearchForTodoNetModel.swift */,
+			);
+			path = searchForTodo;
+			sourceTree = "<group>";
+		};
+		731870B9278D982000B2D95F /* addTodo */ = {
+			isa = PBXGroup;
+			children = (
+				731870BA278D983300B2D95F /* AddTodoNetModel.swift */,
+			);
+			path = addTodo;
+			sourceTree = "<group>";
+		};
+		731870C4279454C500B2D95F /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				731870CA2794627C00B2D95F /* contract */,
+				731870C5279454EA00B2D95F /* SignupCtl.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		731870C727945A4E00B2D95F /* signup */ = {
+			isa = PBXGroup;
+			children = (
+				731870C827945A6700B2D95F /* SignupModel.swift */,
+			);
+			path = signup;
+			sourceTree = "<group>";
+		};
+		731870CA2794627C00B2D95F /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				731870CD279466F900B2D95F /* SignupContract.swift */,
+				731870CB279466E900B2D95F /* SignupView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		7320B2362642A2EB00FA47B4 /* main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		7328CFB8262AF85600B821BD /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				7328CFBC262AF87F00B821BD /* DataContract.swift */,
+				7376EC16265A6D00001DB54A /* BaseCollectionAdapterContract.swift */,
+				739C51B527B10D0B00701949 /* BaseDatePickerContract.swift */,
+				73B5618627BBA38800A7C830 /* ViewContract.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		7328CFBF262AFEFC00B821BD /* constans */ = {
+			isa = PBXGroup;
+			children = (
+				7328CFC0262AFF1000B821BD /* dataEnum.swift */,
+				7328F0082641068B000E081C /* dataVO.swift */,
+				73F18BF0279A599E0002D9C4 /* constBlock.swift */,
+				73631E9127BC9E2E00084A1C /* Interface.swift */,
+			);
+			path = constans;
+			sourceTree = "<group>";
+		};
+		734FAEF626481E8A0013520D /* getMyRooms */ = {
+			isa = PBXGroup;
+			children = (
+				734FAEF726481EA70013520D /* getMyRoomNetModel.swift */,
+			);
+			path = getMyRooms;
+			sourceTree = "<group>";
+		};
+		735150A4263EA9C9008F3427 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				735150A1263EA21A008F3427 /* AppSaveDataModel.swift */,
+				735150AE263EC8ED008F3427 /* SharedUserDataModel.swift */,
+				734FAEFB26482AA70013520D /* dateComponentsModel.swift */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		735150A5263EAB9C008F3427 /* intro */ = {
+			isa = PBXGroup;
+			children = (
+				735150A6263EABBE008F3427 /* IntroModel.swift */,
+			);
+			path = intro;
+			sourceTree = "<group>";
+		};
+		735150A9263EB658008F3427 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				735150AA263EB686008F3427 /* LoginNetModel.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		7376EC28265A915C001DB54A /* main */ = {
+			isa = PBXGroup;
+			children = (
+				7376EC29265A9181001DB54A /* MainModel.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		738AA88C27B6318A009B85D7 /* SelectAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				738AA88D27B631C6009B85D7 /* SelectAlarmModel.swift */,
+			);
+			path = SelectAlarm;
+			sourceTree = "<group>";
+		};
+		738AA88F27B6A75A009B85D7 /* SelectColor */ = {
+			isa = PBXGroup;
+			children = (
+				738AA89027B6A774009B85D7 /* SelectColorModel.swift */,
+			);
+			path = SelectColor;
+			sourceTree = "<group>";
+		};
+		739572A22605D6C4006E810E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7310D95927730A5600D0A67A /* controller */,
+				739572A42605D6D4006E810E /* net */,
+				739572A32605D6CF006E810E /* data */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		739572A32605D6CF006E810E /* data */ = {
+			isa = PBXGroup;
+			children = (
+				73A9B6D427B3ECDA001A856C /* _Base */,
+				73A9B6D027B3EC52001A856C /* extention */,
+				73A9B6CF27B3EC47001A856C /* schedule */,
+				73F18BF5279FE7750002D9C4 /* extension */,
+				73F18BF2279FE6FF0002D9C4 /* user */,
+				73187056278D597000B2D95F /* error */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		739572A42605D6D4006E810E /* net */ = {
+			isa = PBXGroup;
+			children = (
+				739572AE2605D9D0006E810E /* _Base */,
+				73187069278D885F00B2D95F /* _User */,
+				7318706B278D892100B2D95F /* _Friend */,
+				7318706A278D88F400B2D95F /* _Room */,
+				73187074278D8B6700B2D95F /* _Memory */,
+				73187075278D8B8400B2D95F /* _Notice */,
+				73187076278D8B9000B2D95F /* _Todo */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		739572AA2605D9B1006E810E /* intro */ = {
+			isa = PBXGroup;
+			children = (
+				739572AB2605D9C4006E810E /* IntroNetModel.swift */,
+			);
+			path = intro;
+			sourceTree = "<group>";
+		};
+		739572AE2605D9D0006E810E /* _Base */ = {
+			isa = PBXGroup;
+			children = (
+				739572AF2605DA13006E810E /* BaseNetModel.swift */,
+				739572BB2605E78E006E810E /* Reqeust.swift */,
+				739572AA2605D9B1006E810E /* intro */,
+				7320B2362642A2EB00FA47B4 /* main */,
+			);
+			path = _Base;
+			sourceTree = "<group>";
+		};
+		739C518B27B0C4F600701949 /* SharedList */ = {
+			isa = PBXGroup;
+			children = (
+				739C518C27B0C50200701949 /* contract */,
+				739C519127B0C53300701949 /* SharedListCtl.swift */,
+			);
+			path = SharedList;
+			sourceTree = "<group>";
+		};
+		739C518C27B0C50200701949 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				739C518D27B0C51000701949 /* SharedListContract.swift */,
+				739C518F27B0C52300701949 /* SharedListView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		739C519327B0C75600701949 /* SelectAlramTime */ = {
+			isa = PBXGroup;
+			children = (
+				739C519427B0C76D00701949 /* contract */,
+				739C519927B0C7B200701949 /* SelectAlramCtl.swift */,
+			);
+			path = SelectAlramTime;
+			sourceTree = "<group>";
+		};
+		739C519427B0C76D00701949 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				739C519527B0C77C00701949 /* SelectAlramTimeContract.swift */,
+				739C519727B0C78600701949 /* SelectAlramView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		739C519B27B0C7B800701949 /* SelectColor */ = {
+			isa = PBXGroup;
+			children = (
+				739C519D27B0C86000701949 /* contract */,
+				739C51A227B0C8CF00701949 /* SelectColorCtl.swift */,
+			);
+			path = SelectColor;
+			sourceTree = "<group>";
+		};
+		739C519C27B0C7CC00701949 /* SelectShared */ = {
+			isa = PBXGroup;
+			children = (
+				739C51A427B0C8EA00701949 /* contract */,
+				739C51A927B0E08B00701949 /* SelectSharedCtl.swift */,
+			);
+			path = SelectShared;
+			sourceTree = "<group>";
+		};
+		739C519D27B0C86000701949 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				739C519E27B0C87E00701949 /* SelectColorContract.swift */,
+				739C51A027B0C8C200701949 /* SelectColorView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		739C51A427B0C8EA00701949 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				739C51A527B0C8F800701949 /* SelectSharedContract.swift */,
+				739C51A727B0C90300701949 /* SelectSharedView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		739C51AC27B10C6300701949 /* SelectDate */ = {
+			isa = PBXGroup;
+			children = (
+				739C51AD27B10C7200701949 /* contract */,
+				739C51B327B10CBB00701949 /* SelectDateCtl.swift */,
+			);
+			path = SelectDate;
+			sourceTree = "<group>";
+		};
+		739C51AD27B10C7200701949 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				739C51AE27B10C8900701949 /* SelectDateContract.swift */,
+				739C51B127B10CAC00701949 /* SelectDateView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		739C51B727B1102D00701949 /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				739C51B827B1104300701949 /* contract */,
+				739C51BD27B1106D00701949 /* AddFriendCtl.swift */,
+			);
+			path = AddFriend;
+			sourceTree = "<group>";
+		};
+		739C51B827B1104300701949 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				739C51B927B1105200701949 /* AddFriendContract.swift */,
+				739C51BB27B1105E00701949 /* AddFriendView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		739C51BF27B117C600701949 /* AddRoom */ = {
+			isa = PBXGroup;
+			children = (
+				739C51C027B117CF00701949 /* contract */,
+				739C51C527B1187E00701949 /* AddRoomCtl.swift */,
+			);
+			path = AddRoom;
+			sourceTree = "<group>";
+		};
+		739C51C027B117CF00701949 /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				739C51C127B1185000701949 /* AddRoomContract.swift */,
+				739C51C327B1185B00701949 /* AddRoomView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		739DBF8326403C980005FE03 /* signup */ = {
+			isa = PBXGroup;
+			children = (
+				739DBF8426403CB80005FE03 /* SignUpIdNetModel.swift */,
+			);
+			path = signup;
+			sourceTree = "<group>";
+		};
+		739DBF88264047B10005FE03 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				739DBF89264047C90005FE03 /* LoginModel.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		73A719BA27BB3FB0005C3069 /* sns */ = {
+			isa = PBXGroup;
+			children = (
+				73A719BB27BB3FB4005C3069 /* kakaoLogin */,
+			);
+			path = sns;
+			sourceTree = "<group>";
+		};
+		73A719BB27BB3FB4005C3069 /* kakaoLogin */ = {
+			isa = PBXGroup;
+			children = (
+				73A719BC27BB3FC8005C3069 /* kakaoWrapper.swift */,
+			);
+			path = kakaoLogin;
+			sourceTree = "<group>";
+		};
+		73A9B6CF27B3EC47001A856C /* schedule */ = {
+			isa = PBXGroup;
+			children = (
+				73A9B6D227B3ECD4001A856C /* ScheduleData.swift */,
+			);
+			path = schedule;
+			sourceTree = "<group>";
+		};
+		73A9B6D027B3EC52001A856C /* extention */ = {
+			isa = PBXGroup;
+			children = (
+				73A9B6D127B3EC65001A856C /* inf */,
+				73A9B6D927B3EF96001A856C /* ScheduleData+BinderView.swift */,
+			);
+			path = extention;
+			sourceTree = "<group>";
+		};
+		73A9B6D127B3EC65001A856C /* inf */ = {
+			isa = PBXGroup;
+			children = (
+				73A9B6D727B3EDF0001A856C /* ScheduleDataBinder.swift */,
+			);
+			path = inf;
+			sourceTree = "<group>";
+		};
+		73A9B6D427B3ECDA001A856C /* _Base */ = {
+			isa = PBXGroup;
+			children = (
+				73A9B6D527B3ECEB001A856C /* BaseObject.swift */,
+			);
+			path = _Base;
+			sourceTree = "<group>";
+		};
+		73A9B6DB27B3F473001A856C /* addSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				73A9B6DC27B3F493001A856C /* AddScheduleModel.swift */,
+			);
+			path = addSchedule;
+			sourceTree = "<group>";
+		};
+		73E639EA2666769B00088E8A /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				73E639EB2666770B00088E8A /* Encodable+asDictionary.swift */,
+				73EA3C7827A963BD005AD3FA /* OptionSet+bitMask.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		73EA3CA827AF99BE005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CA927AF9A15005AD3FA /* FriendContract.swift */,
+				73EA3CAB27AF9A2D005AD3FA /* FriendView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CAF27AF9B01005AD3FA /* AddSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CD827AF9CE9005AD3FA /* contract */,
+				73EA3CDD27AF9D1D005AD3FA /* AddScheduleCtl.swift */,
+			);
+			path = AddSchedule;
+			sourceTree = "<group>";
+		};
+		73EA3CB027AF9B13005AD3FA /* TodoList */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CD127AF9CBE005AD3FA /* contract */,
+				73EA3CD627AF9CE5005AD3FA /* TodoListCtl.swift */,
+			);
+			path = TodoList;
+			sourceTree = "<group>";
+		};
+		73EA3CB127AF9B19005AD3FA /* MyMemory */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CCA27AF9C76005AD3FA /* contract */,
+				73EA3CCF27AF9CB9005AD3FA /* MyMemoryCtl.swift */,
+			);
+			path = MyMemory;
+			sourceTree = "<group>";
+		};
+		73EA3CB227AF9B29005AD3FA /* OurMemory */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CC327AF9C4B005AD3FA /* contract */,
+				73EA3CC827AF9C73005AD3FA /* OurMemoryCtl.swift */,
+			);
+			path = OurMemory;
+			sourceTree = "<group>";
+		};
+		73EA3CB327AF9B5A005AD3FA /* ButkitList */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CBC27AF9C13005AD3FA /* contract */,
+				73EA3CC127AF9C48005AD3FA /* ButkitListCtl.swift */,
+			);
+			path = ButkitList;
+			sourceTree = "<group>";
+		};
+		73EA3CB427AF9B64005AD3FA /* Noti */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CB527AF9BDF005AD3FA /* contract */,
+				73EA3CBA27AF9C0E005AD3FA /* NotiCtl.swift */,
+			);
+			path = Noti;
+			sourceTree = "<group>";
+		};
+		73EA3CB527AF9BDF005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CB627AF9BF6005AD3FA /* NotiContract.swift */,
+				73EA3CB827AF9C03005AD3FA /* NotiView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CBC27AF9C13005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CBD27AF9C2F005AD3FA /* ButkitListContract.swift */,
+				73EA3CBF27AF9C3A005AD3FA /* ButkitListView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CC327AF9C4B005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CC427AF9C5B005AD3FA /* OurMemoryContract.swift */,
+				73EA3CC627AF9C67005AD3FA /* OurMemoryView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CCA27AF9C76005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CCB27AF9C89005AD3FA /* MyMemoryContract.swift */,
+				73EA3CCD27AF9C95005AD3FA /* MyMemoryView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CD127AF9CBE005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CD227AF9CCC005AD3FA /* TodoListContract.swift */,
+				73EA3CD427AF9CD7005AD3FA /* TodoListView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CD827AF9CE9005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CD927AF9D00005AD3FA /* AddScheduleContract.swift */,
+				73EA3CDB27AF9D0D005AD3FA /* AddScheduleView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CDF27AFB386005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CE027AFB399005AD3FA /* RoomDetailContract.swift */,
+				73EA3CE227AFB3B1005AD3FA /* RommDetailView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73EA3CE527AFB597005AD3FA /* MyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CE627AFB59E005AD3FA /* contract */,
+				73EA3CEB27AFB5D5005AD3FA /* MyProfileCtl.swift */,
+			);
+			path = MyProfile;
+			sourceTree = "<group>";
+		};
+		73EA3CE627AFB59E005AD3FA /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CE727AFB5BB005AD3FA /* MyProfileContract.swift */,
+				73EA3CE927AFB5C8005AD3FA /* MyProfileView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73F18BED279A558B0002D9C4 /* date */ = {
+			isa = PBXGroup;
+			children = (
+				73F18BEE279A559C0002D9C4 /* DateComponentModel.swift */,
+			);
+			path = date;
+			sourceTree = "<group>";
+		};
+		73F18BF2279FE6FF0002D9C4 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				73F18BF3279FE70E0002D9C4 /* SharedUserData.swift */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		73F18BF5279FE7750002D9C4 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				73F18BF6279FE7780002D9C4 /* inf */,
+				73F18BF7279FF4ED0002D9C4 /* SharedUserData+BinderView.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		73F18BF6279FE7780002D9C4 /* inf */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = inf;
+			sourceTree = "<group>";
+		};
+		73FC5CB725E7FC0B0050D68E = {
+			isa = PBXGroup;
+			children = (
+				73FC5CC325E7FC0B0050D68E /* OurMemoryTask */,
+				73FC5CC225E7FC0B0050D68E /* Products */,
+				0A0F434496969E667BA5F69F /* Pods */,
+				10D49CD5AE28C41F652D2845 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		73FC5CC225E7FC0B0050D68E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CC125E7FC0B0050D68E /* OurMemoryTask.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73FC5CC325E7FC0B0050D68E /* OurMemoryTask */ = {
+			isa = PBXGroup;
+			children = (
+				73E639EA2666769B00088E8A /* extension */,
+				7328CFBF262AFEFC00B821BD /* constans */,
+				739572A22605D6C4006E810E /* model */,
+				73FC5CCE25E7FCC80050D68E /* controller */,
+				73FC5CC425E7FC0B0050D68E /* OurMemoryTask.h */,
+				73FC5CC525E7FC0B0050D68E /* Info.plist */,
+				732C872226077E2600EEEE57 /* CtlMaker.swift */,
+			);
+			path = OurMemoryTask;
+			sourceTree = "<group>";
+		};
+		73FC5CCE25E7FCC80050D68E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CEA25E7FD6D0050D68E /* _Base */,
+				73FC5CDE25E7FD0C0050D68E /* Intro */,
+				73FC5CDD25E7FD050050D68E /* Login */,
+				731870C4279454C500B2D95F /* Signup */,
+				73FC5CCF25E7FCDB0050D68E /* Main */,
+				73FC5D0E25E7FFD40050D68E /* FriendList */,
+				73FC5CE025E7FD1C0050D68E /* RoomList */,
+				73FC5D0D25E7FF040050D68E /* RoomDetail */,
+				73FC5CDF25E7FD110050D68E /* Schedule */,
+				73EA3CB427AF9B64005AD3FA /* Noti */,
+				73EA3CB327AF9B5A005AD3FA /* ButkitList */,
+				739C518B27B0C4F600701949 /* SharedList */,
+				73EA3CB227AF9B29005AD3FA /* OurMemory */,
+				73EA3CB127AF9B19005AD3FA /* MyMemory */,
+				73EA3CB027AF9B13005AD3FA /* TodoList */,
+				739C519327B0C75600701949 /* SelectAlramTime */,
+				739C519B27B0C7B800701949 /* SelectColor */,
+				739C519C27B0C7CC00701949 /* SelectShared */,
+				739C51AC27B10C6300701949 /* SelectDate */,
+				739C51B727B1102D00701949 /* AddFriend */,
+				739C51BF27B117C600701949 /* AddRoom */,
+				73EA3CAF27AF9B01005AD3FA /* AddSchedule */,
+				73EA3CE527AFB597005AD3FA /* MyProfile */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		73FC5CCF25E7FCDB0050D68E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CE225E7FD2D0050D68E /* contract */,
+				73FC5CE725E7FD5F0050D68E /* MainCtl.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		73FC5CDD25E7FD050050D68E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CE625E7FD430050D68E /* contract */,
+				7351509E263EA191008F3427 /* LoginCtl.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		73FC5CDE25E7FD0C0050D68E /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CE525E7FD3F0050D68E /* contract */,
+				7395729F2605CE53006E810E /* IntroCtl.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		73FC5CDF25E7FD110050D68E /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CE425E7FD3A0050D68E /* contract */,
+				73FC5D0925E7FEBB0050D68E /* ScheduleCtl.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		73FC5CE025E7FD1C0050D68E /* RoomList */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CE325E7FD340050D68E /* contract */,
+				73FC5CF425E7FE020050D68E /* RoomCtl.swift */,
+			);
+			path = RoomList;
+			sourceTree = "<group>";
+		};
+		73FC5CE225E7FD2D0050D68E /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CF125E7FDC10050D68E /* MainContract.swift */,
+				73FC5CEE25E7FDB30050D68E /* MainView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73FC5CE325E7FD340050D68E /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CF825E7FE160050D68E /* RoomContract.swift */,
+				73FC5CFB25E7FE230050D68E /* RoomView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73FC5CE425E7FD3A0050D68E /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73FC5CFF25E7FE9F0050D68E /* ScheduleContract.swift */,
+				73FC5D0625E7FEAA0050D68E /* ScheduleView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73FC5CE525E7FD3F0050D68E /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				732C870E2607749D00EEEE57 /* IntroContract.swift */,
+				732C8711260774D300EEEE57 /* IntroView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73FC5CE625E7FD430050D68E /* contract */ = {
+			isa = PBXGroup;
+			children = (
+				73515097263EA14B008F3427 /* LoginContract.swift */,
+				7351509B263EA155008F3427 /* LoginView.swift */,
+			);
+			path = contract;
+			sourceTree = "<group>";
+		};
+		73FC5CEA25E7FD6D0050D68E /* _Base */ = {
+			isa = PBXGroup;
+			children = (
+				7328CFB8262AF85600B821BD /* contract */,
+				73FC5CEB25E7FD7C0050D68E /* BaseCtl.swift */,
+				7319C83E2656B0170080DF5F /* BaseCollectionAdapter.swift */,
+				73F18BEB279965860002D9C4 /* BaseDatePickerAdapter.swift */,
+			);
+			path = _Base;
+			sourceTree = "<group>";
+		};
+		73FC5D0D25E7FF040050D68E /* RoomDetail */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CDF27AFB386005AD3FA /* contract */,
+				73EA3CED27AFB659005AD3FA /* RoomDetailCtl.swift */,
+			);
+			path = RoomDetail;
+			sourceTree = "<group>";
+		};
+		73FC5D0E25E7FFD40050D68E /* FriendList */ = {
+			isa = PBXGroup;
+			children = (
+				73EA3CA827AF99BE005AD3FA /* contract */,
+				73EA3CAD27AF9A53005AD3FA /* FriendCtl.swift */,
+			);
+			path = FriendList;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		73FC5CBC25E7FC0B0050D68E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73FC5CC625E7FC0B0050D68E /* OurMemoryTask.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		73FC5CC025E7FC0B0050D68E /* OurMemoryTask */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73FC5CC925E7FC0B0050D68E /* Build configuration list for PBXNativeTarget "OurMemoryTask" */;
+			buildPhases = (
+				5C47D62EDDB7BC0C6ED125EB /* [CP] Check Pods Manifest.lock */,
+				73FC5CBC25E7FC0B0050D68E /* Headers */,
+				73FC5CBD25E7FC0B0050D68E /* Sources */,
+				73FC5CBE25E7FC0B0050D68E /* Frameworks */,
+				73FC5CBF25E7FC0B0050D68E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OurMemoryTask;
+			productName = OurMemoryTask;
+			productReference = 73FC5CC125E7FC0B0050D68E /* OurMemoryTask.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73FC5CB825E7FC0B0050D68E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					73FC5CC025E7FC0B0050D68E = {
+						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
+					};
+				};
+			};
+			buildConfigurationList = 73FC5CBB25E7FC0B0050D68E /* Build configuration list for PBXProject "OurMemoryTask" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 73FC5CB725E7FC0B0050D68E;
+			productRefGroup = 73FC5CC225E7FC0B0050D68E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73FC5CC025E7FC0B0050D68E /* OurMemoryTask */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73FC5CBF25E7FC0B0050D68E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C47D62EDDB7BC0C6ED125EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OurMemoryTask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73FC5CBD25E7FC0B0050D68E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				731870BD278D984500B2D95F /* SearchForTodoNetModel.swift in Sources */,
+				731870A8278D970B00B2D95F /* SearchForIndividuallySchedule.swift in Sources */,
+				739C51A127B0C8C200701949 /* SelectColorView.swift in Sources */,
+				73B5618727BBA38800A7C830 /* ViewContract.swift in Sources */,
+				73EA3CB927AF9C03005AD3FA /* NotiView.swift in Sources */,
+				73187091278D917400B2D95F /* ModifyRoomInfoNetModel.swift in Sources */,
+				7376EC17265A6D00001DB54A /* BaseCollectionAdapterContract.swift in Sources */,
+				739C519F27B0C87E00701949 /* SelectColorContract.swift in Sources */,
+				73187086278D8CA000B2D95F /* SearchForFriendsNetModel.swift in Sources */,
+				73EA3C7927A963BD005AD3FA /* OptionSet+bitMask.swift in Sources */,
+				73EA3CCE27AF9C95005AD3FA /* MyMemoryView.swift in Sources */,
+				731870B4278D97E900B2D95F /* InquiryNoticeListNetModel.swift in Sources */,
+				73EA3CBE27AF9C2F005AD3FA /* ButkitListContract.swift in Sources */,
+				7318707C278D8C0E00B2D95F /* CancelRequestFriendNetModel.swift in Sources */,
+				73EA3CEC27AFB5D5005AD3FA /* MyProfileCtl.swift in Sources */,
+				73EA3CE827AFB5BB005AD3FA /* MyProfileContract.swift in Sources */,
+				73FC5D0A25E7FEBB0050D68E /* ScheduleCtl.swift in Sources */,
+				73187095278D919A00B2D95F /* DeleteMyRoomNetModel.swift in Sources */,
+				739C519027B0C52300701949 /* SharedListView.swift in Sources */,
+				731870CC279466E900B2D95F /* SignupView.swift in Sources */,
+				739C51AA27B0E08B00701949 /* SelectSharedCtl.swift in Sources */,
+				731870C927945A6700B2D95F /* SignupModel.swift in Sources */,
+				739C51BA27B1105200701949 /* AddFriendContract.swift in Sources */,
+				73F18BF8279FF4ED0002D9C4 /* SharedUserData+BinderView.swift in Sources */,
+				732C8712260774D300EEEE57 /* IntroView.swift in Sources */,
+				73A9B6DD27B3F493001A856C /* AddScheduleModel.swift in Sources */,
+				739C519227B0C53300701949 /* SharedListCtl.swift in Sources */,
+				7318705F278D7D0300B2D95F /* DeleteUserNetModel.swift in Sources */,
+				739C51AF27B10C8900701949 /* SelectDateContract.swift in Sources */,
+				73EA3CB727AF9BF6005AD3FA /* NotiContract.swift in Sources */,
+				73A9B6D827B3EDF0001A856C /* ScheduleDataBinder.swift in Sources */,
+				731870A2278D96A700B2D95F /* InquiryScheduleListNetMode.swift in Sources */,
+				73187093278D918A00B2D95F /* TransferringRoomOwnerNetModel.swift in Sources */,
+				73EA3CC727AF9C67005AD3FA /* OurMemoryView.swift in Sources */,
+				73FC5CF925E7FE160050D68E /* RoomContract.swift in Sources */,
+				734FAEFC26482AA70013520D /* dateComponentsModel.swift in Sources */,
+				73FC5CF525E7FE020050D68E /* RoomCtl.swift in Sources */,
+				73F18BF4279FE70E0002D9C4 /* SharedUserData.swift in Sources */,
+				7318708D278D913C00B2D95F /* InquiryRoomListNetModel.swift in Sources */,
+				73F18BF1279A599E0002D9C4 /* constBlock.swift in Sources */,
+				73F18BEC279965860002D9C4 /* BaseDatePickerAdapter.swift in Sources */,
+				739C51A827B0C90300701949 /* SelectSharedView.swift in Sources */,
+				73EA3CD327AF9CCC005AD3FA /* TodoListContract.swift in Sources */,
+				731870AC278D975200B2D95F /* DeleteScheduleNetModel.swift in Sources */,
+				731870AA278D973F00B2D95F /* ShareScheduleNetModel.swift in Sources */,
+				7351509C263EA155008F3427 /* LoginView.swift in Sources */,
+				73EA3CEA27AFB5C8005AD3FA /* MyProfileView.swift in Sources */,
+				7351509F263EA191008F3427 /* LoginCtl.swift in Sources */,
+				731870BF278D985400B2D95F /* ModifyTodoNetModel.swift in Sources */,
+				739C519627B0C77C00701949 /* SelectAlramTimeContract.swift in Sources */,
+				73187065278D87CE00B2D95F /* DeleteMyProfileNetModel.swift in Sources */,
+				731870C1278D986400B2D95F /* DeleteTodoNetModel.swift in Sources */,
+				73187068278D883C00B2D95F /* ModifyPushTokenNetmodel.swift in Sources */,
+				73EA3CC527AF9C5B005AD3FA /* OurMemoryContract.swift in Sources */,
+				731870A6278D96C600B2D95F /* AttendanceSettingScheduleNetModel.swift in Sources */,
+				73EA3CAA27AF9A15005AD3FA /* FriendContract.swift in Sources */,
+				7328CFC1262AFF1000B821BD /* dataEnum.swift in Sources */,
+				734FAEF826481EA70013520D /* getMyRoomNetModel.swift in Sources */,
+				731870AE278D976700B2D95F /* ModifyScheduleNetModel.swift in Sources */,
+				73FC5D0725E7FEAA0050D68E /* ScheduleView.swift in Sources */,
+				731870BB278D983300B2D95F /* AddTodoNetModel.swift in Sources */,
+				73EA3CDA27AF9D00005AD3FA /* AddScheduleContract.swift in Sources */,
+				739C51B627B10D0B00701949 /* BaseDatePickerContract.swift in Sources */,
+				732C870F2607749D00EEEE57 /* IntroContract.swift in Sources */,
+				739572B02605DA13006E810E /* BaseNetModel.swift in Sources */,
+				739572BC2605E78E006E810E /* Reqeust.swift in Sources */,
+				739DBF8526403CB80005FE03 /* SignUpIdNetModel.swift in Sources */,
+				7318707E278D8C2000B2D95F /* AddAgainFriendsNetModel.swift in Sources */,
+				73FC5CF225E7FDC10050D68E /* MainContract.swift in Sources */,
+				73EA3CC227AF9C48005AD3FA /* ButkitListCtl.swift in Sources */,
+				739C51C627B1187E00701949 /* AddRoomCtl.swift in Sources */,
+				735150A7263EABBE008F3427 /* IntroModel.swift in Sources */,
+				7319C83F2656B0170080DF5F /* BaseCollectionAdapter.swift in Sources */,
+				73187082278D8C7D00B2D95F /* ChangeFriendStatusNetModel.swift in Sources */,
+				731870C6279454EA00B2D95F /* SignupCtl.swift in Sources */,
+				73EA3CDC27AF9D0D005AD3FA /* AddScheduleView.swift in Sources */,
+				739C51B427B10CBB00701949 /* SelectDateCtl.swift in Sources */,
+				73FC5CEF25E7FDB30050D68E /* MainView.swift in Sources */,
+				73631E9227BC9E2E00084A1C /* Interface.swift in Sources */,
+				73EA3CD527AF9CD7005AD3FA /* TodoListView.swift in Sources */,
+				73EA3CC927AF9C73005AD3FA /* OurMemoryCtl.swift in Sources */,
+				73E639EC2666770B00088E8A /* Encodable+asDictionary.swift in Sources */,
+				73187099278D91F900B2D95F /* MakeRoomNetModel.swift in Sources */,
+				73EA3CDE27AF9D1D005AD3FA /* AddScheduleCtl.swift in Sources */,
+				731870A4278D96B400B2D95F /* AddScheduleNetMode.swift in Sources */,
+				73515098263EA14B008F3427 /* LoginContract.swift in Sources */,
+				731870B2278D97D600B2D95F /* DeleteNoticeNetModel.swift in Sources */,
+				738AA89127B6A774009B85D7 /* SelectColorModel.swift in Sources */,
+				73EA3CCC27AF9C89005AD3FA /* MyMemoryContract.swift in Sources */,
+				735150AF263EC8ED008F3427 /* SharedUserDataModel.swift in Sources */,
+				739572AC2605D9C4006E810E /* IntroNetModel.swift in Sources */,
+				73FC5D0025E7FE9F0050D68E /* ScheduleContract.swift in Sources */,
+				73F18BEF279A559C0002D9C4 /* DateComponentModel.swift in Sources */,
+				7318707A278D8BFA00B2D95F /* AcceptRequestFriendNetModel.swift in Sources */,
+				7328CFBD262AF87F00B821BD /* DataContract.swift in Sources */,
+				73187059278D7B7700B2D95F /* CheckMyInfoNetModel.swift in Sources */,
+				739C519827B0C78600701949 /* SelectAlramView.swift in Sources */,
+				738AA88E27B631C6009B85D7 /* SelectAlarmModel.swift in Sources */,
+				7376EC2A265A9181001DB54A /* MainModel.swift in Sources */,
+				73A9B6D627B3ECEB001A856C /* BaseObject.swift in Sources */,
+				73FC5CFC25E7FE230050D68E /* RoomView.swift in Sources */,
+				7318708F278D915600B2D95F /* SearchForRoomNetModel.swift in Sources */,
+				73EA3CE127AFB399005AD3FA /* RoomDetailContract.swift in Sources */,
+				73FC5CEC25E7FD7C0050D68E /* BaseCtl.swift in Sources */,
+				73187078278D8BE800B2D95F /* InquiryFriendListNetModel.swift in Sources */,
+				73187055278D594700B2D95F /* OurMemoryErrorData.swift in Sources */,
+				73EA3CAC27AF9A2D005AD3FA /* FriendView.swift in Sources */,
+				7318705C278D7C9900B2D95F /* ModifyUserInfoNetModel.swift in Sources */,
+				73FC5CE825E7FD5F0050D68E /* MainCtl.swift in Sources */,
+				739DBF8A264047C90005FE03 /* LoginModel.swift in Sources */,
+				739C518E27B0C51000701949 /* SharedListContract.swift in Sources */,
+				73EA3CEE27AFB659005AD3FA /* RoomDetailCtl.swift in Sources */,
+				739C51BC27B1105E00701949 /* AddFriendView.swift in Sources */,
+				73A9B6DA27B3EF96001A856C /* ScheduleData+BinderView.swift in Sources */,
+				73187084278D8C8E00B2D95F /* DeleteFriendsNetModel.swift in Sources */,
+				739C51C227B1185000701949 /* AddRoomContract.swift in Sources */,
+				739C51A327B0C8CF00701949 /* SelectColorCtl.swift in Sources */,
+				73EA3CE327AFB3B1005AD3FA /* RommDetailView.swift in Sources */,
+				73A9B6D327B3ECD4001A856C /* ScheduleData.swift in Sources */,
+				73EA3CD027AF9CB9005AD3FA /* MyMemoryCtl.swift in Sources */,
+				731870CE279466F900B2D95F /* SignupContract.swift in Sources */,
+				73EA3CC027AF9C3A005AD3FA /* ButkitListView.swift in Sources */,
+				739C51BE27B1106D00701949 /* AddFriendCtl.swift in Sources */,
+				739C51C427B1185B00701949 /* AddRoomView.swift in Sources */,
+				739C51A627B0C8F800701949 /* SelectSharedContract.swift in Sources */,
+				735150A2263EA21A008F3427 /* AppSaveDataModel.swift in Sources */,
+				7328F0092641068B000E081C /* dataVO.swift in Sources */,
+				73EA3CAE27AF9A53005AD3FA /* FriendCtl.swift in Sources */,
+				735150AB263EB686008F3427 /* LoginNetModel.swift in Sources */,
+				73EA3CD727AF9CE5005AD3FA /* TodoListCtl.swift in Sources */,
+				731870C3278D987400B2D95F /* InquiryTodoListNetModel.swift in Sources */,
+				732C872326077E2600EEEE57 /* CtlMaker.swift in Sources */,
+				739572A02605CE53006E810E /* IntroCtl.swift in Sources */,
+				73A719BD27BB3FC8005C3069 /* kakaoWrapper.swift in Sources */,
+				739C51B227B10CAC00701949 /* SelectDateView.swift in Sources */,
+				73EA3CBB27AF9C0E005AD3FA /* NotiCtl.swift in Sources */,
+				73187062278D879900B2D95F /* UploadMyProfileNetModel.swift in Sources */,
+				73187080278D8C4300B2D95F /* RequestFriendNetModel.swift in Sources */,
+				739C519A27B0C7B200701949 /* SelectAlramCtl.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73FC5CC725E7FC0B0050D68E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		73FC5CC825E7FC0B0050D68E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		73FC5CCA25E7FC0B0050D68E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBF459FF5AD225BBA95682B3 /* Pods-OurMemoryTask.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2L6GNE8467;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = NO;
+				INFOPLIST_FILE = OurMemoryTask/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgSwiftOurMemory.OurMemory.OurMemoryTask;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		73FC5CCB25E7FC0B0050D68E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFB8E69D3F34B4AA7887E91D /* Pods-OurMemoryTask.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2L6GNE8467;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = NO;
+				INFOPLIST_FILE = OurMemoryTask/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgSwiftOurMemory.OurMemory.OurMemoryTask;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73FC5CBB25E7FC0B0050D68E /* Build configuration list for PBXProject "OurMemoryTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73FC5CC725E7FC0B0050D68E /* Debug */,
+				73FC5CC825E7FC0B0050D68E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73FC5CC925E7FC0B0050D68E /* Build configuration list for PBXNativeTarget "OurMemoryTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73FC5CCA25E7FC0B0050D68E /* Debug */,
+				73FC5CCB25E7FC0B0050D68E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73FC5CB825E7FC0B0050D68E /* Project object */;
+}

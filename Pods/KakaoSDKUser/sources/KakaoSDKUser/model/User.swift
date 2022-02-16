@@ -124,9 +124,19 @@ public struct Account : Codable {
     
     /// profile 제공에 대한 사용자 동의 필요 여부
     public let profileNeedsAgreement: Bool?
+    /// profile 닉네임 제공에 대한 사용자 동의 필요 여부
+    public let profileNicknameNeedsAgreement: Bool?    
+    /// profile 이미지 제공에 대한 사용자 동의 필요 여부
+    public let profileImageNeedsAgreement: Bool?
+    
     /// 카카오계정에 등록한 프로필 정보
     /// - seealso: `Profile`
     public let profile: Profile?
+    
+    /// 카카오계정 이름에 대한 사용자 동의 필요 여부
+    public let nameNeedsAgreement: Bool?
+    /// 카카오계정 이름
+    public let name: String?
     
     /// email 제공에 대한 사용자 동의 필요 여부
     public let emailNeedsAgreement: Bool?

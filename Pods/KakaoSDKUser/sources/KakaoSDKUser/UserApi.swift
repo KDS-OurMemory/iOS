@@ -83,15 +83,58 @@ final public class UserApi {
         
     }
     
+    /// 앱투앱(App-to-App) 방식 카카오톡 인증 로그인을 실행합니다.
+    /// 카카오톡을 실행하고, 카카오톡에 연결된 카카오계정으로 사용자 인증 후 동의 및 전자서명을 거쳐 [CertTokenInfo]을 반환합니다.
+    /// - parameters:
+    ///   - prompts 동의 화면 요청 시 추가 상호작용을 요청하고자 할 때 전달, 사용할 수 있는 옵션의 종류는 [Prompt] 참고
+    ///   - state 전자서명 원문
+    public func certLoginWithKakaoTalk(prompts: [Prompt]? = nil,
+                                       state: String? = nil,
+                                       channelPublicIds: [String]? = nil,
+                                       serviceTerms: [String]? = nil,
+                                       completion: @escaping (CertTokenInfo?, Error?) -> Void) {
+        
+        AuthController.shared.certAuthorizeWithTalk(prompts:prompts,
+                                                    state:state,
+                                                    channelPublicIds:channelPublicIds,
+                                                    serviceTerms:serviceTerms,
+                                                    completion:completion)
+        
+    }
+    
 
     // MARK: Login with Kakao Account
     
     /// iOS 11 이상에서 제공되는 (SF/ASWeb)AuthenticationSession 을 이용하여 로그인 페이지를 띄우고 쿠키 기반 로그인을 수행합니다. 이미 사파리에에서 로그인하여 카카오계정의 쿠키가 있다면 이를 활용하여 ID/PW 입력 없이 간편하게 로그인할 수 있습니다.
     /// - parameters:
     ///   - prompts 동의 화면 요청 시 추가 상호작용을 요청하고자 할 때 전달. [Prompt]
+    ///   - loginHint 카카오계정 로그인 페이지의 ID에 자동 입력할 이메일 또는 전화번호
     
-    public func loginWithKakaoAccount(prompts : [Prompt]? = nil, completion: @escaping (OAuthToken?, Error?) -> Void) {
-        AuthController.shared.authorizeWithAuthenticationSession(prompts: prompts, completion:completion)
+    public func loginWithKakaoAccount(prompts : [Prompt]? = nil,
+                                      loginHint: String? = nil,
+                                      completion: @escaping (OAuthToken?, Error?) -> Void) {
+        AuthController.shared.authorizeWithAuthenticationSession(prompts: prompts,
+                                                                 loginHint: loginHint,
+                                                                 completion:completion)
+    }
+
+    
+    /// 채널 메시지 방식 카카오톡 인증 로그인을 실행합니다.
+    /// 기본 브라우저의 카카오계정 쿠키(cookie)로 사용자 인증 후, 카카오계정에 연결된 카카오톡으로 카카오톡 인증 로그인을 요청하는 채널 메시지를 발송합니다.
+    /// 카카오톡의 채널 메시지를 통해 동의 및 전자서명을 거쳐 [CertTokenInfo]을 반환합니다.
+    /// - parameters:
+    ///   - prompts 동의 화면 요청 시 추가 상호작용을 요청하고자 할 때 전달, 사용할 수 있는 옵션의 종류는 [Prompt] 참고
+    ///   - state   전자서명 원문
+    ///   - loginHint 카카오계정 로그인 페이지의 ID에 자동 입력할 이메일 또는 전화번호
+    
+    public func certLoginWithKakaoAccount(prompts : [Prompt]? = nil,
+                                          state: String? = nil,
+                                          loginHint: String? = nil,
+                                          completion: @escaping (CertTokenInfo?, Error?) -> Void) {
+        AuthController.shared.certAuthorizeWithAuthenticationSession(prompts: prompts,
+                                                                     state: state,
+                                                                     loginHint: loginHint,
+                                                                     completion:completion)
     }
     
     

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import OurMemoryTask
 
-class myRoomCollectionCtl: BaseCollectionCtl {
+class myRoomCollectionCtl: BaseCollectionAdapter {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         0
