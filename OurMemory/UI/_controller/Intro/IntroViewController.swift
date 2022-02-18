@@ -30,7 +30,7 @@ class IntroViewController: BaseViewController {
     override func showNextVC(vc:NEXTVIEW,data:Any?) {
         switch vc {
         case .NEXTVIEW_POP,.NEXTVIEW_LOGIN:
-            self.navigate(vc, data: data)
+            self.navigate(vc, animation: true, data: data, onInitVc: nil)
         default:
             break
         }

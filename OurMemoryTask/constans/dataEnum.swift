@@ -156,7 +156,13 @@ enum RESULT_DATE:UInt {
     case RESULT_TIME
     case RESULT_MINUTE
     case RESULT_SECONDS
+    case RESULT_WEEKS
+    case RESULT_DATECOMPONENTS
 }
 
+enum ATTENDANCE_STATUS:String {
+    case ATTEND = "ATTEND"
+    case ABSENCE = "ABSENCE"
+}
 
 

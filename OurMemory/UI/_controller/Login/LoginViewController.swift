@@ -28,10 +28,13 @@ class LoginViewController: BaseViewController {
     override func showNextVC(vc: NEXTVIEW, data: Any?) {
         switch vc {
         case .NEXTVIEW_SIGNUP:
-            self.navigate(NEXTVIEW.NEXTVIEW_SIGNUP, data: data)
+            self.navigate(NEXTVIEW.NEXTVIEW_SIGNUP, animation: true, data: data, onInitVc: nil)
             break
         case .NEXTVIEW_MAIN:
-            self.navigate(NEXTVIEW.NEXTVIEW_MAIN, data: data)
+            self.navigate(NEXTVIEW.NEXTVIEW_MAIN, animation: true, data: data, onInitVc: nil)
+            break
+        case .NEXTVIEW_MYMEMORY:
+            self.navigate(NEXTVIEW.NEXTVIEW_MYMEMORY, animation: true, data: data, onInitVc: nil)
             break
         default:
             break

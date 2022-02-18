@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol MyProfileView:ViewContract {
+public protocol MyProfileView:TabbarContract {
 //    func updateUserInfo(user:String) // userDataBinder 만들어서 파싱하자
 }

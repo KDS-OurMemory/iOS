@@ -40,6 +40,7 @@ class MainViewController: BaseViewController {
 
 extension MainViewController: MainView {
     
+    
     func updateNotiCnt(items: [UInt : Int]) {
         if let tabbar = self.tabbar {
             tabbar.updateNotiItemWithCnt(items: items)

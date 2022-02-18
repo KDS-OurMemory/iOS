@@ -12,5 +12,5 @@ public protocol BaseDatePickerAdapterContract:DataContract {
     /**
      *  PickerView 컨트롤단 세팅
      */
-    func setDatePickerWithAdpater(datePicker:UIPickerView)
+    func setDatePickerWithAdpater(adapter:BaseDatePickerAdapter,pickerView:UIPickerView)
 }

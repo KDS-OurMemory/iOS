@@ -11,7 +11,7 @@ class SignupCtl: BaseCtl {
     
     let signupModel:SignupModel = SignupModel()
     let dateModel:DateComponentsModel = DateComponentsModel()
-    var datePickerAdapter:BaseDatePickerAdapter = BaseDatePickerAdapter()
+    var datePickerAdapter:BaseDatePickerAdapter!
     let sharedUserDataModel:SharedUserDataModel = SharedUserDataModel.sharedUserData
     
     override func __initWithData__(data: Any?) {
@@ -61,12 +61,6 @@ class SignupCtl: BaseCtl {
             }
         }
         
-        dateModel.initWithCallback { p1, p2 in
-            switch p1 {
-            default:
-                break
-            }
-        }
         
     }
 
@@ -116,18 +110,17 @@ extension SignupCtl:SignupContract {
         self.signupModel.setName(name: name)
     }
     
-    func setDatePickerWithAdpater(datePicker:UIPickerView) {
-        
-        self.datePickerAdapter.setPickerController(pickerView: datePicker, pickerViewMode:PICKER_MODE.MM_DD) { p1,p2 in
+    func setDatePickerWithAdpater(adapter:BaseDatePickerAdapter,pickerView:UIPickerView) {
+        datePickerAdapter = adapter
+        self.datePickerAdapter.setPickerController(pickerView: pickerView, pickerViewMode:PICKER_MODE.MM_DD) { p1,p2 in
             let result:RESULT_DATE = RESULT_DATE.init(rawValue: p1)!
             switch result {
             case .RESULT_MONTH:
-                self.dateModel.setMonth(month: p2 as! Int)
-                self.signupModel.setSelectMonth(month: self.dateModel.getDateWithDateformat(dateformatStr: "mm"))
+                self.signupModel.setSelectMonth(month:p2 as! String)
                 break
             case .RESULT_DAY:
                 self.dateModel.setDay(day: p2 as! Int)
-                self.signupModel.setSelectDay(day: self.dateModel.getDateWithDateformat(dateformatStr: "dd"))
+                self.signupModel.setSelectDay(day: p2 as! String)
                 break
             default:
                 break

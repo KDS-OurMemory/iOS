@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol OurMemoryView:ViewContract {
+public protocol OurMemoryView:TabbarContract {
     func setSearchBlock(searchCallback:@escaping (String) -> Void)
     func updateFriendList()
     func updateRoomList()

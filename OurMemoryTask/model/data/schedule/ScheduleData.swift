@@ -10,10 +10,10 @@ import UIKit
 class ScheduleData: BaseObject {
 
     var title:String = ""
-    var date:[String] = []
+    var date:[ScheduleTimeDataBinder] = []
     var contents:[String] = []
     var locations:[String] = []
-    var alarm:String = ""
+    var alarms:[String] = []
     var color:UIColor = .clear
     
     override func initData() {

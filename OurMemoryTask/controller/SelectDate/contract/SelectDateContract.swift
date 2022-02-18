@@ -10,7 +10,7 @@ import UIKit
 
 public protocol SelectDateContract:BaseDatePickerAdapterContract {
     
-    func selectAlarmIdx(idx:Int)
+    func selectDateIdx(idx:Int)
     
     func actionConfirmBtn(sender:UIButton)
     func actionCancelBtn(sender:UIButton)

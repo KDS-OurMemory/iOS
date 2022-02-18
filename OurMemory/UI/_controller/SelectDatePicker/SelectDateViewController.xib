@@ -21,11 +21,40 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sI7-kb-LjJ">
                                 <rect key="frame" x="5" y="5" width="374" height="71.5"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxr-IL-TvE">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="71.5"/>
+                                    </scrollView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Rxr-IL-TvE" secondAttribute="bottom" id="1lp-5t-LqF"/>
+                                    <constraint firstItem="Rxr-IL-TvE" firstAttribute="top" secondItem="sI7-kb-LjJ" secondAttribute="top" id="AeN-ny-7VG"/>
+                                    <constraint firstItem="Rxr-IL-TvE" firstAttribute="leading" secondItem="sI7-kb-LjJ" secondAttribute="leading" id="GGf-MI-Q29"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rxr-IL-TvE" secondAttribute="trailing" id="RbM-tw-Rfi"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59t-h4-Bdg">
                                 <rect key="frame" x="5" y="281.5" width="374" height="71.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAv-kv-ORv">
+                                        <rect key="frame" x="305.5" y="20.5" width="48.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="확인"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1x-Y2-wAN">
+                                        <rect key="frame" x="237" y="20.5" width="48.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="취소"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="aAv-kv-ORv" firstAttribute="leading" secondItem="r1x-Y2-wAN" secondAttribute="trailing" constant="20" id="0Zl-u0-ml8"/>
+                                    <constraint firstItem="r1x-Y2-wAN" firstAttribute="centerY" secondItem="59t-h4-Bdg" secondAttribute="centerY" id="0an-di-l7a"/>
+                                    <constraint firstItem="aAv-kv-ORv" firstAttribute="centerY" secondItem="59t-h4-Bdg" secondAttribute="centerY" id="ebW-fP-WkR"/>
+                                    <constraint firstAttribute="trailing" secondItem="aAv-kv-ORv" secondAttribute="trailing" constant="20" id="o52-Gq-c5K"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwm-vu-NwO">
                                 <rect key="frame" x="0.0" y="76.5" width="384" height="205"/>
@@ -69,6 +98,12 @@
                     <constraint firstItem="i8q-En-vsc" firstAttribute="centerY" secondItem="NF9-Ue-sND" secondAttribute="centerY" id="vKT-ca-HSy"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="closeBtn" destination="r1x-Y2-wAN" id="z0h-hu-49k"/>
+                <outlet property="confirmBtn" destination="aAv-kv-ORv" id="5O2-zq-tD9"/>
+                <outlet property="datePicker" destination="Z6d-vU-bas" id="o7K-YK-MSd"/>
+                <outlet property="selectedDateItemSv" destination="Rxr-IL-TvE" id="TQH-JX-lgJ"/>
+            </connections>
             <point key="canvasLocation" x="-396" y="4"/>
         </viewController>
     </objects>

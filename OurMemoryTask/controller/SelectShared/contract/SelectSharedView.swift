@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol SelectSharedView:ViewContract {
+public protocol SelectSharedView:PopupContract {
     
 }

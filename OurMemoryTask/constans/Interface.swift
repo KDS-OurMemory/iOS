@@ -15,3 +15,13 @@ public protocol SignupUserDataBinder {
     func getSnsId() -> String
     func getSnsType() -> SNSTYPE
 }
+
+public protocol ScheduleTimeDataBinder {
+    func getYear() -> String?
+    func getMonth() -> String?
+    func getDay() -> String?
+    func getOur() -> String?
+    func getMin() -> String?
+    func getWeekDay() -> String?
+    func getComponents() -> DateComponents?
+}

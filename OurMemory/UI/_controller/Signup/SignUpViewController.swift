@@ -34,6 +34,7 @@ class SignUpViewController: BaseViewController {
     @IBOutlet weak var signUpConfirmBtn: UIButton!
     @IBOutlet weak var signUpCancelBtn: UIButton!
     
+    let signupDatePickerAdapter:SignupDatePickerAdapter = SignupDatePickerAdapter()
     var signupCtl:SignupContract?
     var loginCallback:((SIGNUPVIEWCASE) -> Void)!
     var selectedMonthDays:Int = 30
@@ -55,7 +56,7 @@ class SignUpViewController: BaseViewController {
         if self.getDataContract() == nil {
             signupCtl = (CtlMaker().createDataControllerWithContract(contract: ctls.eContractSignup, view: self,data: data) as? SignupContract)
             if let ctl = self.getDataContract() as? SignupContract {
-                ctl.setDatePickerWithAdpater(datePicker: signUpDatePicker)
+                ctl.setDatePickerWithAdpater(adapter:signupDatePickerAdapter,pickerView: signUpDatePicker)
             }
             
             signUpConfirmBtn.alpha = 0.8
@@ -105,10 +106,10 @@ class SignUpViewController: BaseViewController {
     override func showNextVC(vc: NEXTVIEW, data: Any?) {
         switch vc {
         case .NEXTVIEW_POP:
-            self.navigate(NEXTVIEW.NEXTVIEW_POP, data: nil)
+            self.navigate(NEXTVIEW.NEXTVIEW_POP, animation: true, data: nil, onInitVc: nil)
             break
         case .NEXTVIEW_MAIN:
-            self.navigate(NEXTVIEW.NEXTVIEW_MAIN, data: data)
+            self.navigate(NEXTVIEW.NEXTVIEW_MAIN, animation: true, data: data, onInitVc: nil)
             break
         default:
             break

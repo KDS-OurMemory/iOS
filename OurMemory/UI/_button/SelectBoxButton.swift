@@ -12,9 +12,9 @@ class SelectBoxButton: UIButton {
     init() {
         super.init(frame: CGRect.zero)
         self.frame.size = CGSize(width: mainWidth, height: 40)
-        self.setImage(UIImage(named: ""), for: .normal)
-        self.setImage(UIImage(named: ""), for: .selected)
-        
+        self.setImage(UIImage(systemName: "scribble"), for: .normal)
+        self.setImage(UIImage(systemName: "scribble.variable"), for: .selected)
+        self.semanticContentAttribute = .forceLeftToRight
     }
     
     required init?(coder: NSCoder) {

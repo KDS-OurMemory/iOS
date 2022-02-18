@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-public protocol SelectColorView:ViewContract {
+public protocol SelectColorView:PopupContract {
     func updateColors(colors:[UIColor])
 }

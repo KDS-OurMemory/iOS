@@ -17,8 +17,10 @@ class TabbarBtnView:BaseView {
     var tabLblPOIY:CGFloat!
     
     override func prepareViews() {
-        tabBarBtn.center = self.center
+        
         tabBarBtn.frame.size = CGSize(width: self.frame.size.width, height: self.frame.size.height * 0.6)
+        tabBarBtn.center.y = self.center.y
+        tabBarBtn.frame.origin.x = 0
         tabBarBtn.addTarget(self, action:#selector(clickedTabBtn(btn:)), for: .touchUpInside)
         tabBtnPOIY = tabBarBtn.frame.origin.y
         
@@ -26,11 +28,14 @@ class TabbarBtnView:BaseView {
         tabBarTitleLbl.textAlignment = .center
         tabLblPOIY = tabBarTitleLbl.frame.origin.y
         
-        notiCntLbl.frame = CGRect(x: tabBarBtn.frame.size.width - self.frame.size.width * 0.35, y: tabBtnPOIY, width: self.frame.size.width * 0.35, height: self.frame.size.width * 0.35)
-        notiCntLbl.layer.cornerRadius = 50
+        notiCntLbl.frame = CGRect(x: tabBarBtn.center.x, y: tabBtnPOIY, width: tabBarBtn.frame.size.width * 0.25, height: tabBarBtn.frame.size.width * 0.25)
+        notiCntLbl.layer.cornerRadius = 100
         notiCntLbl.layer.backgroundColor = UIColor.red.cgColor
         notiCntLbl.textColor = .white
         notiCntLbl.textAlignment = .center
+        self.addSubview(notiCntLbl)
+        self.addSubview(tabBarTitleLbl)
+        self.addSubview(tabBarBtn)
     }
     
     func setTabBtnBlock(block :@escaping (Int) -> Void) {
@@ -77,14 +82,16 @@ class TabbarView:BaseView {
     var categoryBtns:[TabbarBtnView] = []
     var tabBtnBlock:((TabItems) -> Void)!
     var context:UIViewController!
+    var tabbarPOIY:CGFloat!
     
     override func prepareViews() {
         
         let categoryViewHeight:CGFloat = tabbarHeight * 2
         
+        self.backgroundColor = .white
         
         self.frame = CGRect(x: 0, y: mainHeight-tabbarHeight, width: mainWidth, height: tabbarHeight)
-        
+        tabbarPOIY = self.frame.origin.y
         self.tabBtnView.frame = CGRect(x:0, y:0,width: mainWidth,height: tabbarHeight)
         self.addSubview(tabBtnView)
         
@@ -132,7 +139,7 @@ class TabbarView:BaseView {
             let tabBtnCnt = self.tabBtnView.subviews.count
             let tabbarBtnView:TabbarBtnView = TabbarBtnView(frame: CGRect(x: CGFloat(tabBtnCnt)*tabBtnWidth, y: 0, width: tabBtnWidth, height: tabbarHeight))
             tabbarBtnView.setTitle(title: self.setTabItemTitle(item: item.rawValue))
-            tabbarBtnView.setBtnImage(normalImage: self.setTabItemImage(item: item.rawValue), selectedImage: self.setTabItemImage(item: item.rawValue))
+            tabbarBtnView.setBtnImage(normalImage: UIImage(systemName: "pencil")/*self.setTabItemImage(item: item.rawValue)*/, selectedImage: self.setTabItemImage(item: item.rawValue))
             tabbarBtnView.tag = Int(item.rawValue)
             self.tabBtnView.addSubview(tabbarBtnView)
             self.tabbarBtns.append(tabbarBtnView)
@@ -146,23 +153,28 @@ class TabbarView:BaseView {
         let tabBtnWidth:CGFloat = mainWidth*0.25
         let tabbarHeight:CGFloat = 70.0
         for item in items.elements() {
-            let tabBtnCnt = self.tabBtnView.subviews.count
-            let categoryBtnView:TabbarBtnView = TabbarBtnView(frame: CGRect(x: CGFloat(tabBtnCnt)*tabBtnWidth, y: abs(tabBtnCnt > 4 ? tabbarHeight*CGFloat(Double(tabBtnCnt)*0.25+1.0): 0), width: tabBtnWidth, height: tabbarHeight))
+            let tabBtnCnt = self.categoryView.subviews.count
+            let categoryBtnView:TabbarBtnView = TabbarBtnView(frame: CGRect(x: CGFloat(tabBtnCnt%4)*tabBtnWidth, y: tabbarHeight*CGFloat((tabBtnCnt/4)), width: tabBtnWidth, height: tabbarHeight))
             categoryBtnView.setTitle(title: self.setTabItemTitle(item: item.rawValue))
-            categoryBtnView.setBtnImage(normalImage: self.setTabItemImage(item: item.rawValue), selectedImage: self.setTabItemImage(item: item.rawValue))
+            categoryBtnView.setBtnImage(normalImage: UIImage(systemName: "scribble")/*self.setTabItemImage(item: item.rawValue)*/, selectedImage: UIImage(systemName: "scribble") /*self.setTabItemImage(item: item.rawValue)*/)
             categoryBtnView.tag = Int(item.rawValue)
             self.categoryView.addSubview(categoryBtnView)
             self.categoryBtns.append(categoryBtnView)
             categoryBtnView.setTabBtnBlock { p1 in
                 self.tabBtnBlock(TabItems.init(rawValue: UInt(p1)))
             }
+            categoryBtnView.backgroundColor = .black
         }
     }
     
     func updateTabViewState(open:Bool) {
         let tabbarHeight:CGFloat = 70.0
         let categoryViewHeight:CGFloat = tabbarHeight * 2
-        self.frame.size.height = (open == true ? tabbarHeight:tabbarHeight + categoryViewHeight)
+        UIView.animate(withDuration: 1.0) {
+            self.frame.origin.y = (open == false ? self.tabbarPOIY: self.tabbarPOIY - tabbarHeight * 2)
+            self.frame.size.height = (open == false ? tabbarHeight:tabbarHeight + categoryViewHeight)
+        }
+        
     }
     
     func setTabItemTitle(item:UInt) -> String {

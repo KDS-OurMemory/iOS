@@ -10,6 +10,9 @@ import OurMemoryTask
 
 class AddSchduleViewController: BaseViewController {
 
+    @IBOutlet weak var scheduleConfrimBtn: UIButton!
+    @IBOutlet weak var scheduleCloseBtn: UIButton!
+    @IBOutlet weak var scheduleTf: UITextField!
     var addSchduleCtl:AddScheduleContract?
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var scheduleTitleView: UIView!
@@ -29,33 +32,116 @@ class AddSchduleViewController: BaseViewController {
     
     override func prepareViewWithData(data: Any?) {
         
+        scheduleConfrimBtn.setTitle("", for: .normal)
+        scheduleCloseBtn.setTitle("", for: .normal)
+        
+        scheduleTf.delegate = self
+        
+        scheduleCloseBtn.addAction { p1 in
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionCloseBtn(sender: p1 as! UIButton)
+            }
+        }
+        
+        scheduleConfrimBtn.addAction { p1 in
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionConfirmBtn(sender: p1 as! UIButton)
+            }
+        }
+        
+        dateView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
+        dateView.setIconWithTitle(iconImg: UIImage(systemName: "pencil")!, title: "날짜", titleColor: .black)
+        dateView.setClickBtnBlock {
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionDatesView()
+            }
+        }
+        
+        contentView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
+        contentView.setIconWithTitle(iconImg: UIImage(systemName: "pencil")!, title: "내용", titleColor: .black)
+        contentView.setClickBtnBlock {
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionContentsView()
+            }
+        }
+        
+        locationView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
+        locationView.setIconWithTitle(iconImg: UIImage(systemName: "pencil")!, title: "장소", titleColor: .black)
+        locationView.setClickBtnBlock {
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionLocationsView()
+            }
+        }
+        
+        alarmView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
+        alarmView.setIconWithTitle(iconImg: UIImage(systemName: "pencil")!, title: "알람", titleColor: .black)
+        alarmView.setClickBtnBlock {
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionAlarmsView()
+            }
+        }
+        
+        colorView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
+        colorView.setIconWithTitle(iconImg: UIImage(systemName: "pencil")!, title: "색상", titleColor: .black)
+        colorView.setClickBtnBlock {
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionColorView()
+            }
+        }
+        
+        sharedView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
+        sharedView.setIconWithTitle(iconImg: UIImage(systemName: "pencil")!, title: "공유", titleColor: .black)
+        sharedView.setClickBtnBlock {
+            if let ctl = self.getDataContract() as? AddScheduleContract {
+                ctl.actionSharedView()
+            }
+        }
+        
         if self.getDataContract() == nil {
             addSchduleCtl = CtlMaker().createDataControllerWithContract(contract: .eContractAddSchedule, view: self, data: data) as? AddScheduleContract
         }
         
-        dateView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
-        dateView.setIconWithTitle(iconImg: UIImage(), title: "날짜", titleColor: .black)
-        contentView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
-        contentView.setIconWithTitle(iconImg: UIImage(), title: "내용", titleColor: .black)
-        locationView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
-        locationView.setIconWithTitle(iconImg: UIImage(), title: "장소", titleColor: .black)
-        alarmView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
-        alarmView.setIconWithTitle(iconImg: UIImage(), title: "알람", titleColor: .black)
-        colorView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
-        colorView.setIconWithTitle(iconImg: UIImage(), title: "색상", titleColor: .black)
-        sharedView.frame = CGRect(x: 0, y: 0, width: Int(mainWidth), height: itemsHeight)
-        sharedView.setIconWithTitle(iconImg: UIImage(), title: "공유", titleColor: .black)
         
     }
     
     override func showNextVC(vc: NEXTVIEW, data: Any?) {
         switch vc {
         case .NEXTVIEW_SELECTDATE:
-            if let vc = self.navigate(vc, data: data) as? SelectDateViewController,let ctl = self.addSchduleCtl {
-                vc.setSelectedDateBlock { p1 in
-                    ctl.addDate(date: p1)
+            self.navigate(vc,animation: false ,data: data, onInitVc: { vc in
+                if let toVc = vc as? SelectDateViewController,let ctl = self.addSchduleCtl {
+                    toVc.setSelectedDateBlock { p1 in
+                        ctl.addDate(date: p1)
+                    }
                 }
-            }
+            })
+            break
+        case .NEXTVIEW_SELECTCOLOR:
+            self.navigate(vc,animation: false ,data: data, onInitVc: { vc in
+                if let toVc = vc as? SelectColorViewController,let ctl = self.addSchduleCtl {
+                    toVc.setSelectColorBlock { p1 in
+                        ctl.setColor(color: p1)
+                    }
+                }
+            })
+            break
+        case .NEXTVIEW_SELECTSHARED:
+            self.navigate(vc,animation: false ,data: data, onInitVc: { vc in
+                if let toVc = vc as? SelectSharedViewController,let ctl = self.addSchduleCtl {
+                    
+                }
+            })
+            break
+        case .NEXTVIEW_SELECTALRAMTIME:
+            self.navigate(vc,animation: false ,data: data, onInitVc: { vc in
+                if let toVc = vc as? SelectAlramTimeViewController,let ctl = self.addSchduleCtl {
+                    toVc.setSelectAlarmBlock { p1 in
+                        ctl.setAlarm(alarm: p1)
+                    }
+                }
+            })
+            break
+        case .NEXTVIEW_POP:
+            self.navigate(vc, animation: true, data: nil, onInitVc: nil)
             break
         default:
             break
@@ -65,22 +151,44 @@ class AddSchduleViewController: BaseViewController {
 
 extension AddSchduleViewController:AddScheduleView {
     
+    
     func updateScheduleData(dataBinder: ScheduleDataBinder) {
         self.itemScrollView.resetSubViews()
         
-        dateView.setItem(item: .itemDate, contents: dataBinder.getDates())
-        self.itemScrollView.addVerScrollSubView(subView: dateView, viewSize: dateView.frame.size, verPadding: 0)
-        contentView.setItem(item: .itemContent, contents: dataBinder.getContents())
-        self.itemScrollView.addVerScrollSubView(subView: contentView, viewSize: contentView.frame.size, verPadding: 0)
-        locationView.setItem(item: .itemLocation, contents: dataBinder.getLocations())
-        self.itemScrollView.addVerScrollSubView(subView: locationView, viewSize: locationView.frame.size, verPadding: 0)
+        dateView.setItem(item: .itemDate, contents: dataBinder)
+        self.itemScrollView.addVerScrollSubView(subView: dateView, viewSize: dateView.frame.size, verPadding: 20)
+        contentView.setItem(item: .itemContent, contents: dataBinder)
+        self.itemScrollView.addVerScrollSubView(subView: contentView, viewSize: contentView.frame.size, verPadding: 20)
+        locationView.setItem(item: .itemLocation, contents: dataBinder)
+        self.itemScrollView.addVerScrollSubView(subView: locationView, viewSize: locationView.frame.size, verPadding: 20)
         
-        self.itemScrollView.addVerScrollSubView(subView: alarmView, viewSize: alarmView.frame.size, verPadding: 0)
+        self.itemScrollView.addVerScrollSubView(subView: alarmView, viewSize: alarmView.frame.size, verPadding: 20)
         
-        self.itemScrollView.addVerScrollSubView(subView: colorView, viewSize: colorView.frame.size, verPadding: 0)
+        self.itemScrollView.addVerScrollSubView(subView: colorView, viewSize: colorView.frame.size, verPadding: 20)
         
-        self.itemScrollView.addVerScrollSubView(subView: sharedView, viewSize: sharedView.frame.size, verPadding: 0)
+        self.itemScrollView.addVerScrollSubView(subView: sharedView, viewSize: sharedView.frame.size, verPadding: 20)
+    }
+    
+    func updaetConfirmBtnState(state:Bool) {
+        scheduleConfrimBtn.isEnabled = state
+        scheduleConfrimBtn.alpha = (state ? 1.0:0.3)
+    }
+    
+    func updateAlarm(alarm:String) {
+        alarmView.setTitle(title: alarm)
+    }
+    
+    func updateColor(color: UIColor) {
+        colorView.setTitleWithColor(title: "색상", titleColor: color)
     }
     
     
+}
+
+extension AddSchduleViewController:UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let ctl = self.getDataContract() as? AddScheduleContract, let text = textField.text {
+            ctl.setScheduleTitle(title: text)
+        }
+    }
 }

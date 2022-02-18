@@ -22,10 +22,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ddh-nV-AkD">
                                 <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Q7-X2-Bo1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Q7-X2-Bo1">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -38,16 +38,16 @@
                                     <constraint firstItem="9Q7-X2-Bo1" firstAttribute="top" secondItem="ddh-nV-AkD" secondAttribute="top" id="yht-SV-ytJ"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imo-cf-rde">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일정 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imo-cf-rde">
                                 <rect key="frame" x="0.0" y="50" width="384" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Iyl-lR-ldV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdI-xJ-z6l" customClass="BaseScrollView" customModule="OurMemory" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdI-xJ-z6l" customClass="BaseScrollView" customModule="OurMemory" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="80" width="384" height="682"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYe-QA-Wh3">
@@ -111,7 +111,6 @@
             </view>
             <connections>
                 <outlet property="alarmItemScrollView" destination="wdI-xJ-z6l" id="kH8-pb-btX"/>
-                <outlet property="alarmTitleLbl" destination="imo-cf-rde" id="2OA-GC-n10"/>
                 <outlet property="cancelBtn" destination="TRg-Iv-ox3" id="aun-Jg-iRa"/>
                 <outlet property="confirmBtn" destination="7kS-f2-kF1" id="ruI-Fd-fUh"/>
                 <outlet property="selectedAlarmInfoLbl" destination="9Q7-X2-Bo1" id="Zz6-AZ-Beg"/>

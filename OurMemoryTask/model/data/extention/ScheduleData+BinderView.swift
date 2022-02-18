@@ -10,7 +10,7 @@ import UIKit
 
 extension ScheduleData:ScheduleDataBinder {
     
-    func getDates() -> [String] {
+    func getDates() -> [ScheduleTimeDataBinder] {
         self.date
     }
     
@@ -22,8 +22,8 @@ extension ScheduleData:ScheduleDataBinder {
         self.locations
     }
     
-    func getAlarm() -> String {
-        self.alarm
+    func getAlarm() -> [String] {
+        self.alarms
     }
     
     func getColor() -> UIColor {

@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 public protocol ScheduleDataBinder {
-    func getDates()->[String]
+    func getDates()->[ScheduleTimeDataBinder]
     func getContents()->[String]
     func getLocations()->[String]
-    func getAlarm()->String
+    func getAlarm()->[String]
     func getColor()->UIColor
 }

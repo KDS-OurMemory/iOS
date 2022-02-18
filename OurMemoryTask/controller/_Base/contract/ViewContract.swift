@@ -26,3 +26,7 @@ public protocol TabbarContract:ViewContract {
     func updateNotiCnt(items:[UInt:Int])
 }
 
+public protocol PopupContract:ViewContract {
+    func dismissPopup()
+}
+

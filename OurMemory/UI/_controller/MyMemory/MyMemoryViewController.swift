@@ -18,6 +18,7 @@ class MyMemoryViewController: BaseViewController {
     @IBOutlet weak var dateRightBtn: UIButton!
     @IBOutlet weak var updownView: UIView!
     @IBOutlet weak var calView: UICollectionView!
+    var tabbar:TabbarView!
     
     override func getDataContract() -> DataContract? {
         return self.myMemoryCtl
@@ -53,7 +54,7 @@ class MyMemoryViewController: BaseViewController {
     override func showNextVC(vc: NEXTVIEW, data: Any?) {
         switch vc {
         case .NEXTVIEW_ADDSCHEDULE:
-            self.navigate(vc, data: data)
+            self.navigate(vc, animation: true, data: data, onInitVc: nil)
             break
         case .NEXTViEW_SHAREDLIST:
             break
@@ -65,5 +66,14 @@ class MyMemoryViewController: BaseViewController {
 }
 
 extension MyMemoryViewController: MyMemoryView {
+    func setTabbarView(tabView:UIView) {
+        if let tabbar = tabView as? TabbarView {
+            self.tabbar = tabbar
+            self.view.addSubview(tabView)
+        }
+    }
     
+    func updateNotiCnt(items:[UInt:Int]) {
+        
+    }
 }

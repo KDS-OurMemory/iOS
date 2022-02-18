@@ -71,8 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate, UNUserN
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
             
-            UserDefaults.standard.setValue(token, forKey: "fcmToken")
-            print(UserDefaults.standard.string(forKey: "fcmToken"))
+        UserDefaults.standard.setValue(token, forKey: "fcmToken")
         let dataDic:[String:String] = ["token":token]
             NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil,userInfo: dataDic)
 

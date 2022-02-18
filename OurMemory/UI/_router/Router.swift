@@ -15,10 +15,14 @@ struct MyAppNavigation: AppNavigation {
     static let tabbarView:TabbarView = TabbarView()
     static var tabbarIsOpen:Bool = false
     
-    func navigate(_ navigation: Navigation, from: UIViewController, to: UIViewController,data: Any?) {
+    func navigate(_ navigation: Navigation, from: UIViewController, to: UIViewController,animation:Bool,data: Any?) {
         if (navigation as? NEXTVIEW) == NEXTVIEW.NEXTVIEW_POP {
-            from.navigationController?.popViewController(animated: true)
-            from.navigationController?.viewControllers.removeFirst()
+            if let navi = from.navigationController {
+                navi.popViewController(animated: animation)
+                if navi.viewControllers.contains(from) {
+                    navi.viewControllers.remove(at: (navi.viewControllers.firstIndex(of: from))!)
+                }
+            }
             return
         }
         if let view = to as? ViewContract {
@@ -33,47 +37,56 @@ struct MyAppNavigation: AppNavigation {
                     MyAppNavigation.tabbarView.setContext(context: context)
                     MyAppNavigation.tabbarView.initViewWithCallback { p1 in
                         switch p1 {
-                        
                         case .home:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_MAIN, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_MAIN, animation:false,data: nil,  onInitVc:nil)
                             break
                         case .category:
                             MyAppNavigation.tabbarIsOpen = !MyAppNavigation.tabbarIsOpen
                             MyAppNavigation.tabbarView.updateTabViewState(open: MyAppNavigation.tabbarIsOpen)
                             break
                         case .myMemory:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_MYMEMORY, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_MYMEMORY,animation:false, data: nil, onInitVc:nil)
                             break
                         case .ourMemory:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_OURMEMORY, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_OURMEMORY, animation:false,data: nil, onInitVc:nil)
                             break
                         case .myProfile:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_MYPROFILE, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_MYPROFILE, animation:false, data: nil, onInitVc:nil)
                             break
                         case .schdule:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_SCHEDULE, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_SCHEDULE, animation:false, data: nil, onInitVc:nil)
                             break
                         case .frieand:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_FRIENDSLIST, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_FRIENDSLIST, animation:false, data: nil, onInitVc:nil)
                             break
                         case .todoList:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_TODOLIST, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_TODOLIST, animation:false, data: nil, onInitVc:nil)
                             break
                         case .butkitList:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_BUTKITLIST, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_BUTKITLIST, animation:false, data: nil, onInitVc:nil)
                             break
                         case .noti:
-                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_NOTI, data: nil)
+                            MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_NOTI, animation:false, data: nil, onInitVc:nil)
                             break
                         default:
                             break
                         }
                     }
                 }
+                
+            }
+            else if let popView = view as? PopupContract {
+                (popView as! UIViewController).modalPresentationStyle = .overFullScreen
+                from.present(popView as! UIViewController, animated: false) {
+                    popView.prepareViewWithData(data: data)
+                }
+                
+                
+                return
             }
         }
         
-        from.navigationController?.pushViewController(to, animated: true)
+        from.navigationController?.pushViewController(to, animated: animation)
         
     }
     
@@ -109,6 +122,10 @@ struct MyAppNavigation: AppNavigation {
                 return SelectSharedViewController().initiailizeSubViewClass()
             case .NEXTVIEW_SELECTALRAMTIME:
                 return SelectAlramTimeViewController().initiailizeSubViewClass()
+            case .NEXTVIEW_SELECTDATE:
+                return SelectDateViewController().initiailizeSubViewClass()
+            case .NEXTVIEW_MYPROFILE:
+                return MyProfileViewController().initiailizeSubViewClass()
             default:
                 break
             }
@@ -124,19 +141,19 @@ class Router {
 
 public protocol AppNavigation {
     func viewcontrollerForNavigation(navigation: Navigation) -> UIViewController
-    func navigate(_ navigation: Navigation, from: UIViewController, to: UIViewController,data:Any?)
+    func navigate(_ navigation: Navigation, from: UIViewController, to: UIViewController,animation:Bool,data:Any?)
 }
 
 public protocol IsRouter {
     func setupAppNavigation(appNavigation: AppNavigation)
-    func navigate(_ navigation: Navigation, from: UIViewController, data:Any?) -> UIViewController?
+    func navigate(_ navigation: Navigation, from: UIViewController, animation:Bool,  data:Any? , onInitVc:( (UIViewController) -> Void)?)
     func didNavigate(block: @escaping (Navigation,Any?) -> Void)
     var appNavigation: AppNavigation? { get }
 }
 
 public extension UIViewController {
-    func navigate(_ navigation: Navigation, data:Any?) -> UIViewController? {
-        Router.defaultRouter.navigate(navigation, from: self, data:data)
+    func navigate(_ navigation: Navigation,animation:Bool, data:Any?, onInitVc: ( (UIViewController) -> Void)? ) {
+        Router.defaultRouter.navigate(navigation, from: self,animation:animation, data:data, onInitVc: onInitVc)
     }
     
 }
@@ -150,20 +167,41 @@ public class DefaultRouter: IsRouter {
         self.appNavigation = appNavigation
     }
     
-    public func navigate(_ navigation: Navigation, from: UIViewController, data:Any?) -> UIViewController? {
+    public func navigate(_ navigation: Navigation, from: UIViewController,animation:Bool, data:Any?, onInitVc:( (UIViewController) -> Void)?) {
         
-        guard let toVC = appNavigation?.viewcontrollerForNavigation(navigation: navigation) else {return nil}
-        
-        
-        self.appNavigation?.navigate(navigation, from: from, to: toVC,data: data)
-        
-        
+        DispatchQueue.main.async {
+            guard let toVC = self.appNavigation?.viewcontrollerForNavigation(navigation: navigation) else { return }
+            var isContainNaviToVC = false
+            if let navi = from.navigationController{
+                var visibleView:UIViewController!
+                for vc in navi.viewControllers {
+                    isContainNaviToVC = (type(of: vc) === type(of: toVC))
+                    if isContainNaviToVC {
+                        visibleView = vc
+                        break
+                    }
+                }
+                if isContainNaviToVC {
+                    navi.viewControllers.remove(at: navi.viewControllers.firstIndex(of: visibleView)!)
+                    self.appNavigation?.navigate(navigation, from: from, to: visibleView,animation:animation,data: data)
+                    if let initCallback = onInitVc {
+                        initCallback(visibleView)
+                    }
+                }else {
+                    self.appNavigation?.navigate(navigation, from: from, to: toVC,animation:animation,data: data)
+                    if let initCallback = onInitVc {
+                        initCallback(toVC)
+                    }
+                }
+            }
+        }
+
         //                for b in didNavigateBlocks {
         //                    b(navigation,toVC)
         //                }
         
         
-        return toVC
+        
         
     }
     

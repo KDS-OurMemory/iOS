@@ -7,7 +7,8 @@
 
 import Foundation
 
-public protocol SelectDateView:ViewContract {
-    func updateSelectedDates(dates:[String])
-    func updateSelectedDateTitle(title:String)
+public protocol SelectDateView:PopupContract {
+    func updateSelectedSchedules(schedules:[ScheduleTimeDataBinder])
+    func updateSelectedDateConfirmBtnState(state:Bool)
+    func updateSelectedSchedulesData(selecteSchedule:ScheduleTimeDataBinder)
 }

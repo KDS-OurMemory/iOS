@@ -117,8 +117,8 @@ open class CtlMaker: NSObject {
             }
             break
         case .eContractSelectAlramTime:
-            if let _ = view as? SelectAlramView {
-                retVal = SelectAlramCtl(view: view as! ViewContract, data: data)
+            if let _ = view as? SelectAlarmView {
+                retVal = SelectAlarmCtl(view: view as! ViewContract, data: data)
             }
             break
         case .eContractSelectColor:

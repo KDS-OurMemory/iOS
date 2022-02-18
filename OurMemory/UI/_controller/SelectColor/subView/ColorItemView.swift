@@ -14,8 +14,17 @@ class ColorItemView: BaseView {
     
     override func prepareViews() {
         colorBtn.setTitle("", for: .normal)
-        colorBtn.layer.cornerRadius = 50
+        
+        colorBtn.clipsToBounds = true
+        colorBtn.layer.borderWidth = 5.0
+        colorBtn.layer.borderColor = UIColor.white.cgColor
         self.addSubview(colorBtn)
+        colorBtn.translatesAutoresizingMaskIntoConstraints = false
+        colorBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        colorBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        colorBtn.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        colorBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         
         colorBtn.addAction { p1 in
             if let block = self.colorBtnblock {
@@ -25,7 +34,15 @@ class ColorItemView: BaseView {
     }
     
     func setSelectColorBtnBlock(block: @escaping (UIColor) -> Void) {
-        colorBtnblock = block
+        colorBtn.addAction { p1 in
+            if let bgColor = self.colorBtn.backgroundColor {
+                block(bgColor)
+            }
+        }
+    }
+    
+    func setCornerRadius(radius:CGFloat) {
+        colorBtn.layer.cornerRadius = radius
     }
     
     func setColor(color:UIColor) {

@@ -14,6 +14,8 @@ class BaseScrollView: UIScrollView {
     
     func addVerScrollSubView(subView:UIView,viewSize:CGSize ,verPadding:CGFloat) {
         self.addSubview(subView)
+        self.alwaysBounceVertical = true
+        self.alwaysBounceHorizontal = false
         subView.frame = CGRect(x: 0, y: lastSubViewYPosition + verPadding, width: viewSize.width, height: viewSize.height)
         
         self.contentSize = CGSize(width: mainWidth, height: self.contentSize.height + viewSize.height + verPadding)
@@ -22,6 +24,8 @@ class BaseScrollView: UIScrollView {
     
     func addHorScrollSubView(subView:UIView,viewSize:CGSize ,horPadding:CGFloat) {
         self.addSubview(subView)
+        self.alwaysBounceHorizontal = true
+        self.alwaysBounceVertical = false
         subView.frame = CGRect(x: lastSubViewXPosition + horPadding, y: 0, width: viewSize.width, height: viewSize.height)
         
         self.contentSize = CGSize(width: self.contentSize.width + horPadding , height: viewSize.height)

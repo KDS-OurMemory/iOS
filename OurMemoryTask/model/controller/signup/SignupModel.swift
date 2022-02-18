@@ -24,7 +24,7 @@ class SignupModel: NSObject {
     let saveDataModel:AppSaveDataModel = AppSaveDataModel()
     let sharedUserDataModel:SharedUserDataModel = SharedUserDataModel.sharedUserData
     let signupIdNetModel:SignUpIdNetModel = SignUpIdNetModel()
-    var signupValidChack:SIGNUP_CHACK = []
+    var signupValidChack:SIGNUP_CHECK = []
     let snsTypeCheck:Int8 = SNSTYPE.GOOGLE.rawValue|SNSTYPE.KAKAO.rawValue|SNSTYPE.NAVER.rawValue
     var currentSnsType:SNSTYPE!
     var selectBirthdayMonth:String = ""
@@ -65,11 +65,11 @@ class SignupModel: NSObject {
     
     func trySignupRequest(context:DataContract) {
         signupIdNetModel.setRequestBodyParams(params: signupParams)
-        signupIdNetModel.reqeustRestFulApi(context: context) { (data:Result<json<signup_userData>,Error>) in
+        signupIdNetModel.reqeustRestFulApi(context: context) { (data:Result<json<userData>,Error>) in
             switch(data) {
             case .success(let responseData):
                 if let response = responseData.response {
-                    let userData = response.signupUserData
+                    let userData = response
                     self.sharedUserDataModel.saveUserData(userData: userData)
                     self.callback(.SIGNUP_SUCCESS,userData)
                 }
@@ -107,6 +107,8 @@ class SignupModel: NSObject {
             self.callback(.SIGNUP_UPDATEBIRTHDAY,birthday)
             
             self.valideCheckSignUp()
+        }else {
+            signupValidChack.remove(.SIGNUP_BIRTHDAY)
         }
     }
     
@@ -132,6 +134,8 @@ class SignupModel: NSObject {
             signupValidChack.insert(.SIGNUP_NAME)
             self.callback(.SIGNUP_UPDATENAME,name)
             self.valideCheckSignUp()
+        }else {
+            signupValidChack.remove(.SIGNUP_NAME)
         }
     }
     

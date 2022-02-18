@@ -15,24 +15,42 @@ enum scheduleItemCase {
 
 class AddScheduleItemView: BaseView {
 
-    let iconBtn:UIButton = UIButton()
+    let itemBtn:UIButton = UIButton()
     let mainWidth = UIScreen.main.bounds.width
     var itemView:BaseView = BaseView()
     
     override func prepareViews() {
         let iconBtnHeight:CGFloat = 40
-        iconBtn.frame = CGRect(x: 0, y: 0, width:  mainWidth, height: iconBtnHeight)
-        self.addSubview(iconBtn)
-        
+        itemBtn.frame = CGRect(x: 0, y: 0, width:  mainWidth, height: iconBtnHeight)
+        self.addSubview(itemBtn)
+        itemBtn.setTitleColor(.black, for: .normal)
+        itemBtn.contentMode = .left
         lastSubViewYPosition = iconBtnHeight
     }
     
-    func setIconWithTitle(iconImg:UIImage, title:String, titleColor:UIColor) {
-        iconBtn.setImage(iconImg, for: .normal)
-        iconBtn.setTitle(title, for: .normal)
+    func setClickBtnBlock(block:@escaping ()->Void) {
+        itemBtn.addAction { p1 in
+            block()
+        }
+        
     }
     
-    func setItem(item:scheduleItemCase, contents:[String]) {
+    func setTitle(title:String) {
+        itemBtn.setTitle(title, for: .normal)
+    }
+    
+    func setTitleWithColor(title:String,titleColor:UIColor) {
+        itemBtn.setTitle(title, for: .normal)
+        itemBtn.setTitleColor(titleColor, for: .normal)
+    }
+    
+    func setIconWithTitle(iconImg:UIImage, title:String, titleColor:UIColor) {
+        itemBtn.setImage(iconImg, for: .normal)
+        itemBtn.setTitle(title, for: .normal)
+        itemBtn.setTitleColor(titleColor, for: .normal)
+    }
+    
+    func setItem(item:scheduleItemCase, contents:ScheduleDataBinder) {
         
         let itemHeight:CGFloat = 30
         if self.subviews.contains(itemView) {
@@ -42,15 +60,18 @@ class AddScheduleItemView: BaseView {
         
         switch item {
         case .itemDate:
-            for content in contents {
+            for content in contents.getDates() {
                 let dateLbl = UILabel()
-                dateLbl.text = content
+                if let year = content.getYear(),let month = content.getMonth(), let day = content.getDay(), let our = content.getOur(), let min = content.getMin(), let weekDay = content.getWeekDay() {
+                dateLbl.text = year+"년 "+month+"월 "+day+"일 "+"\(weekDay)요일 " + "\(our):\(min)"
+                
+                }
                 itemView.addVerSubView(subView: dateLbl, viewHeight: itemHeight, verPadding: 0)
                 dateLbl.textAlignment = .center
             }
             break
         case .itemContent:
-            for content in contents {
+            for content in contents.getContents() {
                 let contentLbl = UILabel()
                 contentLbl.text = content
                 itemView.addVerSubView(subView: contentLbl, viewHeight: itemHeight, verPadding: 0)
@@ -58,7 +79,7 @@ class AddScheduleItemView: BaseView {
             }
             break
         case .itemLocation:
-            for content in contents {
+            for content in contents.getLocations() {
                 let locationLbl = UILabel()
                 locationLbl.text = content
                 itemView.addVerSubView(subView: locationLbl, viewHeight: itemHeight, verPadding: 0)

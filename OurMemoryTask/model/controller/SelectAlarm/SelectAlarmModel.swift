@@ -11,10 +11,10 @@ enum SELECTALARM_RESULT:UInt  {
     case SELECTED_ALARM_OVERSELECTED
     case SELECTED_ALARMLIST_UPDATE
     case SELECTED_ALARMTITLE_UPDATE
+    case SELECTED_APPLYALARMLIST_UPDATE
     case SELECTE_ALARMINDEX
     case DISABLE_ALARMINDEX
-    case SELECTED_SUCCESS
-    case SELECTED_FAILE
+    case DISMISS_POPUP
 }
 
 class SelectAlarmModel: NSObject {
@@ -24,38 +24,69 @@ class SelectAlarmModel: NSObject {
     var selectDateCallBack:UINTANY_VOID?
     var selectedAlarm = ""
     
-    func initWithCallback(callBack:@escaping UINTANY_VOID) {
+    func initWithCallback(data:Any?,callBack:@escaping UINTANY_VOID) {
+        
+        
         selectDateCallBack = callBack
         if let block = self.selectDateCallBack {
             block(SELECTALARM_RESULT.SELECTED_ALARMLIST_UPDATE.rawValue,alarmList)
+            if let data = data as? [String], data.count > 0 {
+                selectedAlarmIndexs.removeAll()
+                for selectedAlarm in data {
+                    if let selectIndex = alarmList.firstIndex(of: selectedAlarm) {
+                        self.selectAlarmIndex(index:  selectIndex)
+                    }
+                }
+            }else {
+                self.selectAlarmIndex(index: 0)
+            }
+            
         }
         
     }
     
     func selectAlarmIndex(index:Int) {
         if let block = self.selectDateCallBack {
-            if selectedAlarmIndexs.count == 2 {
-                block(SELECTALARM_RESULT.SELECTED_ALARM_OVERSELECTED.rawValue,nil)
+            
+            if selectedAlarmIndexs.contains(index) {
+                selectedAlarmIndexs.remove(at: selectedAlarmIndexs.firstIndex(of: index)!)
+                block(SELECTALARM_RESULT.DISABLE_ALARMINDEX.rawValue,index)
+                if let range = selectedAlarm.range(of: alarmList[index]) {
+                    selectedAlarm.removeSubrange(range)
+                    if selectedAlarm.contains(",") {
+                        selectedAlarm.remove(at: selectedAlarm.firstIndex(of: ",")!)
+                    }
+                    block(SELECTALARM_RESULT.SELECTED_ALARMTITLE_UPDATE.rawValue,selectedAlarm)
+                    return
+                }
             }else {
-                if selectedAlarmIndexs.contains(index) { selectedAlarmIndexs.remove(at: selectedAlarmIndexs.firstIndex(of: index)!)
+                if selectedAlarmIndexs.count == 2 {
+                    block(SELECTALARM_RESULT.SELECTED_ALARM_OVERSELECTED.rawValue,nil)
                     block(SELECTALARM_RESULT.DISABLE_ALARMINDEX.rawValue,index)
-                }else {
-                    selectedAlarmIndexs.append(index)
-                    block(SELECTALARM_RESULT.SELECTE_ALARMINDEX.rawValue,index)
+                    return
                 }
-                
-                for alarm in selectedAlarmIndexs {
-                    selectedAlarm = (selectedAlarm != "" ? ",": selectedAlarm) + alarmList[alarm]
-                }
-                block(SELECTALARM_RESULT.SELECTED_ALARMTITLE_UPDATE.rawValue,selectedAlarm)
+                selectedAlarmIndexs.append(index)
+                block(SELECTALARM_RESULT.SELECTE_ALARMINDEX.rawValue,index)
             }
+            
+            selectedAlarm =  (selectedAlarm != "" ? "\(selectedAlarm),": "") + alarmList[index]
+            
+            block(SELECTALARM_RESULT.SELECTED_ALARMTITLE_UPDATE.rawValue,selectedAlarm)
+            
         }
     }
     
-    func checkSelectedAlarm() {
+    func tryGetApplyedAlarm() {
         if let block = self.selectDateCallBack {
-            selectedAlarmIndexs.count == 0 ? block(SELECTALARM_RESULT.SELECTED_FAILE.rawValue,nil):block(SELECTALARM_RESULT.SELECTED_SUCCESS.rawValue,selectedAlarm)
+            
+            if self.selectedAlarm.count > 0 {
+                block(SELECTALARM_RESULT.SELECTED_APPLYALARMLIST_UPDATE.rawValue,self.selectedAlarm)
+                block(SELECTALARM_RESULT.DISMISS_POPUP.rawValue,nil)
+            }
+    
         }
-        
     }
+    
+
+    
 }

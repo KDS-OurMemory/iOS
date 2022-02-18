@@ -25,13 +25,13 @@ enum dateState {
 class DateComponentsModel: NSObject {
     var date = Date();
     let cal = Calendar.current;
-    var components:DateComponents!
+    var components:DateComponents = DateComponents()
     var monthDateCal:[calCellData] = []
     var callback:UINTANY_VOID?
     
     func initWithCallback(callback: @escaping UINTANY_VOID) {
         self.callback = callback
-        self.components = self.cal.dateComponents([.year,.month,.day], from: self.date)
+        self.components = self.cal.dateComponents([.year,.month,.day,.weekday,.hour,.minute,.second], from: self.date)
         self.setMonthofCal()
     }
     
@@ -44,7 +44,7 @@ class DateComponentsModel: NSObject {
     }
     
     func getCurrentDate() -> DateComponents {
-         return self.cal.dateComponents([.year,.month,.day], from: self.date)
+        return self.cal.dateComponents([.year,.month,.day,.hour,.minute,.second], from: self.date)
     }
     
     var startOfDay:Date {
@@ -117,9 +117,64 @@ class DateComponentsModel: NSObject {
         return nil
     }
     
+    func getWeekDayStr() -> String? {
+        if let weekDay = self.components.weekday {
+            var weekDayStr = ""
+            switch weekDay {
+            case 1:
+                weekDayStr = "일"
+                break
+            case 2:
+                weekDayStr = "월"
+                break
+            case 3:
+                weekDayStr = "화"
+                break
+            case 4:
+                weekDayStr = "수"
+                break
+            case 5:
+                weekDayStr = "목"
+                break
+            case 6:
+                weekDayStr = "금"
+                break
+            case 7:
+                weekDayStr = "토"
+                break
+            default:
+                break
+            }
+            return weekDayStr
+        }
+        return nil
+    }
+    
     func getDay() -> Int? {
         if let day = self.components.day {
+            
             return day
+        }
+        return nil
+    }
+    
+    func getHour() -> Int? {
+        if let hour = self.components.hour {
+            return hour
+        }
+        return nil
+    }
+    
+    func getMin() -> Int? {
+        if let min = self.components.minute {
+            return min
+        }
+        return nil
+    }
+    
+    func getSecond() -> Int? {
+        if let sec = self.components.second {
+            return sec
         }
         return nil
     }
@@ -175,8 +230,8 @@ class DateComponentsModel: NSObject {
         }
     }
     
-    func setTime(time:Int) {
-        self.components.setValue(time, for: .hour)
+    func setHour(hour:Int) {
+        self.components.setValue(hour, for: .hour)
         if let date = self.cal.date(from: self.components) {
             self.date = date
         }
@@ -189,6 +244,13 @@ class DateComponentsModel: NSObject {
         }
     }
     
+    func setSeconds(seconds:Int) {
+        self.components.setValue(seconds, for: .second)
+        if let date = self.cal.date(from: self.components) {
+            self.date = date
+        }
+    }
+    
     func setDateStrForDateFormatStr(dateStr:String,dateformatStr:String) {
         let dateformat:DateFormatter = DateFormatter()
         dateformat.dateFormat = dateformatStr
@@ -196,15 +258,7 @@ class DateComponentsModel: NSObject {
             self.date = date
         }
     }
-    
-    
-    func setSeconds(seconds:Int) {
-        self.components.setValue(seconds, for: .second)
-        if let date = self.cal.date(from: self.components) {
-            self.date = date
-        }
-    }
- 
+
     func getDayofDate(date:Date) -> Int {
         return cal.dateComponents([.day], from: date).day!
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol SelectAlramView:ViewContract {
+public protocol SelectAlarmView:PopupContract {
     func updateAlarmList(alarmList:[String])
     func updateSelectedAlarmTitle(title:String)
     func applySelectedAlarms(alarms:String)

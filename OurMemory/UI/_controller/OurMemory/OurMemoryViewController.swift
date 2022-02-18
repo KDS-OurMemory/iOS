@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import OurMemoryTask
 
 class OurMemoryViewController: BaseViewController {
 
@@ -15,6 +16,7 @@ class OurMemoryViewController: BaseViewController {
     @IBOutlet weak var freindView: BaseView!
     @IBOutlet weak var roomView: BaseView!
     let tabView:FreindAndRoomTabbarView = FreindAndRoomTabbarView(frame: CGRect(x: 0, y: 0, width: mainWidth, height: topViewHeight))
+    var tabbar:TabbarView!
     
     override func getDataContract() -> DataContract? {
         return self.ourMemoryCtl
@@ -39,6 +41,17 @@ class OurMemoryViewController: BaseViewController {
 }
 
 extension OurMemoryViewController:OurMemoryView {
+    
+    func setTabbarView(tabView:UIView) {
+        if let tabbar = tabView as? TabbarView {
+            self.tabbar = tabbar
+            self.view.addSubview(tabView)
+        }
+    }
+    
+    func updateNotiCnt(items:[UInt:Int]) {
+        
+    }
     
     func setSearchBlock(searchCallback: @escaping (String) -> Void) {
         

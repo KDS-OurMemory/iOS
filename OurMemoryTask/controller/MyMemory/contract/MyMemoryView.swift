@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol MyMemoryView:ViewContract {
+public protocol MyMemoryView:TabbarContract {
     
 }

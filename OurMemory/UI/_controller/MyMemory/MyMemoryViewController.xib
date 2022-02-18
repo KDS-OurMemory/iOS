@@ -168,7 +168,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0f-V9-CZ8">
-                        <rect key="frame" x="344" y="792" width="50" height="50"/>
+                        <rect key="frame" x="344" y="772" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="8h8-lt-rzQ"/>
                             <constraint firstAttribute="height" constant="50" id="Q9W-1G-MNU"/>
@@ -191,7 +191,7 @@
                     <constraint firstItem="7Lf-qL-gV5" firstAttribute="leading" secondItem="Zk4-qJ-Qg6" secondAttribute="leading" id="NeO-Hu-F1i"/>
                     <constraint firstItem="6fz-4h-QER" firstAttribute="leading" secondItem="Zk4-qJ-Qg6" secondAttribute="leading" id="Oqa-Ab-ILH"/>
                     <constraint firstItem="7Lf-qL-gV5" firstAttribute="height" secondItem="19w-vo-sFQ" secondAttribute="height" id="PRA-52-ati"/>
-                    <constraint firstItem="Zk4-qJ-Qg6" firstAttribute="bottom" secondItem="m0f-V9-CZ8" secondAttribute="bottom" constant="20" id="TQq-nr-Osi"/>
+                    <constraint firstItem="Zk4-qJ-Qg6" firstAttribute="bottom" secondItem="m0f-V9-CZ8" secondAttribute="bottom" constant="40" id="TQq-nr-Osi"/>
                     <constraint firstItem="EFE-W2-11U" firstAttribute="leading" secondItem="Zk4-qJ-Qg6" secondAttribute="leading" id="Uof-k6-aeH"/>
                     <constraint firstItem="Zk4-qJ-Qg6" firstAttribute="trailing" secondItem="7Lf-qL-gV5" secondAttribute="trailing" id="XOx-EV-udQ"/>
                     <constraint firstItem="Zk4-qJ-Qg6" firstAttribute="trailing" secondItem="6fz-4h-QER" secondAttribute="trailing" id="iT9-xe-CMh"/>
@@ -206,12 +206,8 @@
                 <outlet property="dateLeftBtn" destination="Uiu-Ne-gku" id="Jt3-kS-E0E"/>
                 <outlet property="datePickerBtn" destination="GMd-hS-pZ9" id="oyI-Ze-1ah"/>
                 <outlet property="dateRightBtn" destination="nRM-3m-vTG" id="Vii-5v-ofv"/>
-                <outlet property="moveCalHeightConstraints" destination="TUJ-4a-16M" id="GMU-tc-XGY"/>
                 <outlet property="sharedBtn" destination="sJc-fA-K2n" id="IpM-mp-bdI"/>
-                <outlet property="showCalList" destination="sJc-fA-K2n" id="Ewu-Bj-g49"/>
-                <outlet property="topViewHeightConstraints" destination="6DW-Vz-9YH" id="ygT-Ag-m1F"/>
                 <outlet property="updownView" destination="7Lf-qL-gV5" id="Pdf-Xl-Mjv"/>
-                <outlet property="weekDaysStackView" destination="6fz-4h-QER" id="7DA-1f-rQc"/>
             </connections>
             <point key="canvasLocation" x="-362" y="60"/>
         </viewController>

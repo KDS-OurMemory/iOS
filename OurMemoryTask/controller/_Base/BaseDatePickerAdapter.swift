@@ -8,62 +8,135 @@
 import Foundation
 import UIKit
 
+struct pickerMode:OptionSet {
+    let rawValue:Int
+    
+    static let UKNONW_MODE = 1
+    static let YY_MODE = pickerMode(rawValue: UKNONW_MODE << 1)
+    static let MM_MODE = pickerMode(rawValue: UKNONW_MODE << 2)
+    static let DD_MODE = pickerMode(rawValue: UKNONW_MODE << 3)
+    static let HH_MODE = pickerMode(rawValue: UKNONW_MODE << 4)
+    static let mm_MODE = pickerMode(rawValue: UKNONW_MODE << 5)
+    static let ss_MODE = pickerMode(rawValue: UKNONW_MODE << 6)
+}
+
 open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataSource{
     
     private(set) var pickerView:UIPickerView?
     private(set) var mode:PICKER_MODE = .UNOWNED
     private(set) var data:[COMPONENT_TYPE:Set<UInt>] = [:]
+    private(set) var containerMode:pickerMode = []
     private(set) var selectedRow:[COMPONENT_TYPE:Int] = [:]
     private(set) var callback:UINTANY_VOID?
     let dateModel:DateComponentsModel = DateComponentsModel()
     
     func setPickerController(pickerView:UIPickerView,pickerViewMode:PICKER_MODE, callback:@escaping UINTANY_VOID) {
+        
+        self.pickerView = pickerView
         if let picker = self.pickerView {
             picker.delegate = self
             picker.dataSource = self
-            self.pickerView = picker
             self.mode = pickerViewMode
             self.callback = callback
+            self.setContainMode()
         }
+        
+        self.dateModel.initWithCallback { p1, p2 in
+            
+        }
+        
+        
+        
+    }
+    
+    func selectMoveCurrentDate() {
+        
+        for componentMode in containerMode.elements() {
+            if componentMode.contains(.YY_MODE) {
+                if let year = self.dateModel.getYear(),let current = self.dateModel.getCurrentYear() {
+                    self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.YEAR, row:  current - year+self.getLimitOfYear()-1 )
+                    selectedRow[COMPONENT_TYPE.YEAR] = current - year+self.getLimitOfYear()-1
+                }
+            } else if componentMode.contains(.MM_MODE)  {
+                if let month = self.dateModel.getMonth() {
+                    self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.MONTH, row: month - 1)
+                    selectedRow[COMPONENT_TYPE.MONTH] = month - 1
+                }
+            } else if componentMode.contains(.DD_MODE) {
+                if let day = self.dateModel.getDay() {
+                    self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.DAY, row: day - 1)
+                    selectedRow[COMPONENT_TYPE.DAY] = day - 1
+                }
+            } else if componentMode.contains(.HH_MODE)  {
+                if let hour = self.dateModel.getHour() {
+                    self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.TIME, row: hour - 1)
+                    selectedRow[COMPONENT_TYPE.TIME] = hour - 1
+                }
+            } else if componentMode.contains(.mm_MODE) {
+                if let min = self.dateModel.getMin() {
+                    self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.MINUTE, row: min - 1)
+                    selectedRow[COMPONENT_TYPE.MINUTE] = min - 1
+                }
+            } else if componentMode.contains(.ss_MODE) {
+                if let sec = self.dateModel.getSecond() {
+                    self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.SECONDS, row: sec - 1)
+                    selectedRow[COMPONENT_TYPE.SECONDS] = sec - 1
+                }
+            }
+        }
+        
+        self.getSelectedDate()
+        
     }
     
     func getSelectedDate() {
         
-        if let years = data[COMPONENT_TYPE.YEAR]?.sorted(),let selectedYearIndex = selectedRow[COMPONENT_TYPE.YEAR] {
+        if let selectedYearIndex = selectedRow[COMPONENT_TYPE.YEAR] {
+            self.setYearDateModelAtRow(yearRow: selectedYearIndex)
             if let callback = self.callback {
-                callback(RESULT_DATE.RESULT_YEAR.rawValue,years[selectedYearIndex])
+                callback(RESULT_DATE.RESULT_YEAR.rawValue,self.dateModel.getDateWithDateformat(dateformatStr: "YYYY"))
             }
             
         }
         
-        if let months = data[COMPONENT_TYPE.MONTH]?.sorted(),let selectedMonthIndex = selectedRow[COMPONENT_TYPE.MONTH] {
+        if let selectedMonthIndex = selectedRow[COMPONENT_TYPE.MONTH] {
+            self.setMontDateModelAtRow(monthRow: selectedMonthIndex)
             if let callback = self.callback {
-                callback(RESULT_DATE.RESULT_MONTH.rawValue,months[selectedMonthIndex])
+                callback(RESULT_DATE.RESULT_MONTH.rawValue,self.dateModel.getDateWithDateformat(dateformatStr: "MM"))
             }
         }
         
-        if let days = data[COMPONENT_TYPE.DAY]?.sorted(),let selectedDayIndex = selectedRow[COMPONENT_TYPE.DAY] {
+        if let selectedDayIndex = selectedRow[COMPONENT_TYPE.DAY] {
+            self.setDayDateModelAtRow(dayRow: selectedDayIndex)
             if let callback = self.callback {
-                callback(RESULT_DATE.RESULT_MONTH.rawValue,days[selectedDayIndex])
+                callback(RESULT_DATE.RESULT_DAY.rawValue,self.dateModel.getDateWithDateformat(dateformatStr: "dd"))
+                callback(RESULT_DATE.RESULT_WEEKS.rawValue,self.dateModel.getWeekDayStr())
             }
         }
         
-        if let times = data[COMPONENT_TYPE.TIME]?.sorted(),let selectedTimeIndex = selectedRow[COMPONENT_TYPE.TIME] {
+        if let selectedTimeIndex = selectedRow[COMPONENT_TYPE.TIME] {
+            self.setHourDateModelAtRow(hourRow: selectedTimeIndex)
             if let callback = self.callback {
-                callback(RESULT_DATE.RESULT_TIME.rawValue,times[selectedTimeIndex])
+                callback(RESULT_DATE.RESULT_TIME.rawValue,self.dateModel.getDateWithDateformat(dateformatStr:"HH"))
             }
         }
         
-        if let minutes = data[COMPONENT_TYPE.MINUTE]?.sorted(),let selectedMinuteIndex = selectedRow[COMPONENT_TYPE.MINUTE] {
+        if let selectedMinuteIndex = selectedRow[COMPONENT_TYPE.MINUTE] {
+            self.setMinDateModelAtRow(minRow: selectedMinuteIndex)
             if let callback = self.callback {
-                callback(RESULT_DATE.RESULT_MINUTE.rawValue,minutes[selectedMinuteIndex])
+                callback(RESULT_DATE.RESULT_MINUTE.rawValue,self.dateModel.getDateWithDateformat(dateformatStr:"mm"))
             }
         }
         
-        if let seconds = data[COMPONENT_TYPE.SECONDS]?.sorted(),let selectedSecondsIndex = selectedRow[COMPONENT_TYPE.MINUTE] {
+        if let selectedSecondsIndex = selectedRow[COMPONENT_TYPE.MINUTE] {
+            self.setSecDateModelAtRow(secRow: selectedSecondsIndex)
             if let callback = self.callback {
-                callback(RESULT_DATE.RESULT_SECONDS.rawValue,seconds[selectedSecondsIndex])
+                callback(RESULT_DATE.RESULT_SECONDS.rawValue,self.dateModel.getDateWithDateformat(dateformatStr:"ss"))
             }
+        }
+        
+        if let callback = callback {
+            callback(RESULT_DATE.RESULT_DATECOMPONENTS.rawValue,self.dateModel.getCurrentDate())
         }
     }
     
@@ -179,6 +252,112 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
         }
         
         return componentCnt
+    }
+    
+    fileprivate func setContainMode() {
+        switch self.mode {
+            
+        case .UNOWNED:
+            break
+        case .YY_MM_DD_tt_mm_ss:
+            containerMode.insert(.YY_MODE)
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            containerMode.insert(.ss_MODE)
+            break
+        case .YY_MM_DD_tt_mm:
+            containerMode.insert(.YY_MODE)
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            break
+        case .YY_MM_DD_tt:
+            containerMode.insert(.YY_MODE)
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            break
+        case .YY_MM_DD:
+            containerMode.insert(.YY_MODE)
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            break
+        case .YY_MM:
+            containerMode.insert(.YY_MODE)
+            containerMode.insert(.MM_MODE)
+            break
+        case .MM_DD_tt_mm_ss:
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            containerMode.insert(.ss_MODE)
+            break
+        case .MM_DD_tt_mm:
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            break
+        case .MM_DD_tt:
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            break
+        case .MM_DD:
+            containerMode.insert(.MM_MODE)
+            containerMode.insert(.DD_MODE)
+            break
+        case .DD_tt_mm_ss:
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            containerMode.insert(.ss_MODE)
+            break
+        case .DD_tt_mm:
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            break
+        case .DD_tt:
+            containerMode.insert(.DD_MODE)
+            containerMode.insert(.HH_MODE)
+            break
+        case .tt_mm_ss:
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            containerMode.insert(.ss_MODE)
+            break
+        case .tt_mm:
+            containerMode.insert(.HH_MODE)
+            containerMode.insert(.mm_MODE)
+            break
+        case .mm_ss:
+            containerMode.insert(.mm_MODE)
+            containerMode.insert(.ss_MODE)
+            break
+        case .YY:
+            containerMode.insert(.YY_MODE)
+            break
+        case .MM:
+            containerMode.insert(.MM_MODE)
+            break
+        case .DD:
+            containerMode.insert(.DD_MODE)
+            break
+        case .tt:
+            containerMode.insert(.HH_MODE)
+            break
+        case .mm:
+            containerMode.insert(.mm_MODE)
+            break
+        case .ss:
+            containerMode.insert(.ss_MODE)
+            break
+        }
     }
     
     fileprivate func getTitleOfRowsInComponent(component:Int, numberOfRow:Int) -> String {
@@ -355,7 +534,10 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             case 3:
                 limitOfRowInComponent = self.getLimitOfTime()
                 break
-            case 4,5:
+            case 4:
+                limitOfRowInComponent = self.getLimitOfMMSS()
+                break
+            case 5:
                 limitOfRowInComponent = self.getLimitOfMMSS()
                 break
             default:
@@ -374,7 +556,10 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             case 2:
                 limitOfRowInComponent = self.getLimitOfTime()
                 break
-            case 3,4:
+            case 3:
+                limitOfRowInComponent = self.getLimitOfMMSS()
+                break
+            case 4:
                 limitOfRowInComponent = self.getLimitOfMMSS()
                 break
             default:
@@ -392,6 +577,9 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             case 2:
                 limitOfRowInComponent = self.getLimitOfMMSS()
                 break
+            case 3:
+                limitOfRowInComponent = self.getLimitOfMMSS()
+                break
             default:
                 break
             }
@@ -401,7 +589,10 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             case 0:
                 limitOfRowInComponent = self.getLimitOfTime()
                 break
-            case 1,2:
+            case 1:
+                limitOfRowInComponent = self.getLimitOfMMSS()
+                break
+            case 2:
                 limitOfRowInComponent = self.getLimitOfMMSS()
                 break
             default:
@@ -410,9 +601,11 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             break
         case .mm_ss,.mm,.ss:
             switch component {
-            case 0,1:
+            case 0:
                 limitOfRowInComponent = self.getLimitOfMMSS()
                 break
+            case 1:
+                limitOfRowInComponent = self.getLimitOfMMSS()
             default:
                 break
             }
@@ -424,9 +617,9 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
     }
     
     fileprivate func reloadRow(pickerView:UIPickerView,component:Int) {
-        for componentType in (component+1)...pickerView.numberOfComponents {
-            pickerView.reloadComponent(componentType)
-        }
+        
+        pickerView.reloadComponent(component)
+        
     }
     
     fileprivate func reloadRowOfComponent(pickerView:UIPickerView ,component:Int) {
@@ -434,14 +627,15 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
         case .YY_MM_DD_tt_mm_ss,.YY_MM_DD_tt_mm,.YY_MM_DD_tt,.YY_MM_DD,.YY_MM,.YY:
             switch component {
             case 0:
-                self.reloadRow(pickerView: pickerView, component: component)
                 data[COMPONENT_TYPE.DAY]?.removeAll()
-                selectedRow[COMPONENT_TYPE.DAY] = 0
+                data[COMPONENT_TYPE.MONTH]?.removeAll()
+                self.reloadRow(pickerView: pickerView, component: component+2)
+                pickerView.selectRow(0, inComponent: component+2, animated: true)
                 break
             case 1:
-                self.reloadRow(pickerView: pickerView, component: component)
                 data[COMPONENT_TYPE.DAY]?.removeAll()
-                selectedRow[COMPONENT_TYPE.DAY] = 0
+                self.reloadRow(pickerView: pickerView, component: component+1)
+                pickerView.selectRow(0, inComponent: component+1, animated: true)
                 break
             case 2:
                 self.reloadRow(pickerView: pickerView, component: component)
@@ -462,9 +656,9 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
         case.MM_DD_tt_mm_ss,.MM_DD_tt_mm,.MM_DD_tt,.MM_DD,.MM:
             switch component {
             case 0:
-                self.reloadRow(pickerView: pickerView, component: component)
                 data[COMPONENT_TYPE.DAY]?.removeAll()
-                selectedRow[COMPONENT_TYPE.DAY] = 0
+                self.reloadRow(pickerView: pickerView, component: component+1)
+                pickerView.selectRow(0, inComponent: component+1, animated: true)
                 break
             case 1:
                 self.reloadRow(pickerView: pickerView, component: component)
@@ -527,12 +721,15 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             switch component {
             case 0:
                 selectedRow[COMPONENT_TYPE.YEAR] = row
+                self.setYearDateModelAtRow(yearRow: row)
                 break
             case 1:
                 selectedRow[COMPONENT_TYPE.MONTH] = row
+                self.setMontDateModelAtRow(monthRow: row)
                 break
             case 2:
                 selectedRow[COMPONENT_TYPE.DAY] = row
+                self.setDayDateModelAtRow(dayRow: row)
                 break
             case 3:
                 selectedRow[COMPONENT_TYPE.TIME] = row
@@ -551,9 +748,11 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             switch component {
             case 0:
                 selectedRow[COMPONENT_TYPE.MONTH] = row
+                self.setMontDateModelAtRow(monthRow: row)
                 break
             case 1:
                 selectedRow[COMPONENT_TYPE.DAY] = row
+                self.setDayDateModelAtRow(dayRow: row)
                 break
             case 2:
                 selectedRow[COMPONENT_TYPE.TIME] = row
@@ -572,6 +771,7 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             switch component {
             case 0:
                 selectedRow[COMPONENT_TYPE.DAY] = row
+                self.setDayDateModelAtRow(dayRow: row)
                 break
             case 1:
                 selectedRow[COMPONENT_TYPE.TIME] = row
@@ -621,9 +821,34 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
         }
     }
     
+    fileprivate func setYearDateModelAtRow(yearRow:Int) {
+        let selectYear = self.dateModel.getCurrentYear()! + 1 - self.getLimitOfYear() + yearRow
+        self.dateModel.setYear(year: selectYear )
+    }
+    
+    fileprivate func setMontDateModelAtRow(monthRow:Int) {
+        self.dateModel.setMonth(month: monthRow + 1)
+    }
+    
+    fileprivate func setDayDateModelAtRow(dayRow:Int) {
+        self.dateModel.setDay(day: dayRow + 1)
+    }
+    
+    fileprivate func setHourDateModelAtRow(hourRow:Int) {
+        self.dateModel.setHour(hour: hourRow + 1)
+    }
+    
+    fileprivate func setMinDateModelAtRow(minRow:Int) {
+        self.dateModel.setMinute(minute: minRow)
+    }
+    
+    fileprivate func setSecDateModelAtRow(secRow:Int) {
+        self.dateModel.setSeconds(seconds: secRow + 1)
+    }
+    
     fileprivate func getYearTitle(row:Int) -> UInt? {
         if let year = self.dateModel.getCurrentYear() {
-            return UInt(year-100 + row)
+            return UInt(year+1-getLimitOfYear() + row)
         }
         return nil
     }
@@ -638,7 +863,7 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
     
     fileprivate func getDayTitle(row:Int) -> UInt? {
         let day = 1+row
-        if self.getLimitOfDay() > day {
+        if  day > self.getLimitOfDay() {
             return nil
         }
         return UInt(day)

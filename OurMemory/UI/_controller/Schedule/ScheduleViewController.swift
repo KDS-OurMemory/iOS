@@ -21,3 +21,7 @@ class ScheduleViewController: BaseViewController {
         }
     }
 }
+
+extension ScheduleViewController: ScheduleView {
+    
+}

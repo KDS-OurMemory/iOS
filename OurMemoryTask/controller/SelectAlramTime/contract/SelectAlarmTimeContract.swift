@@ -6,7 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
-public protocol SelectAlramContract:DataContract {
+public protocol SelectAlarmContract:DataContract {
     func selectAlarmIdx(idx:Int)
+    func actionCancelBtn(sender:UIButton)
+    func actionConfirmBtn(sender:UIButton)
 }

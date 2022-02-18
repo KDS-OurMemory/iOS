@@ -17,6 +17,10 @@ class SelectColorViewController: BaseViewController {
     var itemWidth = 0.0
     var itemHeight = 0.0
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.setBackgroundDimColor()
+    }
+    
     override func getDataContract() -> DataContract? {
         return self.selectColorCtl
     }
@@ -26,7 +30,8 @@ class SelectColorViewController: BaseViewController {
             selectColorCtl = CtlMaker().createDataControllerWithContract(contract: .eContractSelectColor, view: self, data: data) as? SelectColorContract
         }
         itemWidth = colorContainer.frame.width * 0.2
-        itemHeight = colorContainer.frame.height * 0.33
+        itemHeight = colorContainer.frame.height/3
+        
     }
     
     func setSelectColorBlock(block: @escaping (UIColor) -> Void) {
@@ -36,7 +41,7 @@ class SelectColorViewController: BaseViewController {
     fileprivate func applySelectColor(color: UIColor) {
         if let block = self.selectColorBlock {
             block(color)
-            self.showNextVC(vc: .NEXTVIEW_POP, data: nil)
+            self.dismissPopup()
         }
     }
 
@@ -44,16 +49,26 @@ class SelectColorViewController: BaseViewController {
 
 extension SelectColorViewController: SelectColorView {
     func updateColors(colors: [UIColor]) {
+        for colorView in colorContainer.subviews {
+            colorView.removeFromSuperview()
+        }
         for color in colors {
-            let idx = Double(colors.firstIndex(of: color)!)
-            let colorItem:ColorItemView = ColorItemView(frame: CGRect(x: itemWidth*(idx.truncatingRemainder(dividingBy: 5.0)), y: itemHeight*(idx*0.2), width: itemWidth, height: itemHeight))
+            let cnt = colorContainer.subviews.count
+            let colorItem:ColorItemView = ColorItemView()
+            colorContainer.addSubview(colorItem)
+            colorItem.frame = CGRect(x: itemWidth*CGFloat(cnt%5), y: itemHeight*CGFloat((cnt/5)), width: itemWidth, height: itemHeight)
+            colorItem.setCornerRadius(radius: itemWidth/2)
+            colorItem.setColor(color: color)
             colorItem.setSelectColorBtnBlock { p1 in
                 self.applySelectColor(color: p1)
             }
         }
     }
     
-    
+    func dismissPopup() {
+        self.dismiss(animated: true) {
+        }
+    }
     
     
 }

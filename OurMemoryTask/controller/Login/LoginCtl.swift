@@ -17,7 +17,7 @@ class LoginCtl: BaseCtl {
         loginModel.initWithCallback(context: self) { p1, p2 in
             switch p1 {
             case .SUCCESS_CASE:
-                self.callShowNextVC(view: .NEXTVIEW_MAIN, data: nil)
+                self.callShowNextVC(view: .NEXTVIEW_MYMEMORY, data: nil)
                 break
             case .SIGNUP_CASE:
                 self.callShowNextVC(view: .NEXTVIEW_SIGNUP, data: p2)
@@ -37,8 +37,11 @@ class LoginCtl: BaseCtl {
         case .NEXTVIEW_SIGNUP:
             self.view.showNextVC(vc:.NEXTVIEW_SIGNUP, data: data)
             break
-        case .NEXTVIEW_MAIN:
-            self.view.showNextVC(vc:.NEXTVIEW_MAIN, data: nil)
+//        case .NEXTVIEW_MAIN:
+//            self.view.showNextVC(vc:.NEXTVIEW_MAIN, data: nil)
+//            break
+        case .NEXTVIEW_MYMEMORY:
+            self.view.showNextVC(vc: .NEXTVIEW_MYMEMORY, data: nil)
             break
         default:
             break

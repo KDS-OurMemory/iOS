@@ -17,6 +17,10 @@ class BaseViewController: UIViewController {
         } 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = .white
+    }
+    
     func initiailizeSubView() -> Self {
         
         func instantiateFromNib<T: UIViewController>() -> T {
@@ -38,6 +42,14 @@ class BaseViewController: UIViewController {
     
     func getDataContract() -> DataContract? {
         return nil
+    }
+    
+    func setBackgroundDimColor() {
+        self.view.backgroundColor = UIColor(white: 0, alpha: 0.3)
+    }
+    
+    func setBackgroundWhiteColor() {
+        self.view.backgroundColor = .white
     }
     
     func prepareViewWithData(data: Any?) {

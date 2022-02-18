@@ -13,6 +13,7 @@ class MyProfileViewController: BaseViewController {
     @IBOutlet weak var topViewContainer: UIView!
     @IBOutlet weak var itemContainer: UIView!
     let topView:TopView = TopView()
+    var tabbar:TabbarView!
     
     override func getDataContract() -> DataContract? {
         return self.myMemoryCtl
@@ -26,4 +27,18 @@ class MyProfileViewController: BaseViewController {
         topViewContainer.addSubview(topView)
     }
 
+}
+
+
+extension MyProfileViewController: MyProfileView {
+    func setTabbarView(tabView:UIView) {
+        if let tabbar = tabView as? TabbarView {
+            self.tabbar = tabbar
+            self.view.addSubview(tabView)
+        }
+    }
+    
+    func updateNotiCnt(items:[UInt:Int]) {
+        
+    }
 }

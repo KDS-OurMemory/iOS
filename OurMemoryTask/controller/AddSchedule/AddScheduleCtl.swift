@@ -12,7 +12,7 @@ class AddScheduleCtl: BaseCtl {
     let addScheduleModel:AddScheduleModel = AddScheduleModel()
     
     override func __initWithData__(data: Any?) {
-        addScheduleModel.initWithBlock { p1, p2 in
+        addScheduleModel.initWithBlock(data:data) { p1, p2 in
             switch p1 {
             case .SCHEDULE_UPDATE:
                 self.callUpdateScehduleData(dataBinder: p2 as! ScheduleDataBinder)
@@ -20,9 +20,40 @@ class AddScheduleCtl: BaseCtl {
             case .SCHEDULE_UPDATE_SELECTED_DATE:
                 self.callShowSelectdDatePicker(date: p2 as! ScheduleDataBinder)
                 break
+            case .SCHEDULEALARMTIME_UPDATE:
+                self.callUpdateAlram(alarm: p2 as! String)
+                break
+            case .SCHEDULECOLOR_UPDATE:
+                self.callUpdateColor(color: p2 as! UIColor)
+                break
+            case .SCHEDULECONFIRMBTN_UPDATE:
+                self.callUpdateConfirmBtnState(state: p2 as! Bool)
+                break
             }
         }
+        
+        self.callUpdateConfirmBtnState(state: false)
+        
     }
+    
+    
+    fileprivate func callUpdateColor(color:UIColor) {
+        if let view = self.view as? AddScheduleView {
+            view.updateColor(color: color)
+        }
+    }
+    
+    fileprivate func callUpdateAlram(alarm:String) {
+        if let view = self.view as? AddScheduleView {
+            view.updateAlarm(alarm: alarm)
+        }
+    }
+    
+    fileprivate func callUpdateConfirmBtnState(state:Bool ) {
+        if let view = self.view as? AddScheduleView {
+            view.updaetConfirmBtnState(state: state )
+        }
+     }
     
     fileprivate func callUpdateScehduleData(dataBinder:ScheduleDataBinder) {
         if let view = self.view as? AddScheduleView {
@@ -40,7 +71,11 @@ class AddScheduleCtl: BaseCtl {
 
 extension AddScheduleCtl: AddScheduleContract {
     
-    func addDate(date:String) {
+    func setScheduleTitle(title: String) {
+        addScheduleModel.setTitle(title: title)
+    }
+    
+    func addDate(date:ScheduleTimeDataBinder) {
         addScheduleModel.addDate(date: date)
     }
     
@@ -60,37 +95,47 @@ extension AddScheduleCtl: AddScheduleContract {
         addScheduleModel.setColor(color: color)
     }
     
-    func actionDatesView(sender:UIView) {
+    func actionDatesView() {
         addScheduleModel.getSelectedDate()
     }
     
-    func actionContentsView(sender:UIView) {
+    func actionAlarmsView() {
         if let view = self.view as? AddScheduleView {
-//            view.showNextVC(vc: .NEXT, data: <#T##[NSObject]?#>)
+            view.showNextVC(vc: .NEXTVIEW_SELECTALRAMTIME, data: self.addScheduleModel.alrams)
         }
     }
     
-    func actionLocationsView(sender:UIView) {
+    func actionContentsView() {
+        if let view = self.view as? AddScheduleView {
+//            view.showNextVC(vc: .NEXTVIEW_CO, data: <#T##[NSObject]?#>)
+        }
+    }
+    
+    func actionLocationsView() {
         if let view = self.view as? AddScheduleView {
             
         }
     }
     
-    func actionColorView(sender:UIView) {
+    func actionColorView() {
         if let view = self.view as? AddScheduleView {
             view.showNextVC(vc: .NEXTVIEW_SELECTCOLOR, data: nil)
         }
     }
     
-    func actionSharedView(sender:UIView) {
+    func actionSharedView() {
         if let view = self.view as? AddScheduleView {
-//            view.showNextVC(vc: .NEXTViEW_SHAREDLIST, data: <#T##[NSObject]?#>)
+            view.showNextVC(vc: .NEXTViEW_SHAREDLIST, data: nil)
         }
     }
     
     func actionConfirmBtn(sender:UIButton) {
         if let view = self.view as? AddScheduleView {
-            
+            view.showAlertMsgWithTitleAndActions(title: "일정 등록", msg: "일정을 등록 하시겠습니까?", actions:  ["확인":{ p1 in
+                self.addScheduleModel.tryAddScheduleRequest(context: self)
+            },"취소":{ p1 in
+                
+            }])
         }
     }
     
