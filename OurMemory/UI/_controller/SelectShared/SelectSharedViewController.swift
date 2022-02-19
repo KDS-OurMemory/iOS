@@ -9,6 +9,11 @@ import UIKit
 
 class SelectSharedViewController: BaseViewController {
 
+    @IBOutlet weak var closeBtn: UIButton!
+    @IBOutlet weak var refreshBtn: UIButton!
+    @IBOutlet weak var confrimBtn: UIButton!
+    @IBOutlet weak var serchUserByNameTf: UITextField!
+    @IBOutlet weak var usercollectionView: UICollectionView!
     var myMemoryCtl:SelectSharedContract?
     
     override func getDataContract() -> DataContract? {

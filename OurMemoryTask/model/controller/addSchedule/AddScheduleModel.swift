@@ -26,6 +26,11 @@ class AddScheduleModel: NSObject {
     var addScheduleParams:[String:Any] = [:]
     var addScheduleInputDataCheck:ADDSCHEDULE_INPUTDATA_CHECK = []
     let addScheduleNetModel:AddScheduleNetModel = AddScheduleNetModel()
+    var endDate:DateComponents?
+    var startDate:DateComponents?
+    var sharedUserDate:SharedUserDataModel = SharedUserDataModel.sharedUserData
+    var firstAlarm:Date?
+    var secondsAlarm:Date?
     
     func initWithBlock(data:Any?, block:@escaping (SCHEDULERESULT,Any)->Void) {
         
@@ -52,8 +57,38 @@ class AddScheduleModel: NSObject {
         self.valideCheckAddSchedulData()
         if let component = date.getComponents() {
             selectedDateComponent = component
+            if startDate == nil {
+                startDate = component
+            }else {
+                switch startDate?.comparison(targetDateComponents: component) {
+                case .orderedAscending:
+                    startDate = component
+                    break
+                default:
+                    break
+                }
+            }
+            
+            if endDate == nil {
+                endDate = component
+            }else {
+                switch endDate?.comparison(targetDateComponents: component) {
+                case .orderedDescending:
+                    endDate = component
+                    break
+                default:
+                    break
+                }
+            }
+            
             if selectedDateComponents.contains(component) == false {
                 selectedDateComponents.append(component)
+                scheduleData.alarms.removeAll()
+                firstAlarm = nil
+                secondsAlarm = nil
+                for alram in alrams {
+                    self.getTimeIntervalDateForAlarm(alarm: alram)
+                }
             }
         }
         if let block = self.scheduleBlock {
@@ -141,6 +176,32 @@ class AddScheduleModel: NSObject {
             default:
                 break
             }
+            if firstAlarm == nil {
+                firstAlarm = date
+            }else {
+                switch firstAlarm!.compare(date) {
+                case .orderedAscending:
+                    firstAlarm = date
+                    break
+                default:
+                    break
+                }
+            }
+            if alrams.count > 1 {
+                if secondsAlarm == nil {
+                    secondsAlarm = date
+                }else {
+                    switch secondsAlarm!.compare(date) {
+                    case.orderedDescending:
+                        secondsAlarm = date
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
+            
+            
             let dateStr = dateformatter.string(from: date)
             if scheduleData.alarms.contains(dateStr) {
                 return
@@ -165,23 +226,40 @@ class AddScheduleModel: NSObject {
     }
     
     func hexStringFromColor(color: UIColor) -> String {
-        let components = color.cgColor.components
-        let r: CGFloat = components?[0] ?? 0.0
-        let g: CGFloat = components?[1] ?? 0.0
-        let b: CGFloat = components?[2] ?? 0.0
+        let hexString = ""
+        if let components = color.cgColor.components,components.count > 2 {
+            let r: CGFloat = components[0]
+            let g: CGFloat = components[1]
+            let b: CGFloat = components[2]
+        
+        
 
         let hexString = String.init(format: "#%02lX%02lX%02lX", lroundf(Float(r * 255)), lroundf(Float(g * 255)), lroundf(Float(b * 255)))
         print(hexString)
+        
+        }
         return hexString
      }
     
     func tryAddScheduleRequest(context:DataContract) {
         
-        addScheduleParams["attendanceStatus"] = ATTENDANCE_STATUS.ABSENCE
+        addScheduleParams["attendanceStatus"] = ATTENDANCE_STATUS.ABSENCE.rawValue
         addScheduleParams["bgColor"] = self.hexStringFromColor(color:scheduleData.color)
-        addScheduleParams["contents"] = scheduleData.contents.description
-        addScheduleParams["endDate"] = scheduleData.date.description
+        
+        addScheduleParams["endDate"] = self.endDate?.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
+        addScheduleParams["startDate"] = self.startDate?.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
         addScheduleParams["name"] = scheduleData.title
+        addScheduleParams["userId"] = sharedUserDate.userId!
+//        addScheduleParams["place"] = scheduleData.locations
+//        addScheduleParams["shareIds"] = nil
+//        addScheduleParams["contents"] = scheduleData.contents.description
+        if let firstAlarm = firstAlarm {
+            addScheduleParams["firstAlarm"] = firstAlarm.dateToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
+        }
+        if let secondsAlarm = secondsAlarm {
+            addScheduleParams["secondAlarm"] = secondsAlarm.dateToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
+        }
+        
         
         addScheduleNetModel.setRequestBodyParams(params: addScheduleParams)
         

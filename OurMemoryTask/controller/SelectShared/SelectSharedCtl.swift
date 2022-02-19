@@ -9,4 +9,8 @@ import UIKit
 
 class SelectSharedCtl: BaseCtl {
 
+    override func __initWithData__(data: Any?) {
+        
+    }
+    
 }

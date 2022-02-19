@@ -29,10 +29,6 @@ class LoginNetModel: BaseNetModel {
         ]
     }
     
-    override func addPath() -> String {
-        "?"
-    }
-    
     func initWithCallback(callback: @escaping (LOGINNETCASE) -> Void ) {
         self.userDataCallback = callback
     }

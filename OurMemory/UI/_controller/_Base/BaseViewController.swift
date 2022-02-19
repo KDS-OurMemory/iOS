@@ -66,12 +66,12 @@ class BaseViewController: UIViewController {
     
     func showNetworkErrorAlert() {
         let alertCtl:UIAlertController = UIAlertController(title: "", message: "네트워크 연결이 원할하지 않습니다.", preferredStyle: UIAlertController.Style.alert)
-        alertCtl.show(self, sender: Any?.self);
+        alertCtl.show(self, sender: self);
     }
     
     func showAlertMsgWithTitle(title:String,msg:String) {
         let alertCtl:UIAlertController = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
-        alertCtl.show(self, sender: Any?.self);
+        alertCtl.show(self, sender: self);
     }
     
     func showAlertMsgWithTitleAndActions(title:String,msg:String, actions: [String:(UIAlertAction) -> Void]) {
@@ -84,8 +84,7 @@ class BaseViewController: UIViewController {
         for alertAction in alertActions {
             alertCtl.addAction(alertAction)
         }
-        alertCtl.show(self, sender: Any?.self);
-        
+        self.present(alertCtl, animated: false, completion: nil)
     }
     
     func showFadeOutMsgView(msg:String) {

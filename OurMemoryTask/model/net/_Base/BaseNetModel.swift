@@ -17,6 +17,7 @@ class BaseNetModel {
     let errorData:OurMemoryErrorData = OurMemoryErrorData()
     var path:NETPATH!
     var images:[ImageFile]?
+    var apendedPath:String = ""
     
     init() {
         if let dic = self.getRequestParamsKeys() {
@@ -40,6 +41,10 @@ class BaseNetModel {
         }
     }
     
+    func addPath(path:String) {
+        apendedPath = apendedPath + path
+    }
+    
     func getRequestParamsKeys() -> [String:Any?]? {
         return nil
     }
@@ -48,8 +53,8 @@ class BaseNetModel {
         return ""
     }
     
-    func addPath() -> String {
-        return ""
+    func getAddPath() -> String {
+        return self.apendedPath
     }
     
     func setImage(images:[ImageFile]) {
@@ -80,8 +85,8 @@ class BaseNetModel {
     func reqeustRestFulApi <T: Codable>(context:DataContract ,completion: @escaping (Result<T, Error>) -> Void) {
         guard let params = self.requestParams else {return}
         
-        guard let url = dataRequest(method: getHttpMethod(), path: getPath() + addPath(), param: params, images: self.images).urlRequest()?.url else { return }
-        guard let request = dataRequest(method: getHttpMethod(), path: getPath() + addPath(), param: params, images: self.images).urlRequest() else {return}
+        guard let url = dataRequest(method: getHttpMethod(), path: getPath() + getAddPath(), param: params, images: self.images).urlRequest()?.url else { return }
+        guard let request = dataRequest(method: getHttpMethod(), path: getPath() + getAddPath(), param: params, images: self.images).urlRequest() else {return}
         
         switch getHttpMethod() {
         case .get:

@@ -133,6 +133,7 @@ extension AddScheduleCtl: AddScheduleContract {
         if let view = self.view as? AddScheduleView {
             view.showAlertMsgWithTitleAndActions(title: "일정 등록", msg: "일정을 등록 하시겠습니까?", actions:  ["확인":{ p1 in
                 self.addScheduleModel.tryAddScheduleRequest(context: self)
+                
             },"취소":{ p1 in
                 
             }])

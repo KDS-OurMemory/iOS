@@ -24,7 +24,7 @@ struct json<T: Codable>: Codable{
     }
     
 }
-
+// MARK: signUp,Login response userData
 public struct userData:Codable {
     let birthday: String
     let birthdayOpen: Bool
@@ -73,23 +73,41 @@ public struct userData:Codable {
         return solar
     }
 }
-
+// MARK: addSchedule response scheduleData,roomData
 struct scheduleData:Codable {
     let addedRoomId:Int64?
-    let bgColor:String // #FFFFFF
-    let contents:String
+    let bgColor:String? // #FFFFFF
+    let contents:String?
     let endDate:String
-    let firstAlarm:String
+    let firstAlarm:String?
     let memoryId:Int64
-    let modDate:String
+    let modDate:String?
     let name:String
-    let place:String
+    let place:String?
     let regDate:String
-    let secondAlarm:String
+    let secondAlarm:String?
     let shareRooms:[roomData]?
     let startDate:String //yyyy-MM-dd HH:mm
-    let userAttendances:String
+    let userAttendances:String?
     let writerId:Int64
+    
+    enum CodingKeys: String, CodingKey {
+        case addedRoomId = "addedRoomId"
+        case bgColor = "bgColor"
+        case contents = "contents"
+        case endDate = "endDate"
+        case firstAlarm = "firstAlarm"
+        case memoryId = "memoryId"
+        case modDate = "modDate"
+        case name = "name"
+        case place = "place"
+        case regDate = "regDate"
+        case secondAlarm = "secondAlarm"
+        case shareRooms = "shareRooms"
+        case startDate = "startDate"
+        case userAttendances = "userAttendances"
+        case writerId = "writerId"
+    }
     
 }
 
@@ -97,4 +115,21 @@ struct roomData:Codable {
     let name:String
     let ownerId:Int64
     let roomId:Int
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case ownerId = "ownerId"
+        case roomId = "roomId"
+    }
+}
+
+// MARK: response friendsData
+struct freindsData:Codable {
+    let birthday:String
+    let birthdayOpen:Bool
+    let friendId:Int64
+    let friendStatus:String?
+    let name:String
+    let profileImageUrl:String
+    let solar:Bool
 }

@@ -22,7 +22,7 @@ class LoginModel: NSObject {
     func initWithCallback(context:DataContract ,callback: @escaping (LOGINNETCASE,Any?)-> Void) {
         self.callback = callback
         self.context = context
-        
+        loginNetModel.addPath(path: "?")
         if let snsType = saveDataModel.useSnsTypeData(),let snsId = saveDataModel.useSnsIDData() {
             loginNetModel.setRequestQueryParams(params: [
                 "snsId":snsId,
