@@ -14,7 +14,8 @@ enum SIGNUP_RESULT {
     case SIGNUP_UPDATEBIRTHDAY
     case SIGNUP_UPDATEBIRTHDAYOPEN
     case SIGNUP_UPDATESOLAR
-    case SIGNUP_UPDATEDATEPICKER
+    case SIGNUP_UPDATEDATEMONTH
+    case SIGNUP_UPDATEDATEDAY
     case DISCONNECT_SNS
 }
 
@@ -25,7 +26,7 @@ class SignupModel: NSObject {
     let sharedUserDataModel:SharedUserDataModel = SharedUserDataModel.sharedUserData
     let signupIdNetModel:SignUpIdNetModel = SignUpIdNetModel()
     var signupValidChack:SIGNUP_CHECK = []
-    let snsTypeCheck:Int8 = SNSTYPE.GOOGLE.rawValue|SNSTYPE.KAKAO.rawValue|SNSTYPE.NAVER.rawValue
+    let snsTypeCheck:Int32 = SNSTYPE.GOOGLE.rawValue|SNSTYPE.KAKAO.rawValue|SNSTYPE.NAVER.rawValue
     var currentSnsType:SNSTYPE!
     var selectBirthdayMonth:String = ""
     var selectBirthdayDay:String = ""
@@ -104,7 +105,7 @@ class SignupModel: NSObject {
             signupParams["birthday"] = birthday
             signupValidChack.insert(.SIGNUP_BIRTHDAY)
             
-            self.callback(.SIGNUP_UPDATEBIRTHDAY,birthday)
+//            self.callback(.SIGNUP_UPDATEBIRTHDAY,birthday)
             
             self.valideCheckSignUp()
         }else {
@@ -112,9 +113,21 @@ class SignupModel: NSObject {
         }
     }
     
+    func getBirthday() {
+        let birthday = signupParams["birthday"]
+        if birthday != nil {
+            self.callback(.SIGNUP_UPDATEBIRTHDAY,birthday)
+        }
+    }
+    
+    func clearUserData() {
+        sharedUserDataModel.clearData()
+        saveDataModel.clearData()
+    }
+    
     func setSelectMonth(month:String) {
         self.selectBirthdayMonth = month
-        self.callback(.SIGNUP_UPDATEDATEPICKER,COMPONENT_TYPE.MONTH)
+//        self.callback(.SIGNUP_UPDATEDATEMONTH,month)
         if (self.selectBirthdayMonth.count > 0 && self.selectBirthdayDay.count > 0) {
             self.setBirthday(birthday: self.selectBirthdayMonth+self.selectBirthdayDay)
         }
@@ -122,7 +135,7 @@ class SignupModel: NSObject {
     
     func setSelectDay(day:String) {
         self.selectBirthdayDay = day
-        self.callback(.SIGNUP_UPDATEDATEPICKER,COMPONENT_TYPE.DAY)
+//        self.callback(.SIGNUP_UPDATEDATEDAY,day)
         if (self.selectBirthdayMonth.count > 0 && self.selectBirthdayDay.count > 0) {
             self.setBirthday(birthday: self.selectBirthdayMonth+self.selectBirthdayDay)
         }
@@ -156,6 +169,7 @@ class SignupModel: NSObject {
     }
     
     func setSnsType(snsType:SNSTYPE) {
+        self.currentSnsType = snsType
         if snsTypeCheck & snsType.rawValue == snsType.rawValue {
             signupParams["snsType"] = snsType.rawValue
             signupValidChack.insert(.SIGNUP_SNSTYPE)

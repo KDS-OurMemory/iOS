@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
-public protocol MyProfileContract:DataContract {
-    func actionLogoutBtn(sender:UIButton)
+public protocol MyProfileContract:BasePHPickerControllerAdapterContract {
+    func actionProfileImage(imageSize:CGSize)
+    func actionSwitchPush(state:Bool)
+    func actionLogoutBtn()
 }

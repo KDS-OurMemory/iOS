@@ -33,22 +33,91 @@
                                     <constraint firstAttribute="height" constant="1" id="J1T-xy-2qX"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-EO-b13">
+                                <rect key="frame" x="355" y="0.0" width="39" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="QF1-HF-roU"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="gearshape" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQ3-6q-cjw">
+                                <rect key="frame" x="296" y="0.0" width="39" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="UZU-Qr-zpN"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="person.badge.plus" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDS-pc-WyI">
+                                <rect key="frame" x="237" y="0.0" width="39" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="FTu-ga-ezB"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="magnifyingglass" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="uDS-pc-WyI" firstAttribute="top" secondItem="Azy-wu-iYU" secondAttribute="top" id="3E0-qw-Xtb"/>
+                            <constraint firstItem="wJH-oH-CZq" firstAttribute="top" secondItem="RAC-EO-b13" secondAttribute="bottom" id="9Aq-3f-nZR"/>
+                            <constraint firstItem="wJH-oH-CZq" firstAttribute="top" secondItem="gQ3-6q-cjw" secondAttribute="bottom" id="Aza-7r-EmV"/>
+                            <constraint firstItem="RAC-EO-b13" firstAttribute="top" secondItem="Azy-wu-iYU" secondAttribute="top" id="KaZ-b4-rDB"/>
+                            <constraint firstItem="gQ3-6q-cjw" firstAttribute="top" secondItem="Azy-wu-iYU" secondAttribute="top" id="MKX-zF-uBd"/>
                             <constraint firstAttribute="trailing" secondItem="wJH-oH-CZq" secondAttribute="trailing" constant="15" id="Pay-Ju-xnv"/>
                             <constraint firstItem="wJH-oH-CZq" firstAttribute="leading" secondItem="Azy-wu-iYU" secondAttribute="leading" constant="15" id="ULD-cf-fma"/>
                             <constraint firstAttribute="height" constant="40" id="gPh-bX-l8L"/>
+                            <constraint firstItem="gQ3-6q-cjw" firstAttribute="leading" secondItem="uDS-pc-WyI" secondAttribute="trailing" constant="20" id="jdK-G2-mc2"/>
                             <constraint firstAttribute="bottom" secondItem="wJH-oH-CZq" secondAttribute="bottom" id="jsx-mw-zKs"/>
+                            <constraint firstItem="wJH-oH-CZq" firstAttribute="top" secondItem="uDS-pc-WyI" secondAttribute="bottom" id="mnZ-B7-ejd"/>
+                            <constraint firstItem="RAC-EO-b13" firstAttribute="leading" secondItem="gQ3-6q-cjw" secondAttribute="trailing" constant="20" id="qLt-Vr-J1C"/>
+                            <constraint firstAttribute="trailing" secondItem="RAC-EO-b13" secondAttribute="trailing" constant="20" id="wzn-1V-ICf"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CaR-yH-lKF" customClass="BaseView" customModule="OurMemory" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="144" width="414" height="648"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jE3-x9-Yi8">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PhK-VN-lG8">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jE3-x9-Yi8" firstAttribute="leading" secondItem="CaR-yH-lKF" secondAttribute="leading" id="8dW-tb-rNU"/>
+                            <constraint firstItem="jE3-x9-Yi8" firstAttribute="top" secondItem="CaR-yH-lKF" secondAttribute="top" id="DQw-pn-38S"/>
+                            <constraint firstAttribute="trailing" secondItem="jE3-x9-Yi8" secondAttribute="trailing" id="Xgl-bN-6kR"/>
+                            <constraint firstAttribute="bottom" secondItem="jE3-x9-Yi8" secondAttribute="bottom" id="jZD-Dk-cLg"/>
+                        </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cw-oH-Dhb" customClass="BaseView" customModule="OurMemory" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="144" width="414" height="648"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="s4i-nz-rVz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XVa-Y6-U3f">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="s4i-nz-rVz" firstAttribute="top" secondItem="9cw-oH-Dhb" secondAttribute="top" id="3bc-uf-BGi"/>
+                            <constraint firstAttribute="trailing" secondItem="s4i-nz-rVz" secondAttribute="trailing" id="IrV-A9-0RD"/>
+                            <constraint firstItem="s4i-nz-rVz" firstAttribute="leading" secondItem="9cw-oH-Dhb" secondAttribute="leading" id="JTa-3R-iYU"/>
+                            <constraint firstAttribute="bottom" secondItem="s4i-nz-rVz" secondAttribute="bottom" id="qd9-RO-fiF"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="GB2-Ak-iPJ"/>
@@ -71,15 +140,23 @@
                 </constraints>
             </view>
             <connections>
+                <outlet property="addFriendsAndAddRoomsBtn" destination="gQ3-6q-cjw" id="QE3-Af-iYN"/>
                 <outlet property="freindView" destination="CaR-yH-lKF" id="Xmv-Eo-eAw"/>
+                <outlet property="friendsCollectionView" destination="jE3-x9-Yi8" id="32k-S2-RgJ"/>
                 <outlet property="roomView" destination="9cw-oH-Dhb" id="SSn-uB-efg"/>
+                <outlet property="roomsCollectionView" destination="s4i-nz-rVz" id="j6g-4E-5sc"/>
+                <outlet property="searchBtn" destination="uDS-pc-WyI" id="Qrj-hK-lQm"/>
                 <outlet property="searchFreindSettingBtnContainer" destination="Azy-wu-iYU" id="FCo-dg-bwM"/>
+                <outlet property="settingsBtn" destination="RAC-EO-b13" id="Bul-8g-eLN"/>
                 <outlet property="tabViewContainer" destination="NLW-et-6dz" id="bI9-AE-AYJ"/>
             </connections>
             <point key="canvasLocation" x="219" y="-49"/>
         </viewController>
     </objects>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person.badge.plus" catalog="system" width="128" height="124"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

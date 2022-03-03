@@ -19,5 +19,13 @@ extension UIControl {
         self.addAction(action, for: .touchUpInside)
     }
     
+    func addActionManual(block:@escaping (UIControl) -> Void ) {
+        let action:UIAction = UIAction { _ in
+            block(self)
+        }
+        
+        self.addAction(action, for: .touchUpInside)
+    }
+    
 }
 

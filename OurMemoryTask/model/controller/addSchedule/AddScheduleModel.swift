@@ -28,7 +28,7 @@ class AddScheduleModel: NSObject {
     let addScheduleNetModel:AddScheduleNetModel = AddScheduleNetModel()
     var endDate:DateComponents?
     var startDate:DateComponents?
-    var sharedUserDate:SharedUserDataModel = SharedUserDataModel.sharedUserData
+    var sharedUserDataModel:SharedUserDataModel = SharedUserDataModel.sharedUserData
     var firstAlarm:Date?
     var secondsAlarm:Date?
     
@@ -249,7 +249,7 @@ class AddScheduleModel: NSObject {
         addScheduleParams["endDate"] = self.endDate?.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
         addScheduleParams["startDate"] = self.startDate?.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
         addScheduleParams["name"] = scheduleData.title
-        addScheduleParams["userId"] = sharedUserDate.userId!
+        addScheduleParams["userId"] = "\(sharedUserDataModel.userData.userId)"
 //        addScheduleParams["place"] = scheduleData.locations
 //        addScheduleParams["shareIds"] = nil
 //        addScheduleParams["contents"] = scheduleData.contents.description

@@ -13,7 +13,7 @@ enum SELECTSHARELIST_RESULT {
 
 class SelectShareListModel: NSObject {
 
-    let sharedUserDataModal:SharedUserDataModel = SharedUserDataModel.sharedUserData
+    let sharedUserDataModel:SharedUserDataModel = SharedUserDataModel.sharedUserData
     let selectShareListNetModel:InquiryFriendListNetModel = InquiryFriendListNetModel()
     var selectShareListCallback:((SELECTSHARELIST_RESULT,Any?) -> Void)?
     
@@ -23,8 +23,10 @@ class SelectShareListModel: NSObject {
     
     func tryRequestShareList(context:DataContract) {
         
-        self.selectShareListNetModel.addPath(path: "\(sharedUserDataModal.userId!)")
-        self.selectShareListNetModel.reqeustRestFulApi(context: context) { (data:Result<json<[freindsData]>, Error>) in
+        self.selectShareListNetModel.setRequestPathParams(path: [
+            "\(sharedUserDataModel.userData.userId)"
+        ])
+        self.selectShareListNetModel.reqeustRestFulApi(context: context) { (data:Result<json<[friendsData]>, Error>) in
             switch data {
             case .success(let response):
                 if let response = response.response,let callBack = self.selectShareListCallback {

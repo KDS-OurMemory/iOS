@@ -22,13 +22,12 @@ class LoginModel: NSObject {
     func initWithCallback(context:DataContract ,callback: @escaping (LOGINNETCASE,Any?)-> Void) {
         self.callback = callback
         self.context = context
-        loginNetModel.addPath(path: "?")
         if let snsType = saveDataModel.useSnsTypeData(),let snsId = saveDataModel.useSnsIDData() {
             loginNetModel.setRequestQueryParams(params: [
                 "snsId":snsId,
                 "snsType":snsType
             ])
-            currentSnsType = SNSTYPE.init(rawValue: Int8(snsType))
+            currentSnsType = SNSTYPE.init(rawValue: Int32(snsType))
             userSnsId = Int64(snsId)
             self.tryLoginRequest(context: context)
         }

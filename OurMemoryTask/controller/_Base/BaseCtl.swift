@@ -10,11 +10,12 @@ import UIKit
 class BaseCtl:NSObject {
 
     var view:ViewContract!
-    var collection:BaseCollectionAdapter!
+    var isActive:Bool = false
 
     init(view:ViewContract, data:Any?) {
         super.init()
         self.view = view
+        isActive = true
         self.__initWithData__(data: data )
     }
     

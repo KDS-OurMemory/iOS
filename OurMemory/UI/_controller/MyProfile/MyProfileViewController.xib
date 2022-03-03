@@ -24,8 +24,30 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-Rc-xdE">
-                        <rect key="frame" x="0.0" y="104" width="414" height="688"/>
+                        <rect key="frame" x="0.0" y="104" width="414" height="722"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD7-is-q2b">
+                                <rect key="frame" x="0.0" y="662" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="bPn-W2-3ot"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="로그아웃"/>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqg-aZ-fqv" customClass="BaseScrollView" customModule="OurMemory" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qD7-is-q2b" secondAttribute="bottom" id="27h-yD-Itg"/>
+                            <constraint firstAttribute="trailing" secondItem="gqg-aZ-fqv" secondAttribute="trailing" id="BmK-22-tat"/>
+                            <constraint firstItem="gqg-aZ-fqv" firstAttribute="leading" secondItem="Vg6-Rc-xdE" secondAttribute="leading" id="I8n-KF-hqv"/>
+                            <constraint firstItem="qD7-is-q2b" firstAttribute="leading" secondItem="Vg6-Rc-xdE" secondAttribute="leading" id="exu-Yl-ucm"/>
+                            <constraint firstAttribute="trailing" secondItem="qD7-is-q2b" secondAttribute="trailing" id="hqC-Y5-FqW"/>
+                            <constraint firstItem="gqg-aZ-fqv" firstAttribute="top" secondItem="Vg6-Rc-xdE" secondAttribute="top" id="pof-AK-zxo"/>
+                            <constraint firstItem="qD7-is-q2b" firstAttribute="top" secondItem="gqg-aZ-fqv" secondAttribute="bottom" id="ysx-54-Mb0"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="CDL-39-A9Z"/>
@@ -34,7 +56,7 @@
                     <constraint firstItem="Vg6-Rc-xdE" firstAttribute="leading" secondItem="CDL-39-A9Z" secondAttribute="leading" id="5si-1f-jjf"/>
                     <constraint firstItem="CDL-39-A9Z" firstAttribute="trailing" secondItem="Vg6-Rc-xdE" secondAttribute="trailing" id="PqE-4A-UGJ"/>
                     <constraint firstItem="CDL-39-A9Z" firstAttribute="trailing" secondItem="6wM-oU-eQs" secondAttribute="trailing" id="UuB-4t-yuf"/>
-                    <constraint firstItem="CDL-39-A9Z" firstAttribute="bottom" secondItem="Vg6-Rc-xdE" secondAttribute="bottom" constant="70" id="fFM-SL-5JR"/>
+                    <constraint firstAttribute="bottom" secondItem="Vg6-Rc-xdE" secondAttribute="bottom" constant="70" id="fFM-SL-5JR"/>
                     <constraint firstItem="Vg6-Rc-xdE" firstAttribute="top" secondItem="6wM-oU-eQs" secondAttribute="bottom" id="hxY-1M-j4E"/>
                     <constraint firstItem="6wM-oU-eQs" firstAttribute="top" secondItem="CDL-39-A9Z" secondAttribute="top" id="mXQ-gL-5ty"/>
                     <constraint firstItem="6wM-oU-eQs" firstAttribute="leading" secondItem="CDL-39-A9Z" secondAttribute="leading" id="mkg-m4-4qJ"/>
@@ -42,6 +64,8 @@
             </view>
             <connections>
                 <outlet property="itemContainer" destination="Vg6-Rc-xdE" id="FdK-c6-UWd"/>
+                <outlet property="logOutBtn" destination="qD7-is-q2b" id="17p-rK-hZY"/>
+                <outlet property="profileItemSv" destination="gqg-aZ-fqv" id="gp4-H4-MGx"/>
                 <outlet property="topViewContainer" destination="6wM-oU-eQs" id="zqJ-x6-pb0"/>
             </connections>
             <point key="canvasLocation" x="101" y="15"/>

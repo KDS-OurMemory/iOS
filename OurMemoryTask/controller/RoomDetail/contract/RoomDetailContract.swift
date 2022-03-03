@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol RoomDetailContract:DataContract {
+public protocol RoomDetailContract:BaseCollectionAdapterContract {
     
 }

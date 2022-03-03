@@ -44,6 +44,10 @@ class BaseViewController: UIViewController {
         return nil
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func setBackgroundDimColor() {
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.3)
     }

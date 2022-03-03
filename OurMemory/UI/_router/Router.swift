@@ -36,6 +36,7 @@ struct MyAppNavigation: AppNavigation {
                     guard let context = tabView as? UIViewController else { return }
                     MyAppNavigation.tabbarView.setContext(context: context)
                     MyAppNavigation.tabbarView.initViewWithCallback { p1 in
+                        if  MyAppNavigation.tabbarView.tag == p1.rawValue { return }
                         switch p1 {
                         case .home:
                             MyAppNavigation.tabbarView.context.navigate(NEXTVIEW.NEXTVIEW_MAIN, animation:false,data: nil,  onInitVc:nil)
@@ -104,8 +105,8 @@ struct MyAppNavigation: AppNavigation {
                 return SharedListViewController().initiailizeSubViewClass()
             case .NEXTVIEW_ROOMLIST:
                 return RoomTableViewController().initiailizeSubViewClass()
-//            case .NEXTVIEW_ROOMDETAIL:
-//                return RoomDetailViewController().initiailizeSubViewClass()
+            case .NEXTVIEW_ROOMDETAIL:
+                return RoomDetailViewController().initiailizeSubViewClass()
             case .NEXTVIEW_SCHEDULE:
                 return ScheduleViewController().initiailizeSubViewClass()
             case .NEXTVIEW_TODOLIST:
@@ -126,6 +127,10 @@ struct MyAppNavigation: AppNavigation {
                 return SelectDateViewController().initiailizeSubViewClass()
             case .NEXTVIEW_MYPROFILE:
                 return MyProfileViewController().initiailizeSubViewClass()
+            case .NEXTVIEW_ADDFRIENDS:
+                return AddFreindViewController().initiailizeSubViewClass()
+            case .NEXTVIEW_ADDROOMS:
+                return AddRoomViewController().initiailizeSubViewClass()
             default:
                 break
             }

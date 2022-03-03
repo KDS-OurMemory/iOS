@@ -44,4 +44,12 @@ class AppSaveDataModel: NSObject {
     func usePushTokenAllow() -> Bool {
         return userDefault.bool(forKey: "push")
     }
+    
+    func clearData() {
+        userDefault.removeObject(forKey: "userID")
+        userDefault.removeObject(forKey: "userSnsType")
+        userDefault.removeObject(forKey: "userSnsID")
+        userDefault.removeObject(forKey: "fcmToken")
+        userDefault.removeObject(forKey: "push")
+    }
 }

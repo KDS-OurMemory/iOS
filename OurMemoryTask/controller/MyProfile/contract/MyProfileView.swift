@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol MyProfileView:TabbarContract {
-//    func updateUserInfo(user:String) // userDataBinder 만들어서 파싱하자
+    func updateProfileData(profileData:UserDataBinder)
+    func updateProfileImage(profileImg:UIImage)
 }

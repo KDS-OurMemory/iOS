@@ -10,7 +10,7 @@ import UIKit
 class SearchForFriendsNetModel: BaseNetModel {
 
     override func getPath() -> String {
-        return NETPATH.PATH_FRIENDS.path
+        return NETPATH.PATH_SEARCHFRIENDS.path
     }
     
     override func getHttpMethod() -> HTTPMethod {

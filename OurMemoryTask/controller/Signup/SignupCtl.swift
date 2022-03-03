@@ -10,8 +10,7 @@ import UIKit
 class SignupCtl: BaseCtl {
     
     let signupModel:SignupModel = SignupModel()
-    let dateModel:DateComponentsModel = DateComponentsModel()
-    var datePickerAdapter:BaseDatePickerAdapter!
+    var datePickerAdapter:BaseDatePickerAdapter?
     let sharedUserDataModel:SharedUserDataModel = SharedUserDataModel.sharedUserData
     
     override func __initWithData__(data: Any?) {
@@ -28,29 +27,23 @@ class SignupCtl: BaseCtl {
                 self.callUpdateName(name: p2 as! String)
                 break
             case .SIGNUP_UPDATEBIRTHDAY:
-                self.dateModel.setDateStrForDateFormatStr(dateStr: p2 as! String, dateformatStr: "MMDD")
+                if let setAdapter = self.datePickerAdapter {
+                    setAdapter.setDatePickerRowAtDateStr(dateStr: p2 as! String, dateFormatStr: "MMdd")
+                }
+                
                 break
             case .SIGNUP_UPDATEBIRTHDAYOPEN:
                 self.callUpdateBirthdayOpenBtn(isOpenBirthday: p2 as! Bool)
                 break
-            case .SIGNUP_UPDATEDATEPICKER:
-                let componentType = p2 as! COMPONENT_TYPE
-                switch componentType {
-                case .MONTH:
-                    if let month = self.dateModel.components.month {
-                        self.datePickerAdapter.selectComponentofRow(selectToComponent: componentType, row: month-1)
-                    }
-                    break
-                case .DAY:
-                    if let day = self.dateModel.components.day {
-                        self.datePickerAdapter.selectComponentofRow(selectToComponent: componentType, row: day-1)
-                    }
-                    break
-                default:
-                    break
-                }
-                
-                
+            case .SIGNUP_UPDATEDATEMONTH:
+//                if let setAdapter = self.datePickerAdapter {
+//                    setAdapter.setDatePickerRowAtDateStr(dateStr: p2 as! String, dateFormatStr: "MM")
+//                }
+                break
+            case .SIGNUP_UPDATEDATEDAY:
+//                if let setAdapter = self.datePickerAdapter {
+//                    setAdapter.setDatePickerRowAtDateStr(dateStr: p2 as! String, dateFormatStr: "DD")
+//                }
                 break
             case .SIGNUP_UPDATESOLAR:
                 self.callUpdateSolarBtn(isSolar: p2 as! Bool)
@@ -63,6 +56,10 @@ class SignupCtl: BaseCtl {
         
         
     }
+    
+    override func onTaskError(ourMemoryErr: OurMemoryErrorData) {
+        
+    }
 
     //MARK: Private
     
@@ -73,7 +70,10 @@ class SignupCtl: BaseCtl {
     }
     
     fileprivate func callSelectPickerSelectComponentOfRow(component:COMPONENT_TYPE,row:Int) {
-        self.datePickerAdapter.selectComponentofRow(selectToComponent: component, row: row)
+        if let setAdapter = self.datePickerAdapter {
+            setAdapter.selectComponentofRow(selectToComponent: component, row: row)
+        }
+        
     }
     
     fileprivate func callUpdateConfirmBtnState(state:Bool) {
@@ -112,20 +112,23 @@ extension SignupCtl:SignupContract {
     
     func setDatePickerWithAdpater(adapter:BaseDatePickerAdapter,pickerView:UIPickerView) {
         datePickerAdapter = adapter
-        self.datePickerAdapter.setPickerController(pickerView: pickerView, pickerViewMode:PICKER_MODE.MM_DD) { p1,p2 in
-            let result:RESULT_DATE = RESULT_DATE.init(rawValue: p1)!
-            switch result {
-            case .RESULT_MONTH:
-                self.signupModel.setSelectMonth(month:p2 as! String)
-                break
-            case .RESULT_DAY:
-                self.dateModel.setDay(day: p2 as! Int)
-                self.signupModel.setSelectDay(day: p2 as! String)
-                break
-            default:
-                break
+        if let setAdapter = self.datePickerAdapter {
+            setAdapter.setPickerController(pickerView: pickerView, pickerViewMode:PICKER_MODE.MM_DD) { p1,p2 in
+                let result:RESULT_DATE = RESULT_DATE.init(rawValue: p1)!
+                switch result {
+                case .RESULT_MONTH:
+                    self.signupModel.setSelectMonth(month:p2 as! String)
+                    break
+                case .RESULT_DAY:
+                    self.signupModel.setSelectDay(day: p2 as! String)
+                    break
+                default:
+                    break
+                }
             }
         }
+        self.signupModel.getBirthday()
+        
     }
     
     

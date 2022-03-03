@@ -9,4 +9,6 @@ import Foundation
 
 public protocol AddRoomView:ViewContract {
     
+    func updateSelectedUserDatas(datas:[FriendsDataBinder])
+    func updateSelectedUserCnt(cnt:Int)
 }

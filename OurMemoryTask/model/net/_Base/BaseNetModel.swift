@@ -17,7 +17,6 @@ class BaseNetModel {
     let errorData:OurMemoryErrorData = OurMemoryErrorData()
     var path:NETPATH!
     var images:[ImageFile]?
-    var apendedPath:String = ""
     
     init() {
         if let dic = self.getRequestParamsKeys() {
@@ -26,7 +25,7 @@ class BaseNetModel {
     }
     
     struct dataRequest : Request {
-        let standardURL = "https://ourmemory.ddns.net:8443"
+        let standardURL = "https://ourmemory.ddns.net:8443"/*"http://dykim.ddns.net:8080"*/
         let session = URLSession.shared
         var path: String
         var method: HTTPMethod
@@ -41,9 +40,6 @@ class BaseNetModel {
         }
     }
     
-    func addPath(path:String) {
-        apendedPath = apendedPath + path
-    }
     
     func getRequestParamsKeys() -> [String:Any?]? {
         return nil
@@ -51,10 +47,6 @@ class BaseNetModel {
     
     func getPath() -> String {
         return ""
-    }
-    
-    func getAddPath() -> String {
-        return self.apendedPath
     }
     
     func setImage(images:[ImageFile]) {
@@ -82,11 +74,23 @@ class BaseNetModel {
         self.requestParams = .query(params)
     }
     
+    func setRequestPathParams(path:[String]) {
+        self.requestParams = .path(path)
+    }
+    
+    func setRequestPathAndQuery(path:[String], query:[String:Any]) {
+        self.requestParams = .pathQuery(path, query)
+    }
+    
+    func setRequestPathAndFormData(path:[String], formData:[String:Any]) {
+        self.requestParams = .pathFormData(path, formData)
+    }
+    
     func reqeustRestFulApi <T: Codable>(context:DataContract ,completion: @escaping (Result<T, Error>) -> Void) {
         guard let params = self.requestParams else {return}
         
-        guard let url = dataRequest(method: getHttpMethod(), path: getPath() + getAddPath(), param: params, images: self.images).urlRequest()?.url else { return }
-        guard let request = dataRequest(method: getHttpMethod(), path: getPath() + getAddPath(), param: params, images: self.images).urlRequest() else {return}
+        guard let url = dataRequest(method: getHttpMethod(), path: getPath(), param: params, images: self.images).urlRequest()?.url else { return }
+        guard let request = dataRequest(method: getHttpMethod(), path: getPath(), param: params, images: self.images).urlRequest() else { return }
         
         switch getHttpMethod() {
         case .get:

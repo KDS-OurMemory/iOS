@@ -36,6 +36,26 @@ class TabbarBtnView:BaseView {
         self.addSubview(notiCntLbl)
         self.addSubview(tabBarTitleLbl)
         self.addSubview(tabBarBtn)
+        
+    }
+    
+    func initWithBtnState() {
+        let itemTag = TabItems.init(rawValue: UInt(self.tag))
+        switch itemTag {
+        case .home,.ourMemory,.myProfile:
+            self.tabBarBtn.isSelected = false
+            break
+        case .myMemory:
+            self.tabBarBtn.isSelected = true
+            break
+        case .category:
+            self.tabBarBtn.isSelected = false
+            break
+        default:
+            self.tabBarBtn.isSelected = true
+            break
+        }
+        self.updateSelectTabBtn(selected: self.tabBarBtn.isSelected)
     }
     
     func setTabBtnBlock(block :@escaping (Int) -> Void) {
@@ -59,17 +79,34 @@ class TabbarBtnView:BaseView {
     
     fileprivate func updateSelectTabBtn(selected:Bool) {
         let btnY = selected==true ? 0:tabBtnPOIY
-        let lblY = selected==true ? tabBarBtn.frame.size.width:tabLblPOIY
+        let lblY = selected==true ? tabLblPOIY - tabBtnPOIY:tabLblPOIY
         let notiCntY = selected==true ? 0:tabBtnPOIY
         let lblH = selected==true ? self.frame.size.height * 0.2:0
         
-        tabBarBtn.frame.origin.y = btnY!
-        tabBarTitleLbl.frame.origin.y = lblY!
-        tabBarTitleLbl.frame.size.height = lblH
-        notiCntLbl.frame.origin.y = notiCntY!
+        UIView.animate(withDuration: 0.5) {
+            self.tabBarBtn.frame.origin.y = btnY!
+            self.tabBarTitleLbl.frame.origin.y = lblY!
+            self.tabBarTitleLbl.frame.size.height = lblH
+            self.notiCntLbl.frame.origin.y = notiCntY!
+        }
+        
+    }
+    
+    func updateBtnSelecteState(state:Bool) {
+        self.tabBarBtn.isSelected = state
+        self.updateSelectTabBtn(selected: self.tabBarBtn.isSelected)
     }
     
     @objc private func clickedTabBtn(btn:UIButton) {
+        if btn.isSelected == true { return }
+        let itemTag = TabItems.init(rawValue: UInt(self.tag))
+        switch itemTag {
+        case .home,.ourMemory,.myMemory,.myProfile:
+            btn.isSelected = !btn.isSelected
+            break
+        default:
+            break
+        }
         self.updateSelectTabBtn(selected: btn.isSelected)
         self.tabBtnBlock(self.tag)
     }
@@ -97,6 +134,7 @@ class TabbarView:BaseView {
         
         categoryView.frame = CGRect(x: 0, y: tabbarHeight, width: mainWidth, height: categoryViewHeight)
         self.addSubview(categoryView)
+        self.tag = Int(TabItems.myMemory.rawValue)
         
         self.makeTabbarItems(items: [.home,.category,.myMemory,.ourMemory,.myProfile])
         self.makeTabCategoryItems(items: [.schdule,.frieand,.todoList,.butkitList,.noti])
@@ -144,9 +182,17 @@ class TabbarView:BaseView {
             self.tabBtnView.addSubview(tabbarBtnView)
             self.tabbarBtns.append(tabbarBtnView)
             tabbarBtnView.setTabBtnBlock { p1 in
-                self.tabBtnBlock(TabItems.init(rawValue: UInt(p1)))
+                let tabTag = TabItems.init(rawValue: UInt(p1))
+                self.tabBtnBlock(tabTag)
+                if tabTag == .category { return }
+                if let selecteBtn = self.tabbarBtns.first(where: {$0.tag == self.tag}) {
+                    selecteBtn.updateBtnSelecteState(state: false)
+                    self.tag = p1
+                }
             }
+            tabbarBtnView.initWithBtnState()
         }
+        
     }
     
     private func makeTabCategoryItems(items:TabItems) {
@@ -163,7 +209,7 @@ class TabbarView:BaseView {
             categoryBtnView.setTabBtnBlock { p1 in
                 self.tabBtnBlock(TabItems.init(rawValue: UInt(p1)))
             }
-            categoryBtnView.backgroundColor = .black
+            categoryBtnView.initWithBtnState()
         }
     }
     

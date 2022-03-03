@@ -27,6 +27,8 @@ class TopView: BaseView {
         self.addSubview(titleLbl)
         self.addSubview(rightBtn)
         
+        leftBtn.setTitleColor(.black, for: .normal)
+        rightBtn.setTitleColor(.black, for: .normal)
         
         leftBtn.isHidden = true
         rightBtn.isHidden = true
@@ -49,6 +51,15 @@ class TopView: BaseView {
         leftBtn.addAction { p1 in
             leftBtnBlock()
         }
+    }
+    
+    func setRightBtnTitle(title:String) {
+        rightBtn.setTitle(title, for: .normal)
+    }
+    
+    func setRightBtnChangeState(state:Bool) {
+        rightBtn.isUserInteractionEnabled = state
+        rightBtn.alpha = (state ? 1.0:0.3)
     }
     
     func setRightBtn(btnTitle:String?,btnImage:UIImage?,rightBtnBlock:@escaping ()->Void) {

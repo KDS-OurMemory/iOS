@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol AddFriendContract:DataContract {
-    
+    func switchFriendsSearchForIDTab()
+    func switchFriendsSearchForNameTab()
 }

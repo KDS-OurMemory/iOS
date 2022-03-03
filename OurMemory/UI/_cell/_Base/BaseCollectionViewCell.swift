@@ -9,6 +9,8 @@ import UIKit
 
 class BaseCollectionViewCell: UICollectionViewCell {
  
+    var cellId:String = ""
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
         
@@ -25,7 +27,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     func __init__() {
-        
+        cellId = self.description
     }
     
 }

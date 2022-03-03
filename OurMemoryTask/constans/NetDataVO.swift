@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct json<T: Codable>: Codable{
     
@@ -25,20 +26,21 @@ struct json<T: Codable>: Codable{
     
 }
 // MARK: signUp,Login response userData
-public struct userData:Codable {
+struct userData:Codable,UserDataBinder {
     let birthday: String
-    let birthdayOpen: Bool
+    var birthdayOpen: Bool
     let deviceOs: String
     let name: String
     let privateRoomId: Int64
     let profileImageUrl: String?
-    let push: Bool
+    var push: Bool
     let pushToken: String
     let role : String
     let snsId: String
     let snsType: Int32
-    let solar: Bool
+    var solar: Bool
     let userId: Int64
+    var profileImage:UIImage?
     
     enum CodingKeys: String, CodingKey {
         case birthday = "birthday"
@@ -56,8 +58,23 @@ public struct userData:Codable {
         case userId = "userId"
     }
     
+    func getProfileImage(block: @escaping (UIImage?) -> Void) {
+        if let url = self.profileImageUrl {
+            url.urlStringToImage { p1 in
+                block(p1)
+            }
+        }
+    }
     
-    func getName() -> String? {
+    func getIsPush() ->Bool {
+        return self.push
+    }
+    
+    func getUserId() -> String {
+        return "\(self.userId)"
+    }
+    
+    func getName() -> String {
         return name
     }
     
@@ -72,9 +89,32 @@ public struct userData:Codable {
     func getIsSolar() -> Bool? {
         return solar
     }
+    
+    func getProfileImage() -> UIImage? {
+        return self.profileImage
+    }
+    
+    func getSnsType() -> String {
+        
+        var snsType = ""
+        switch self.snsType {
+        case SNSTYPE.KAKAO.rawValue:
+            snsType = "카카오"
+            break
+        case SNSTYPE.GOOGLE.rawValue:
+            snsType = "구글"
+            break
+        case SNSTYPE.NAVER.rawValue:
+            snsType = "네이버"
+            break
+        default:
+            break
+        }
+        return snsType
+    }
 }
 // MARK: addSchedule response scheduleData,roomData
-struct scheduleData:Codable {
+struct scheduleData:Codable,ScheduleDateDataBinder {
     let addedRoomId:Int64?
     let bgColor:String? // #FFFFFF
     let contents:String?
@@ -86,7 +126,7 @@ struct scheduleData:Codable {
     let place:String?
     let regDate:String
     let secondAlarm:String?
-    let shareRooms:[roomData]?
+    let shareRooms:[shareRoomsData]?
     let startDate:String //yyyy-MM-dd HH:mm
     let userAttendances:String?
     let writerId:Int64
@@ -109,9 +149,17 @@ struct scheduleData:Codable {
         case writerId = "writerId"
     }
     
+    func getScheduleColor() -> UIColor? {
+        return self.bgColor?.rgbToUIColor()
+    }
+    
+    func getName() -> String {
+        return self.name
+    }
+    
 }
 
-struct roomData:Codable {
+struct shareRoomsData:Codable {
     let name:String
     let ownerId:Int64
     let roomId:Int
@@ -124,12 +172,94 @@ struct roomData:Codable {
 }
 
 // MARK: response friendsData
-struct freindsData:Codable {
+struct friendsData:Codable,FriendsDataBinder {
+    
     let birthday:String
     let birthdayOpen:Bool
     let friendId:Int64
     let friendStatus:String?
     let name:String
-    let profileImageUrl:String
+    let profileImageUrl:String?
     let solar:Bool
+    var isSelected:Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case birthday = "birthday"
+        case birthdayOpen = "birthdayOpen"
+        case friendId = "friendId"
+        case friendStatus = "friendStatus"
+        case name = "name"
+        case profileImageUrl = "profileImageUrl"
+        case solar = "solar"
+    }
+    
+    func getBirthday() -> String {
+        return self.birthday
+    }
+    
+    func getBirthdayOpen() -> Bool {
+        return self.birthdayOpen
+    }
+    
+    func getName() -> String {
+        return self.name
+    }
+    
+    func getProfileImageUrl() -> String? {
+        return self.profileImageUrl
+    }
+    
+    func getSolar() -> Bool {
+        return self.solar
+    }
+    
+    func getFriendStatus() -> FRIENDS_STATUS? {
+        return FRIENDS_STATUS.init(rawValue: self.friendStatus ?? "")
+    }
+    
+    func getFriendID() -> String {
+        return "\(self.friendId)"
+    }
+    
+    func getProfileImage(block:@escaping (UIImage?) -> Void) {
+        if let url = self.profileImageUrl {
+            url.urlStringToImage { p1 in
+                block(p1)
+            }
+        }
+    }
+    
+    func getIsSelected() -> Bool? {
+        return self.isSelected
+    }
+    
 }
+
+struct roomData:Codable,RoomDataBinder {
+    let members:[friendsData]
+    let memories:[scheduleData]
+    let name:String
+    let opened:Bool
+    let ownerId:Int64
+    let regDate:String
+    let roomId:Int64
+    
+    enum CodingKeys: String, CodingKey {
+        case members = "members"
+        case memories = "memories"
+        case name = "name"
+        case opened = "opened"
+        case ownerId = "ownerId"
+        case regDate = "regDate"
+        case roomId = "roomId"
+    }
+    
+    func getUserCnt() -> Int {
+        return members.count
+    }
+    
+    func getName() -> String {
+        return self.name
+    }
+}
+

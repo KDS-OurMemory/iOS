@@ -9,7 +9,7 @@ import Foundation
 
 public protocol SignupView:ViewContract
 {
-    func updateResultAlert(user:userData)
+    func updateResultAlert(user:UserDataBinder)
     func updateConfirmBtnState(state:Bool)
     func updateSolarBtn(isSolar:Bool)
     func updateBirthdayOpenBtn(isOpenBirthday:Bool)

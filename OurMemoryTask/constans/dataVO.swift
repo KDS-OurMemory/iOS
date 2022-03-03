@@ -200,3 +200,49 @@ struct signUpInputUserData:SignupUserDataBinder {
         return self.snsType
     }
 }
+
+struct CalendarData {
+    var year:String
+    var month:String
+    var selectDay:[CalDateData]
+}
+
+struct CalDateData:CalSelectDateDataBinder {
+    
+    let num:String
+    let state:dateState
+    let weekDay:WEEKDAYS
+    let weekPoint:Int
+    let dateString:String
+    var isSelecte:Bool = false
+    var schedules:[scheduleData]?
+    
+    func getDateNum() -> String {
+        return self.num
+    }
+    
+    func getDateState() -> dateState {
+        return self.state
+    }
+    
+    func getWeeksDay() -> WEEKDAYS {
+        return self.weekDay
+    }
+    
+    func getWeekPoint() -> Int {
+        return self.weekPoint
+    }
+    
+    func getIsSelcted() -> Bool {
+        return self.isSelecte
+    }
+    
+    func getSchedule() -> [ScheduleDateDataBinder]? {
+        return self.schedules
+    }
+    
+    func getSelectDateString() -> String {
+        return self.dateString
+    }
+    
+}

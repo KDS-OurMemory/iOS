@@ -10,7 +10,7 @@ import UIKit
 class CancelRequestFriendNetModel: BaseNetModel {
 
     override func getPath() -> String {
-        return NETPATH.PATH_FRIENDS.path
+        return NETPATH.PATH_FRIENDSREQUESTCANCEL.path
     }
     
     override func getHttpMethod() -> HTTPMethod {

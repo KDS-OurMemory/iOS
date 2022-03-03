@@ -147,7 +147,7 @@ extension SignUpViewController:SignupView {
         
     }
     
-    func updateResultAlert(user:userData) {
+    func updateResultAlert(user:UserDataBinder) {
         self.showAlertMsgWithTitleAndActions(title: "추가 정보 확인", msg:""
                                              //                                   """
                                              //       이름:\(userData.getName())\n

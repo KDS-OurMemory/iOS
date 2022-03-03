@@ -23,42 +23,71 @@ class FreindAndRoomTabbarView: BaseView {
     override func prepareViews() {
         let horPadding = 15.0
         let viewLineHieght = 1.0
-        let freindTabView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width*0.5, height: topViewHeight))
-        freindTabView.addSubview(freindLineView)
-        freindLineView.frame = CGRect(x: horPadding, y: topViewHeight - viewLineHieght, width: freindTabView.frame.width - horPadding * 2, height: viewLineHieght)
+        let btnWidth = mainWidth*0.5
+        
+        freindLineView.frame = CGRect(x: horPadding, y: topViewHeight - viewLineHieght, width: btnWidth - horPadding * 2, height: viewLineHieght)
         freindLineView.backgroundColor = .blue
         freindBtn.setTitleColor(.blue, for: .selected)
         freindBtn.setTitleColor(.black, for: .normal)
         freindBtn.isSelected = true
         
-        let roomTabView:UIView = UIView(frame: CGRect(x: self.frame.width, y: 0, width: self.frame.width*0.5, height: topViewHeight))
-        roomTabView.addSubview(roomLineView)
-        roomLineView.frame = CGRect(x: horPadding, y: topViewHeight - viewLineHieght, width: roomTabView.frame.width - horPadding * 2, height: viewLineHieght)
+        self.addSubview(freindBtn)
+        freindBtn.addSubview(freindLineView)
+        freindBtn.translatesAutoresizingMaskIntoConstraints = false
+        freindBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        freindBtn.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        freindBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        freindBtn.trailingAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        freindBtn.setTitle("친구 목록", for: .normal)
+        freindBtn.addAction { p1 in
+            self.actionFreindTab(sender: p1 as! UIButton)
+        }
+        
+        roomLineView.frame = CGRect(x: horPadding, y: topViewHeight - viewLineHieght, width: btnWidth - horPadding * 2, height: viewLineHieght)
         roomLineView.backgroundColor = .blue
         roomLineView.isHidden = true
         roomBtn.setTitleColor(.blue, for: .selected)
         roomBtn.setTitleColor(.black, for: .normal)
-        
+        self.addSubview(roomBtn)
+        roomBtn.addSubview(roomLineView)
+        roomBtn.translatesAutoresizingMaskIntoConstraints = false
+        roomBtn.leadingAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        roomBtn.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        roomBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        roomBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        roomBtn.setTitle("방 목록", for: .normal)
+        roomBtn.addAction { p1 in
+            self.actionRoomTab(sender: p1 as! UIButton)
+        }
     }
     
     func setSelectTabBlock(block:@escaping (SELECTTAB_FREINDANDROOM)->Void) {
         selectTabBlock = block
-    }
-    
-    fileprivate func actionFreindTab(sender:UIButton) {
-        freindLineView.isHidden = sender.isSelected
-        roomLineView.isHidden = !sender.isSelected
-        if let block = self.selectTabBlock {
+        if let block = selectTabBlock {
             block(.SELECT_FREINDTAB)
         }
     }
     
+    fileprivate func actionFreindTab(sender:UIButton) {
+        
+        roomLineView.isHidden = true
+        roomBtn.isSelected = false
+        if let block = self.selectTabBlock {
+            block(.SELECT_FREINDTAB)
+        }
+        freindBtn.isSelected = true
+        freindLineView.isHidden = false
+    }
+    
     fileprivate func actionRoomTab(sender:UIButton) {
-        roomLineView.isHidden = sender.isSelected
-        freindLineView.isHidden = !sender.isSelected
+        
+        freindLineView.isHidden = true
+        freindBtn.isSelected = false
         if let block = self.selectTabBlock {
             block(.SELECT_ROOMTAB)
         }
+        roomBtn.isSelected = true
+        roomLineView.isHidden = false
     }
 
 }

@@ -7,6 +7,8 @@
 
 import Foundation
 
-public protocol AddRoomContract:DataContract {
+public protocol AddRoomContract:BaseCollectionAdapterContract {
     
+    func removeSelectedUserItemAtIndex(idx:Int)
+    func actionConfirmBtn()
 }

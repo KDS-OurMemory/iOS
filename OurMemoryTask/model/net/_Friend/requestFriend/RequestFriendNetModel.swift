@@ -18,7 +18,7 @@ class RequestFriendNetModel: BaseNetModel {
     }
     
     override func getPath() -> String {
-        return NETPATH.PATH_FRIENDS.path
+        return NETPATH.PATH_FRIENDSREQUEST.path
     }
     
     override func getHttpMethod() -> HTTPMethod {

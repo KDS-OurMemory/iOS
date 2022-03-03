@@ -21,6 +21,8 @@ public enum ctls {
     case eContractTodoList
     case eContractMyMemory
     case eContractOurMemory
+    case eContractOurMemoryFreindsTab
+    case eContractOurMemoryRoomsTab
     case eContractMyProFile
     case eContractButkitList
     case eContractNoti
@@ -29,6 +31,11 @@ public enum ctls {
     case eContractSelectShared
     case eContractSelectDate
     case eContractAddFriend
+    case eContractAddFriendSearchID
+    case eContractAddFriendSearchName
+    case eContractAddFriendSearchQR
+    case eContractAddFriendSearchRecommend
+    case eContractAddRoom
 }
 
 open class CtlMaker: NSObject {
@@ -101,6 +108,16 @@ open class CtlMaker: NSObject {
                 retVal = OurMemoryCtl(view: view as! ViewContract, data: data)
             }
             break
+        case .eContractOurMemoryFreindsTab:
+            if let _ = view as? OurMemoryFriendsTabView {
+                retVal = OurMemoryFriendsTabCtl(view: view as! ViewContract, data: data)
+            }
+            break
+        case .eContractOurMemoryRoomsTab:
+            if let _ = view as? OurMemoryRoomsTabView {
+                retVal = OurMemoryRoomsTabCtl(view: view as! ViewContract, data: data)
+            }
+            break
         case .eContractMyProFile:
             if let _ = view as? MyProfileView {
                 retVal = MyProfileCtl(view: view as! ViewContract, data: data)
@@ -137,9 +154,29 @@ open class CtlMaker: NSObject {
             }
             break
         case .eContractAddFriend:
-            if let _ = view as? AddFriendView {
+            if let _ = view as? AddFriendsView {
                 retVal = AddFriendCtl(view: view as! ViewContract, data: data)
             }
+            break
+        case .eContractAddFriendSearchID:
+            if let _ = view as? AddFriendsIDView {
+                retVal = AddFriendsIDCtl(view: view as! ViewContract, data: data)
+            }
+            break
+        case .eContractAddFriendSearchName:
+            if let _ = view as? AddFriendNameView {
+                retVal = AddFriendNameCtl(view: view as! ViewContract, data: data)
+            }
+            break
+        case .eContractAddFriendSearchQR:
+            break
+        case .eContractAddFriendSearchRecommend:
+            break
+        case .eContractAddRoom:
+            if let _ = view as? AddRoomView {
+                retVal = AddRoomCtl(view: view as! ViewContract, data: data)
+            }
+            break
         }
         
         return retVal

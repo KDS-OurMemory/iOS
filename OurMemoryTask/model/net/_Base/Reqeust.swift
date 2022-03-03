@@ -29,7 +29,10 @@ enum RequestParam {
     case body([String: Any])
     case url([String: Any])
     case formData([String: Any])
+    case pathFormData([String],[String:Any])
     case query([String: Any])
+    case path([String])
+    case pathQuery([String],[String:Any])
 }
 
 protocol Request {
@@ -39,32 +42,50 @@ protocol Request {
     var format: String? { get }
     var formDataFormat: String? { get }
     var headers: [String]? { get }
+    var images:[ImageFile]? { get }
 }
 
 extension Request {
     var method: HTTPMethod { return .get }
     var format: String? { return "application/json" }
-    var formDataFormat: String? { return "multipart/form-data; boundaryBoundary-\(UUID().uuidString)" }
-    var headers: [String]? { return ["content-Type", "accept"] }
-    var images:[ImageFile]? { return nil}
+    var formDataFormat: String? { return "multipart/form-data; boundary=--Boundary-\(UUID().uuidString)" }
+    var headers: [String]? { return ["Content-Type", "accept"] }
     
     func urlRequest() -> URLRequest? {
-        let url = URL(string: path)!
-        var request = URLRequest(url: url)
+        var url:URL!
         
+        switch params {
+        case .pathQuery(let addPath, _),.pathFormData(let addPath, _):
+            url = URL(string: path + "/" + addPath.joined(separator: "/") + "?" )!
+            break
+        case .path(let addPath):
+//            print(path + "" + addPath.joined(separator: "\""))
+            url = URL(string: path + "/" + addPath.joined(separator: "/") )!
+            break
+        case .query(_):
+            url = URL(string: path+"?")!
+            break
+        default:
+            url = URL(string: path)!
+            break
+        }
+        
+        var request = URLRequest(url: url)
         // method
         request.httpMethod = method.name
         // header
         switch params {
-        case.body( _),.url( _),.query( _):
+        case.body( _),.url( _),.query( _),.path( _),.pathQuery(_, _):
             headers?.forEach { headerField in
                 request.setValue(format, forHTTPHeaderField: headerField)
             }
             break
-        case.formData( _):
-            request.setValue(format, forHTTPHeaderField: (headers?.first)!)
+        case.formData( _),.pathFormData(_, _):
+            request.setValue(formDataFormat, forHTTPHeaderField: (headers?.first)!)
             break
         }
+        
+        
         
         // params
         switch params {
@@ -86,17 +107,17 @@ extension Request {
         case .formData(let params):
             
             var body = Data()
-            let boundaryPrefix = "--Boundary\(UUID().uuidString)\r\n"
+            let boundaryPrefix = "Boundary-\(UUID().uuidString)\r\n"
             
             for (key, value) in params {
-                body.append(contentsOf: boundaryPrefix.data(using: .utf8)!)
+                body.append(contentsOf: "--\(boundaryPrefix)".data(using: .utf8)!)
                 body.append(contentsOf: "Content-Disposition: form-data; name=\"\(key)\"\"\r\n\r\n".data(using: .utf8)!)
                 body.append(contentsOf: "\(value)\r\n".data(using: .utf8)!)
             }
             
             if let images = images {
                 for image in images {
-                    body.append(contentsOf: boundaryPrefix.data(using: .utf8)!)
+                    body.append(contentsOf: "--\(boundaryPrefix)".data(using: .utf8)!)
                     body.append(contentsOf: "Content-Disposition: form-data; name=\(image.key)\";  filename=\"\(image.fileName)\"\r\n".data(using: .utf8)!)
                     body.append(contentsOf: "Content-Type: image/\(image.type)\r\n\r\n".data(using: .utf8)!)
                     body.append(contentsOf: image.data)
@@ -104,12 +125,12 @@ extension Request {
                 }
             }
                 
-            body.append(contentsOf: boundaryPrefix.data(using: .utf8)!)
+            body.append(contentsOf: "--\(boundaryPrefix)--\r\n".data(using: .utf8)!)
             
-            print("request \(params) in body =================>  \(path)")
+            print("request \(params) in formData =================>  \(path)")
             request.httpBody = body
-        case .query(let params):
-            let queryParams = params.map {
+        case .query(let querys):
+            let queryParams = querys.map {
                 URLQueryItem(name: $0.key, value: "\($0.value)")
                 
             }
@@ -117,7 +138,49 @@ extension Request {
             components?.queryItems = queryParams
             print("request \(params) in url =================>  " + (components?.url!.description ?? ""))
             request.url = components?.url
+        case .path(let addPath):
+            print("request \(addPath) in Path ==============> " + path)
+        case .pathQuery(let addPath, let querys):
+            let queryParams = querys.map {
+                URLQueryItem(name: $0.key, value: "\($0.value)")
+                
+            }
+            var components = URLComponents(string: path + "/" + addPath.joined(separator: "/") + "?" )
+            components?.queryItems = queryParams
+            print("request \(params) in path,query =================>  " + (components?.url!.description ?? ""))
+            request.url = components?.url
+        case .pathFormData(let addPath, let params):
+            
+            let components = URLComponents(string: path + "/" + addPath.joined(separator: "/") + "?" )
+            
+            print("request \(params) in path,formData =================>  " + (components?.url!.description ?? ""))
+            request.url = components?.url
+            var body = Data()
+            let boundaryPrefix = "Boundary-\(UUID().uuidString)\r\n"
+            
+            for (key, val) in params {
+                body.append(contentsOf: "--\(boundaryPrefix)\r\n".data(using: .utf8)!)
+                body.append(contentsOf: "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+                body.append(contentsOf: "\(val)\r\n".data(using: .utf8)!)
+            }
+            
+            if let images = self.images {
+                for image in images {
+                    body.append(contentsOf: "--\(boundaryPrefix)\r\n".data(using: .utf8)!)
+                    body.append(contentsOf: "Content-Disposition: form-data; name=\"\(image.key)\";  filename=\"\(image.fileName)\"\r\n".data(using: .utf8)!)
+                    body.append(contentsOf: "Content-Type: image/\(image.type)\r\n\r\n".data(using: .utf8)!)
+                    body.append(contentsOf: image.data)
+                    body.append(contentsOf: "\r\n".data(using: .utf8)!)
+                    
+                }
+            }
+            
+            body.append(contentsOf: "--\(boundaryPrefix)--\r\n".data(using: .utf8)!)
+            
+            request.httpBody = body
+            
         }
+    
         return request
     }
 }

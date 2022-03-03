@@ -2,13 +2,13 @@
 //  OurMemoryView.swift
 //  OurMemoryTask
 //
-//  Created by 이승기 on 2022/02/06.
+//  Created by 이승기 on 2022/02/20.
 //
 
 import Foundation
 
 public protocol OurMemoryView:TabbarContract {
-    func setSearchBlock(searchCallback:@escaping (String) -> Void)
-    func updateFriendList()
-    func updateRoomList()
+    func updateSearchView()
+    func activeRoomsTabView()
+    func activeFriendsTabView()
 }

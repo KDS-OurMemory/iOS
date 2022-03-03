@@ -10,6 +10,9 @@ public protocol Navigation {}
 enum NETPATH :String{
     case PATH_USER = "/v1/users"
     case PATH_FRIENDS = "/v1/friends"
+    case PATH_FRIENDSREQUEST = "/v1/friends/request"
+    case PATH_SEARCHFRIENDS = "/v1/friends/users"
+    case PATH_FRIENDSREQUESTCANCEL = "/v1/friends/cancel/users"
     case PATH_ROOMS = "/v1/rooms"
     case PATH_MEMORIES = "/v1/memories"
     case PATH_NOTICE = "/v1/notices"
@@ -28,6 +31,8 @@ public enum NEXTVIEW:Navigation {
     case NEXTVIEW_FRIENDSLIST
     case NEXTViEW_SHAREDLIST
     case NEXTVIEW_ADDSCHEDULE
+    case NEXTVIEW_ADDFRIENDS
+    case NEXTVIEW_ADDROOMS
     case NEXTVIEW_SELECTALRAMTIME
     case NEXTVIEW_SELECTCOLOR
     case NEXTVIEW_SELECTSHARED
@@ -43,11 +48,21 @@ public enum NEXTVIEW:Navigation {
     case NEXTVIEW_NOTI
 }
 
-public enum SNSTYPE:Int8 {
+public enum SNSTYPE:Int32 {
     case UNOWNED
     case KAKAO = 1
     case GOOGLE = 2
     case NAVER = 3
+}
+
+public enum WEEKDAYS:Int8 {
+    case SUNDAY = 1
+    case MONDAY
+    case TUESDAY
+    case WEDNESDAY
+    case THURSDAY
+    case FRIDAY
+    case SATURDAY
 }
 
 enum NETRESULTCODE {
@@ -139,15 +154,7 @@ enum PICKER_MODE {
     case ss
 }
 
-enum WEEKDAYS:Int8 {
-    case SUNDAY = 1
-    case MONDAY
-    case TUESDAY
-    case WEDNESDAY
-    case THURSDAY
-    case FRIDAY
-    case SATURDAY
-}
+
 
 enum RESULT_DATE:UInt {
     case RESULT_YEAR
@@ -165,4 +172,10 @@ enum ATTENDANCE_STATUS:String {
     case ABSENCE = "ABSENCE"
 }
 
-
+public enum FRIENDS_STATUS:String {
+    case BLOCK = "BLOCK"
+    case FRIEND = "FRIEND"
+    case REQUESTED = "REQUESTED"
+    case WAIT = "WAIT"
+    case unowned
+}

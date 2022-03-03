@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol MyMemoryContract:DataContract {
+public protocol MyMemoryContract:BaseCollectionAdapterContract {
     func actionCalPlusBtn(sender:UIButton)
     func actionCalMinusBtn(sender:UIButton)
     func actionAddSchduleBtn(sender:UIButton)

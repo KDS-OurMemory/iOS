@@ -9,6 +9,7 @@ import UIKit
 
 class mainCtl: BaseCtl {
 
+    var adapter:BaseCollectionAdapter?
     let mainModel:MainModel = MainModel()
     override func __initWithData__(data: Any?) {
         self.mainModel.initWithCallback { vaildeCase in
@@ -37,9 +38,10 @@ class mainCtl: BaseCtl {
 
 extension mainCtl: MainContract {
     
-    func setCollectionWithAdpater(collection: UICollectionView, Adapter: BaseCollectionAdapter) {
-        self.collection = Adapter
-        self.collection.collectionView = collection
+    func setCollectionWithAdpater( adapter: BaseCollectionAdapter) {
+        
+        self.adapter = adapter
+        
     }
     
     func tryGetMyRommListRequest() {
