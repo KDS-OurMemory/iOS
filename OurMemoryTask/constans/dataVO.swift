@@ -215,7 +215,7 @@ struct CalDateData:CalSelectDateDataBinder {
     let weekPoint:Int
     let dateString:String
     var isSelecte:Bool = false
-    var schedules:[scheduleData]?
+    var schedules:[scheduleData] = []
     
     func getDateNum() -> String {
         return self.num

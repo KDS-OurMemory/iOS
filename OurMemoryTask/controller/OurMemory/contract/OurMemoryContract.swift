@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-public protocol OurMemoryContract:DataContract {
+public protocol OurMemoryContract:BaseCollectionAdapterContract {
     func actionSearchBtn(sender:UIButton)
-    func actionAddFriendAndAddRoomBtn(sender:UIButton)
+    func actionAddRoomBtn(sender:UIButton)
     func actionSettingsBtn(sender:UIButton)
     func reloadView()
-    func switchFriendsTab()
-    func switchRoomsTab()
+    
+
 }

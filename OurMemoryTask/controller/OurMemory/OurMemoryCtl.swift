@@ -7,77 +7,79 @@
 
 import UIKit
 
-class OurMemoryCtl: BaseCtl {
+class OurMemoryCtl: BaseCollectionCtl {
 
-    enum OURMEMORY_TAB {
-        case FRIENDSTAB
-        case ROOMSTAB
-        case unowned
-        
-    }
-    
-    var currenctTab:OURMEMORY_TAB = .unowned
+    let roomsModel:RoomsModel = RoomsModel()
+    var searchState:Bool = false
     
     override func __initWithData__(data: Any?) {
-        
+        self.roomsModel.initWithCallback(data: data) { p1, p2 in
+            switch p1 {
+            case .ROOMSLIST_UPDATE:
+                if let adapter = self.adapter {
+                    adapter.setData(section: 1, data: (p2 as! [roomData]) )
+                }
+                break
+            case .ROOMSLIST_CHANGE:
+                if let adapter = self.adapter {
+                    adapter.changeData(section: 1, data: (p2 as! [roomData]))
+                }
+                break
+            case .ROOMSSLIST_NODATA:
+                if let adapter = self.adapter {
+                    adapter.changeData(section: 1, data: p2 as! [Any])
+                }
+                break
+            case .ROOMSLIST_APPENDITEM:
+                break
+            }
+        }
+    self.roomsModel.tryRequestRoomsList(context: self)
+    }
+    
+    fileprivate func updateSearchView() {
+        if let setAdapter = self.adapter,self.isActive {
+            self.searchState = !self.searchState
+            setAdapter.changeSearchItemState(state: searchState)
+        }
     }
 }
 
 extension OurMemoryCtl: OurMemoryContract {
     
-    func switchFriendsTab() {
-        if currenctTab == .FRIENDSTAB { return }
-        currenctTab = .FRIENDSTAB
-        if let view = self.view as? OurMemoryView {
-            view.activeFriendsTabView()
-        }
-    }
-    
-    func switchRoomsTab() {
-        if currenctTab == .ROOMSTAB { return }
-        currenctTab = .ROOMSTAB
-        if let view = self.view as? OurMemoryView {
-            view.activeRoomsTabView()
+    func setCollectionWithAdpater( adapter: BaseCollectionAdapter) {
+        self.adapter = adapter
+        if let setAdapter = self.adapter {
+            setAdapter.changeSearchItemState(state: false)
+            setAdapter.setSearchBlock { p1 in
+                
+            }
+            setAdapter.setCellBlock { p1 in
+                switch p1.section {
+                case 0:
+                    break
+                case 1:
+                    self.callShowNextVC(view: .NEXTVIEW_ROOMDETAIL, data: self.roomsModel.getSelectDataIdx(index: p1.row))
+                    break
+                default:
+                    break
+                }
+            }
         }
     }
     
     func reloadView() {
-        switch self.currenctTab {
-        case .FRIENDSTAB:
-            if let view = self.view as? OurMemoryView {
-                view.activeFriendsTabView()
-            }
-            break
-        case .ROOMSTAB:
-            if let view = self.view as? OurMemoryView {
-                view.activeRoomsTabView()
-            }
-            break
-        default:
-            break
-        }
+        self.roomsModel.tryRequestRoomsList(context: self)
     }
     
     func actionSearchBtn(sender: UIButton) {
-        if let view = self.view as? OurMemoryView {
-            view.updateSearchView()
-        }
+        self.updateSearchView()
     }
     
-    func actionAddFriendAndAddRoomBtn(sender: UIButton) {
-        switch currenctTab {
-        case .unowned:
-            break
-        case .ROOMSTAB:
-            if let view = self.view as? OurMemoryView {
-                view.showNextVC(vc: .NEXTVIEW_ADDROOMS, data: nil)
-            }
-            break
-        case .FRIENDSTAB:
-            if let view = self.view as? OurMemoryView {
-                view.showNextVC(vc: .NEXTVIEW_ADDFRIENDS, data: nil)
-            }
-            break
+    func actionAddRoomBtn(sender:UIButton) {
+        
+        if let view = self.view as? OurMemoryView {
+            view.showNextVC(vc: .NEXTVIEW_ADDROOMS, data: nil)
         }
         
     }

@@ -34,6 +34,18 @@ class AddScheduleModel: NSObject {
     
     func initWithBlock(data:Any?, block:@escaping (SCHEDULERESULT,Any)->Void) {
         
+        if let scheduleData = data as? scheduleData {
+            
+            self.setTitle(title: scheduleData.name)
+            if let startDatecomponents = scheduleData.startDate.stringToDateComponentWtihDateFormat(dateformatStr: "yyyy-MM-dd HH:mm") {
+                self.addDate(date: ScheduleTimeData(year: "\(startDatecomponents.year!)", month: "\(startDatecomponents.month!)", day: "\(startDatecomponents.day!)", our: "\(startDatecomponents.hour!)", min: "\(startDatecomponents.minute!)", weekDay: "\(startDatecomponents.weekday!)", components: startDatecomponents))
+            }
+            if let endDatecomponents = scheduleData.endDate.stringToDateComponentWtihDateFormat(dateformatStr: "yyyy-MM-dd HH:mm") {
+                self.addDate(date: ScheduleTimeData(year: "\(endDatecomponents.year!)", month: "\(endDatecomponents.month!)", day: "\(endDatecomponents.day!)", our: "\(endDatecomponents.hour!)", min: "\(endDatecomponents.minute!)", weekDay: "\(endDatecomponents.weekday!)", components: endDatecomponents))
+            }
+            
+            
+        }
         scheduleBlock = block
         if let scheduleBlock = scheduleBlock {
             scheduleBlock(.SCHEDULE_UPDATE,scheduleData)
@@ -59,10 +71,12 @@ class AddScheduleModel: NSObject {
             selectedDateComponent = component
             if startDate == nil {
                 startDate = component
+                addScheduleParams["startDate"] = component.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
             }else {
                 switch startDate?.comparison(targetDateComponents: component) {
                 case .orderedAscending:
                     startDate = component
+                    addScheduleParams["startDate"] =  component.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
                     break
                 default:
                     break
@@ -71,10 +85,12 @@ class AddScheduleModel: NSObject {
             
             if endDate == nil {
                 endDate = component
+                addScheduleParams["endDate"] = component.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
             }else {
                 switch endDate?.comparison(targetDateComponents: component) {
                 case .orderedDescending:
                     endDate = component
+                    addScheduleParams["endDate"] = component.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
                     break
                 default:
                     break
@@ -215,7 +231,7 @@ class AddScheduleModel: NSObject {
     
     func valideCheckAddSchedulData() {
         if let block = self.scheduleBlock {
-            if addScheduleInputDataCheck.contains([.ADDSCHEDULE_INPUT_TITLE,.ADDSCHEDULE_INPUT_DATE,.ADDSCHEDULE_INPUT_ALARM]) {
+            if addScheduleInputDataCheck.contains([.ADDSCHEDULE_INPUT_TITLE,.ADDSCHEDULE_INPUT_DATE]) {
                 
                 block(.SCHEDULECONFIRMBTN_UPDATE,true)
                 
@@ -245,9 +261,6 @@ class AddScheduleModel: NSObject {
         
         addScheduleParams["attendanceStatus"] = ATTENDANCE_STATUS.ABSENCE.rawValue
         addScheduleParams["bgColor"] = self.hexStringFromColor(color:scheduleData.color)
-        
-        addScheduleParams["endDate"] = self.endDate?.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
-        addScheduleParams["startDate"] = self.startDate?.dateComponentsToStrFormat(formatStr:"yyyy-MM-dd HH:mm")
         addScheduleParams["name"] = scheduleData.title
         addScheduleParams["userId"] = "\(sharedUserDataModel.userData.userId)"
 //        addScheduleParams["place"] = scheduleData.locations

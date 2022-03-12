@@ -211,6 +211,8 @@
             <connections>
                 <outlet property="addScheduleBtn" destination="m0f-V9-CZ8" id="4fP-JR-9Zh"/>
                 <outlet property="calCollectionView" destination="Ew8-Uq-3zx" id="2Tp-Tg-ZRQ"/>
+                <outlet property="calHeightConstraint" destination="TUJ-4a-16M" id="B3G-pb-4kq"/>
+                <outlet property="calTopContainer" destination="EFE-W2-11U" id="hg3-vp-ihG"/>
                 <outlet property="dateLeftBtn" destination="Uiu-Ne-gku" id="Jt3-kS-E0E"/>
                 <outlet property="datePickerBtn" destination="GMd-hS-pZ9" id="oyI-Ze-1ah"/>
                 <outlet property="dateRightBtn" destination="nRM-3m-vTG" id="Vii-5v-ofv"/>

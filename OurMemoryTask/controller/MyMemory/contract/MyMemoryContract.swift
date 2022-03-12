@@ -13,4 +13,6 @@ public protocol MyMemoryContract:BaseCollectionAdapterContract {
     func actionCalMinusBtn(sender:UIButton)
     func actionAddSchduleBtn(sender:UIButton)
     func actionSelectSharedBtn(sender:UIButton)
+    func selectScheduleIndex(index:Int)
+    func reloadView()
 }

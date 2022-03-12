@@ -71,7 +71,9 @@ open class BaseCollectionAdapter:NSObject,UICollectionViewDelegate,UICollectionV
         if let collectionView = collectionView {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(item: row, section: atSection)
-                collectionView.reloadItems(at: [indexPath])
+                UIView.performWithoutAnimation {
+                    collectionView.reloadItems(at: [indexPath])
+                }
             }
         }
     }
@@ -83,7 +85,9 @@ open class BaseCollectionAdapter:NSObject,UICollectionViewDelegate,UICollectionV
                 indexArr.append( IndexPath(item: row, section: atSection))
             }
             DispatchQueue.main.async {
-                collectionView.reloadItems(at: indexArr)
+                UIView.performWithoutAnimation {
+                    collectionView.reloadItems(at: indexArr)
+                }
             }
         }
     }

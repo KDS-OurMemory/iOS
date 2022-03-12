@@ -13,29 +13,8 @@ class OurMemoryRoomsTabCtl: BaseCollectionCtl {
     var searchState:Bool = false
     
     override func __initWithData__(data: Any?) {
-        if self.isActive {
-            self.roomsModel.initWithCallback(data: data) { p1, p2 in
-                switch p1 {
-                case .ROOMSLIST_UPDATE:
-                    if let adapter = self.adapter {
-                        adapter.setData(section: 1, data: (p2 as! [roomData]) )
-                    }
-                    break
-                case .ROOMSLIST_CHANGE:
-                    if let adapter = self.adapter {
-                        adapter.changeData(section: 1, data: (p2 as! [roomData]))
-                    }
-                    break
-                case .ROOMSSLIST_NODATA:
-                    if let adapter = self.adapter {
-                        adapter.changeData(section: 1, data: p2 as! [Any])
-                    }
-                    break
-                case .ROOMSLIST_APPENDITEM:
-                    break
-                }
-            }
-        }
+        
+            
     }
 }
 
@@ -46,15 +25,6 @@ extension OurMemoryRoomsTabCtl: OurMemoryRoomsTabContract {
             self.searchState = !self.searchState
             setAdapter.changeSearchItemState(state: searchState)
         }
-    }
-    
-    func switchFriendTab() {
-        self.isActive = false
-    }
-    
-    func activeRoomsTab() {
-        self.isActive = true
-        self.roomsModel.tryRequestRoomsList(context: self)
     }
     
     func setCollectionWithAdpater( adapter: BaseCollectionAdapter) {

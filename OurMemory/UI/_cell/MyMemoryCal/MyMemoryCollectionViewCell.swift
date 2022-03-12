@@ -15,11 +15,13 @@ class MyMemoryCollectionViewCell: BaseCollectionViewCell {
     let dateBtn:UIButton = UIButton()
     let scheduleDotView:UIView = UIView()
     let scheduleListView:UIView = UIView()
+    var indexPath:IndexPath?
     
-    func setOnOffBlock(block:@escaping (Bool) -> Void) {
+    
+    func setOnOffBlock(block:@escaping (Bool,UICollectionViewCell) -> Void) {
         dateBtn.addAction { p1 in
             self.setSelectedBackground()
-            block(self.dateBtn.isSelected)
+            block(self.dateBtn.isSelected,self)
         }
     }
     
@@ -34,8 +36,8 @@ class MyMemoryCollectionViewCell: BaseCollectionViewCell {
         self.addSubview(scheduleDotView)
         self.addSubview(scheduleListView)
         
-        self.dateNumLbl.font = .systemFont(ofSize: 10)
-        self.dateNumLbl.frame = CGRect(x:self.center.x-25,y:0,width: 50, height: 50)
+        self.dateNumLbl.font = .systemFont(ofSize: 8)
+        self.dateNumLbl.frame = CGRect(x:self.frame.width*0.35,y:0,width: 17, height: 15)
         self.dateNumLbl.textAlignment = .center
         self.dateBtn.frame.size = self.frame.size
         self.scheduleDotView.frame = CGRect(x: 0, y: 40, width: self.frame.width, height: 20)
@@ -45,13 +47,14 @@ class MyMemoryCollectionViewCell: BaseCollectionViewCell {
         self.scheduleListView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.scheduleListView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.dateNumLbl.clipsToBounds = true
-        self.dateNumLbl.layer.cornerRadius = dateNumLbl.frame.width/2
+        self.dateNumLbl.layer.cornerRadius = dateNumLbl.frame.height/2
         self.dateNumLbl.layer.masksToBounds = true
         self.dateNumLbl.text = data.getDateNum()
         self.dateBtn.isSelected = data.getIsSelcted()
-        scheduleDotView.alpha = opecity
-        scheduleListView.alpha = 1 - opecity
+        scheduleDotView.alpha = 1 - opecity
+        scheduleListView.alpha = opecity
         self.setSelectedBackground()
+        
         switch data.getDateState() {
         case .prev:
             self.dateNumLbl.textColor = .lightGray
@@ -64,7 +67,7 @@ class MyMemoryCollectionViewCell: BaseCollectionViewCell {
             break
         case .today:
             self.dateNumLbl.textColor = .gray
-            self.dateNumLbl.backgroundColor = .lightGray
+            self.dateNumLbl.backgroundColor = (self.dateBtn.isSelected ? .cyan:.lightGray)
             break
         default:
             break

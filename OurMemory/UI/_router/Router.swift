@@ -102,7 +102,7 @@ struct MyAppNavigation: AppNavigation {
             case .NEXTVIEW_MAIN:
                 return MainViewController().initiailizeSubViewClass()
             case .NEXTVIEW_FRIENDSLIST:
-                return SharedListViewController().initiailizeSubViewClass()
+                return FriendsViewController().initiailizeSubViewClass()
             case .NEXTVIEW_ROOMLIST:
                 return RoomTableViewController().initiailizeSubViewClass()
             case .NEXTVIEW_ROOMDETAIL:
@@ -131,6 +131,8 @@ struct MyAppNavigation: AppNavigation {
                 return AddFreindViewController().initiailizeSubViewClass()
             case .NEXTVIEW_ADDROOMS:
                 return AddRoomViewController().initiailizeSubViewClass()
+            
+            
             default:
                 break
             }

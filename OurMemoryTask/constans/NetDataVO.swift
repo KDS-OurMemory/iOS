@@ -118,7 +118,7 @@ struct scheduleData:Codable,ScheduleDateDataBinder {
     let addedRoomId:Int64?
     let bgColor:String? // #FFFFFF
     let contents:String?
-    let endDate:String
+    let endDate:String //yyyy-MM-dd HH:mm
     let firstAlarm:String?
     let memoryId:Int64
     let modDate:String?
@@ -155,6 +155,15 @@ struct scheduleData:Codable,ScheduleDateDataBinder {
     
     func getName() -> String {
         return self.name
+    }
+    
+    func getDateSchedule() ->String {
+        var result = ""
+        result += self.startDate
+        result += " ~ "
+        result += self.endDate
+        
+        return result
     }
     
 }

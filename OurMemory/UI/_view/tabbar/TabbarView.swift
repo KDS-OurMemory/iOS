@@ -98,16 +98,21 @@ class TabbarBtnView:BaseView {
     }
     
     @objc private func clickedTabBtn(btn:UIButton) {
-        if btn.isSelected == true { return }
+        
         let itemTag = TabItems.init(rawValue: UInt(self.tag))
         switch itemTag {
         case .home,.ourMemory,.myMemory,.myProfile:
+            if btn.isSelected == true { return }
             btn.isSelected = !btn.isSelected
+            self.updateSelectTabBtn(selected: btn.isSelected)
+            break
+        case .category:
+            btn.isSelected = false
             break
         default:
+            btn.isSelected = true
             break
         }
-        self.updateSelectTabBtn(selected: btn.isSelected)
         self.tabBtnBlock(self.tag)
     }
 }

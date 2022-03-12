@@ -9,8 +9,7 @@ import Foundation
 
 
 public protocol OurMemoryRoomsTabContract:BaseCollectionAdapterContract {
-    func switchFriendTab()
-    func activeRoomsTab()
+    
     
     func updateSearchView()
     

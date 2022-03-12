@@ -6,12 +6,12 @@
 //
 
 import Foundation
-
+import UIKit
 
 public protocol OurMemoryFriendsTabContract:BaseCollectionAdapterContract {
     
-    func switchRoomsTab()
- 
-    func activeFriendsTab()
-    func updateSearchView()
+    func actionSearchBtn(sender:UIButton)
+    func actionAddFriendBtn(sender:UIButton)
+    func actionSettingsBtn(sender:UIButton)
+    
 }

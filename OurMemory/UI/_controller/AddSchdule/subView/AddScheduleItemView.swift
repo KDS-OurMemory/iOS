@@ -54,10 +54,14 @@ class AddScheduleItemView: BaseView {
         
         let itemHeight:CGFloat = 30
         if self.subviews.contains(itemView) {
-            itemView.removeFromSuperview()
-            itemView = BaseView()
+            self.resetSubViews()
+            let iconBtnHeight:CGFloat = 40
+            itemBtn.frame = CGRect(x: 0, y: 0, width:  mainWidth, height: iconBtnHeight)
+            self.addSubview(itemBtn)
+            self.frame.size = CGSize(width: mainWidth, height: self.frame.height + iconBtnHeight)
+            lastSubViewYPosition = iconBtnHeight
         }
-        
+        itemView.resetSubViews()
         switch item {
         case .itemDate:
             for content in contents.getDates() {
@@ -87,10 +91,10 @@ class AddScheduleItemView: BaseView {
             }
             break
         }
-        let lineView:UIView = .init(frame: CGRect(origin: CGPoint(x: 0, y: itemView.frame.height-1), size: CGSize(width: itemView.frame.width, height: 1)))
+        let lineView:UIView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: itemView.frame.height-2), size: CGSize(width: itemView.frame.width, height: 2)))
         itemView.addSubview(lineView)
         lineView.backgroundColor = .gray
-        lineView.isHidden = itemView.subviews.count > 0
+        lineView.isHidden = itemView.subviews.count < 0
          
         self.addVerSubView(subView: itemView, viewHeight: itemView.frame.height, verPadding: 0)
     }

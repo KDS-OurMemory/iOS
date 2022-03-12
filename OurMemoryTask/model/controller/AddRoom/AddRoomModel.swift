@@ -161,7 +161,7 @@ class AddRoomModel: NSObject {
     
     func tryRequestMakeRoom(context:DataContract) {
         self.makeRoomNetModel.setRequestBodyParams(params: [
-            "member":self.selectedFriendsData,
+            "member":self.selectedFriendsData.map({$0.friendId}),
             "name":"\(sharedUserDataModel.userData.name)",
             "opened":true,
             "userId":"\(sharedUserDataModel.userData.userId)"

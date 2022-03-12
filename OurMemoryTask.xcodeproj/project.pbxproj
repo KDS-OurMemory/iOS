@@ -11,7 +11,6 @@
 		73137FA427CF198B004A904E /* MyMemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73137FA327CF198B004A904E /* MyMemoryModel.swift */; };
 		73137FA627CF1D4F004A904E /* CalendarDateDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73137FA527CF1D4F004A904E /* CalendarDateDataBinder.swift */; };
 		73137FA827CF4E68004A904E /* ScheduleDateDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73137FA727CF4E68004A904E /* ScheduleDateDataBinder.swift */; };
-		73137FAA27CF571D004A904E /* String+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73137FA927CF571D004A904E /* String+UIColor.swift */; };
 		7313C69527BF82EC00AD4980 /* LocalNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7313C69427BF82EC00AD4980 /* LocalNotificationModel.swift */; };
 		7313C69727BFFBDF00AD4980 /* NetDataVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7313C69627BFFBDF00AD4980 /* NetDataVO.swift */; };
 		73187055278D594700B2D95F /* OurMemoryErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73187054278D594700B2D95F /* OurMemoryErrorData.swift */; };
@@ -73,6 +72,7 @@
 		736B191E27C4E29600B1D321 /* AddFriendsIDCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736B191D27C4E29600B1D321 /* AddFriendsIDCtl.swift */; };
 		736B192127C4E2BA00B1D321 /* AddFriendsIDContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736B192027C4E2BA00B1D321 /* AddFriendsIDContract.swift */; };
 		736B192327C4E2D100B1D321 /* AddFriendsIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736B192227C4E2D100B1D321 /* AddFriendsIDView.swift */; };
+		7371550D27D1FBD1004126DF /* String+convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371550C27D1FBD1004126DF /* String+convert.swift */; };
 		7376EC17265A6D00001DB54A /* BaseCollectionAdapterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376EC16265A6D00001DB54A /* BaseCollectionAdapterContract.swift */; };
 		7376EC2A265A9181001DB54A /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376EC29265A9181001DB54A /* MainModel.swift */; };
 		7385392C27C65FBC00525F23 /* RoomDataBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385392B27C65FBC00525F23 /* RoomDataBinder.swift */; };
@@ -113,7 +113,6 @@
 		739C51C627B1187E00701949 /* AddRoomCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739C51C527B1187E00701949 /* AddRoomCtl.swift */; };
 		739DBF8526403CB80005FE03 /* SignUpIdNetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DBF8426403CB80005FE03 /* SignUpIdNetModel.swift */; };
 		739DBF8A264047C90005FE03 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739DBF89264047C90005FE03 /* LoginModel.swift */; };
-		73A452DA27C62D5C006265F6 /* String+url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A452D927C62D5C006265F6 /* String+url.swift */; };
 		73A452DD27C6390E006265F6 /* AddRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A452DC27C6390E006265F6 /* AddRoomModel.swift */; };
 		73A719BD27BB3FC8005C3069 /* kakaoWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A719BC27BB3FC8005C3069 /* kakaoWrapper.swift */; };
 		73A9B6D327B3ECD4001A856C /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9B6D227B3ECD4001A856C /* ScheduleData.swift */; };
@@ -193,7 +192,6 @@
 		73137FA327CF198B004A904E /* MyMemoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMemoryModel.swift; sourceTree = "<group>"; };
 		73137FA527CF1D4F004A904E /* CalendarDateDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateDataBinder.swift; sourceTree = "<group>"; };
 		73137FA727CF4E68004A904E /* ScheduleDateDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDateDataBinder.swift; sourceTree = "<group>"; };
-		73137FA927CF571D004A904E /* String+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UIColor.swift"; sourceTree = "<group>"; };
 		7313C69427BF82EC00AD4980 /* LocalNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationModel.swift; sourceTree = "<group>"; };
 		7313C69627BFFBDF00AD4980 /* NetDataVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetDataVO.swift; sourceTree = "<group>"; };
 		73187054278D594700B2D95F /* OurMemoryErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurMemoryErrorData.swift; sourceTree = "<group>"; };
@@ -255,6 +253,7 @@
 		736B191D27C4E29600B1D321 /* AddFriendsIDCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsIDCtl.swift; sourceTree = "<group>"; };
 		736B192027C4E2BA00B1D321 /* AddFriendsIDContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsIDContract.swift; sourceTree = "<group>"; };
 		736B192227C4E2D100B1D321 /* AddFriendsIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsIDView.swift; sourceTree = "<group>"; };
+		7371550C27D1FBD1004126DF /* String+convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+convert.swift"; sourceTree = "<group>"; };
 		7376EC16265A6D00001DB54A /* BaseCollectionAdapterContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionAdapterContract.swift; sourceTree = "<group>"; };
 		7376EC29265A9181001DB54A /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		7385392B27C65FBC00525F23 /* RoomDataBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDataBinder.swift; sourceTree = "<group>"; };
@@ -295,7 +294,6 @@
 		739C51C527B1187E00701949 /* AddRoomCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomCtl.swift; sourceTree = "<group>"; };
 		739DBF8426403CB80005FE03 /* SignUpIdNetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIdNetModel.swift; sourceTree = "<group>"; };
 		739DBF89264047C90005FE03 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		73A452D927C62D5C006265F6 /* String+url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+url.swift"; sourceTree = "<group>"; };
 		73A452DC27C6390E006265F6 /* AddRoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomModel.swift; sourceTree = "<group>"; };
 		73A719BC27BB3FC8005C3069 /* kakaoWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kakaoWrapper.swift; sourceTree = "<group>"; };
 		73A9B6D227B3ECD4001A856C /* ScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleData.swift; sourceTree = "<group>"; };
@@ -1365,8 +1363,7 @@
 				73C4C6BF27C0AE27001CFE88 /* DateComponents+comparison.swift */,
 				73C4C6C127C0B69D001CFE88 /* DateComponent + convert.swift */,
 				73C4C6C627C0C7DE001CFE88 /* Date+convert.swift */,
-				73A452D927C62D5C006265F6 /* String+url.swift */,
-				73137FA927CF571D004A904E /* String+UIColor.swift */,
+				7371550C27D1FBD1004126DF /* String+convert.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -1860,7 +1857,6 @@
 				73CE150F27CC9F220095529F /* BasePHPickerControllerAdapter.swift in Sources */,
 				731870C927945A6700B2D95F /* SignupModel.swift in Sources */,
 				73A452DD27C6390E006265F6 /* AddRoomModel.swift in Sources */,
-				73137FAA27CF571D004A904E /* String+UIColor.swift in Sources */,
 				738F7FBC27C5C23300EE9656 /* AddFriendsNameModel.swift in Sources */,
 				739C51BA27B1105200701949 /* AddFriendContract.swift in Sources */,
 				732C8712260774D300EEEE57 /* IntroView.swift in Sources */,
@@ -1881,7 +1877,6 @@
 				73F18BF4279FE70E0002D9C4 /* SharedUserData.swift in Sources */,
 				7318708D278D913C00B2D95F /* InquiryRoomListNetModel.swift in Sources */,
 				73F18BF1279A599E0002D9C4 /* constBlock.swift in Sources */,
-				73A452DA27C62D5C006265F6 /* String+url.swift in Sources */,
 				73F18BEC279965860002D9C4 /* BaseDatePickerAdapter.swift in Sources */,
 				739C51A827B0C90300701949 /* SelectSharedView.swift in Sources */,
 				73EA3CD327AF9CCC005AD3FA /* TodoListContract.swift in Sources */,
@@ -1932,6 +1927,7 @@
 				73C4C6D527C1565F001CFE88 /* OurMemoryContract.swift in Sources */,
 				739C51B427B10CBB00701949 /* SelectDateCtl.swift in Sources */,
 				738F7FB627C5C18000EE9656 /* AddFriendNameContract.swift in Sources */,
+				7371550D27D1FBD1004126DF /* String+convert.swift in Sources */,
 				73FC5CEF25E7FDB30050D68E /* MainView.swift in Sources */,
 				73631E9227BC9E2E00084A1C /* Interface.swift in Sources */,
 				73631E9A27BEAE6300084A1C /* SelectDateModel.swift in Sources */,

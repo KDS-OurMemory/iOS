@@ -44,7 +44,16 @@ class BaseView: UIView {
         self.addSubview(subView)
         subView.frame = CGRect(x: 0, y: lastSubViewYPosition + verPadding, width: mainWidth , height: viewHeight)
         self.frame = CGRect(x: 0, y: self.frame.origin.y, width: mainWidth, height: self.frame.size.height + viewHeight + verPadding)
-        lastSubViewYPosition = lastSubViewYPosition + viewHeight + verPadding
+        lastSubViewYPosition = subView.frame.maxY
     }
 
+    func resetSubViews() {
+        lastSubViewYPosition = 0
+       
+        self.frame = CGRect.zero
+        for view in self.subviews {
+            view.removeFromSuperview()
+        }
+    }
+    
 }

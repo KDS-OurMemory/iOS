@@ -8,7 +8,5 @@
 import Foundation
 
 public protocol OurMemoryView:TabbarContract {
-    func updateSearchView()
-    func activeRoomsTabView()
-    func activeFriendsTabView()
+    
 }

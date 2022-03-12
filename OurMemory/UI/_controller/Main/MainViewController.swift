@@ -47,6 +47,10 @@ extension MainViewController: MainView {
         }
     }
     
+    func closeTabbar(sender: UITapGestureRecognizer) {
+        self.tabbar.updateTabViewState(open: false)
+    }
+    
     func setTabbarView(tabView: UIView) {
         if let tabbar = tabView as? TabbarView {
             self.tabbar = tabbar

@@ -13,7 +13,6 @@ class SelectView: BaseView {
     
     override func prepareViews() {
         let horPadding = 15.0
-        let viewWidth = mainWidth - horPadding*2
         let viewHeight = 60.0
         
         self.frame = CGRect(x: 0, y: 0, width: mainWidth, height: viewHeight)
@@ -22,7 +21,7 @@ class SelectView: BaseView {
         selectBtn.frame.size = self.frame.size
         selectBtn.contentMode = .left
         selectBtn.titleEdgeInsets = .init(top: 0, left: horPadding, bottom: 0, right: 0)
-//        selectBtn.contentEdgeInsets = .init(top: 0, left: viewWidth-(selectBtn.imageView?.image?.size.width)!, bottom: 0, right: 0)
+        
         
     }
     
@@ -33,8 +32,12 @@ class SelectView: BaseView {
     }
     
     func setTitleWithImg(title:String, img:UIImage?) {
+        let horPadding = 15.0
+        let viewWidth = mainWidth - horPadding*2
+        
         selectBtn.setTitle(title, for: .normal)
         selectBtn.setImage(img, for: .normal)
+        selectBtn.contentEdgeInsets = .init(top: 0, left: viewWidth-(selectBtn.imageView?.image?.size.width)!, bottom: 0, right: 0)
     }
 
 }

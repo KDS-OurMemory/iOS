@@ -11,7 +11,7 @@ import UIKit
 extension UIControl {
     
     func addAction(block:@escaping (UIControl) -> Void ) {
-        let action:UIAction = UIAction { _ in
+        let action:UIAction = UIAction {_ in
             self.isSelected = !self.isSelected
             block(self)
         }

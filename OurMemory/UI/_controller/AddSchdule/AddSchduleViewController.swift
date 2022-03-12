@@ -104,6 +104,11 @@ class AddSchduleViewController: BaseViewController {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
     override func showNextVC(vc: NEXTVIEW, data: Any?) {
         switch vc {
         case .NEXTVIEW_SELECTDATE:
@@ -156,17 +161,17 @@ extension AddSchduleViewController:AddScheduleView {
         self.itemScrollView.resetSubViews()
         
         dateView.setItem(item: .itemDate, contents: dataBinder)
-        self.itemScrollView.addVerScrollSubView(subView: dateView, viewSize: dateView.frame.size, verPadding: 20)
+        self.itemScrollView.addVerScrollSubView(subView: dateView, viewSize: dateView.frame.size, verPadding: 40)
         contentView.setItem(item: .itemContent, contents: dataBinder)
-        self.itemScrollView.addVerScrollSubView(subView: contentView, viewSize: contentView.frame.size, verPadding: 20)
+        self.itemScrollView.addVerScrollSubView(subView: contentView, viewSize: contentView.frame.size, verPadding: 40)
         locationView.setItem(item: .itemLocation, contents: dataBinder)
-        self.itemScrollView.addVerScrollSubView(subView: locationView, viewSize: locationView.frame.size, verPadding: 20)
+        self.itemScrollView.addVerScrollSubView(subView: locationView, viewSize: locationView.frame.size, verPadding: 40)
         
-        self.itemScrollView.addVerScrollSubView(subView: alarmView, viewSize: alarmView.frame.size, verPadding: 20)
+        self.itemScrollView.addVerScrollSubView(subView: alarmView, viewSize: alarmView.frame.size, verPadding: 40)
         
-        self.itemScrollView.addVerScrollSubView(subView: colorView, viewSize: colorView.frame.size, verPadding: 20)
+        self.itemScrollView.addVerScrollSubView(subView: colorView, viewSize: colorView.frame.size, verPadding: 40)
         
-        self.itemScrollView.addVerScrollSubView(subView: sharedView, viewSize: sharedView.frame.size, verPadding: 20)
+        self.itemScrollView.addVerScrollSubView(subView: sharedView, viewSize: sharedView.frame.size, verPadding: 40)
     }
     
     func updaetConfirmBtnState(state:Bool) {

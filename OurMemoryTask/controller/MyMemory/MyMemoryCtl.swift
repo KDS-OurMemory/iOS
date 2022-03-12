@@ -26,15 +26,21 @@ class MyMemoryCtl: BaseCollectionCtl {
                     setAdapter.changeData(section: 0, data: p2 as! [CalDateData])
                 }
                 break
-            case .UPDATEIDX:
+            case .UPDATEIDXSCHEDULE:
                 if let setAdapter = self.adapter {
                     setAdapter.reloadCollectionViewAtRow(row: p2 as! Int, atSection: 0)
                 }
                 break
-            case .UPDATEIDXS:
+            case .UPDATEIDXSSCHEDULE:
                 if let setAdapter = self.adapter {
                     setAdapter.reloadCollectionViewAtRows(rows: p2 as! [Int], atSection: 0)
                 }
+                break
+            case .UPDATESELECTDAYSCHEDULE:
+                self.callUpdateScheduleDatas(datas: p2 as! [ScheduleDateDataBinder]?)
+                break
+            case .MOVESCHEDULEDETAILE:
+                self.callShowNextVC(view: .NEXTVIEW_ADDSCHEDULE, data: p2 as! scheduleData)
                 break
             }
             
@@ -56,6 +62,12 @@ class MyMemoryCtl: BaseCollectionCtl {
             view.updateYearMonth(yearMonth: yearMonth)
         }
     }
+    
+    fileprivate func callUpdateScheduleDatas(datas:[ScheduleDateDataBinder]?) {
+        if let view = self.view as? MyMemoryView {
+            view.updateScheduleDatas(datas: datas)
+        }
+    }
 }
 
 
@@ -72,6 +84,14 @@ extension MyMemoryCtl:MyMemoryContract {
                 }
             }
         }
+    }
+    
+    func reloadView() {
+        self.myMemoryModel.tryInqueryScheduleRequest(context: self)
+    }
+    
+    func selectScheduleIndex(index:Int) {
+        
     }
     
     func actionCalPlusBtn(sender:UIButton) {

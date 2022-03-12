@@ -13,7 +13,7 @@ class OurMemoryFriendsTabCtl: BaseCollectionCtl {
     var searchState:Bool = false
     
     override func __initWithData__(data: Any?) {
-        if self.isActive {
+        
             self.friendsModel.initWithCallback(data: data) { p1, p2 in
                 switch p1 {
                 case .FRIENDSLIST_UPDATE:
@@ -36,6 +36,13 @@ class OurMemoryFriendsTabCtl: BaseCollectionCtl {
                 
                 }
             }
+        self.friendsModel.tryRequestFriendsList(context: self)
+    }
+    
+    fileprivate func updateSearchView() {
+        if let setAdapter = self.adapter,self.isActive {
+            self.searchState = !self.searchState
+            setAdapter.changeSearchItemState(state: self.searchState)
         }
     }
     
@@ -44,22 +51,6 @@ class OurMemoryFriendsTabCtl: BaseCollectionCtl {
 
 extension OurMemoryFriendsTabCtl: OurMemoryFriendsTabContract {
     
-    func updateSearchView() {
-        if let setAdapter = self.adapter,self.isActive {
-            self.searchState = !self.searchState
-            setAdapter.changeSearchItemState(state: self.searchState)
-        }
-    }
-    
-    
-    func switchRoomsTab() {
-        self.isActive = false
-    }
-    
-    func activeFriendsTab() {
-        self.isActive = true
-        self.friendsModel.tryRequestFriendsList(context: self)
-    }
     
     func setCollectionWithAdpater(adapter: BaseCollectionAdapter) {
         self.adapter = adapter
@@ -70,6 +61,20 @@ extension OurMemoryFriendsTabCtl: OurMemoryFriendsTabContract {
             }
             
         }
+    }
+    
+    func actionSearchBtn(sender:UIButton) {
+        self.updateSearchView()
+    }
+    
+    func actionAddFriendBtn(sender:UIButton) {
+        if let view = self.view as? OurMemoryFriendsTabView {
+            view.showNextVC(vc: .NEXTVIEW_ADDFRIENDS, data: nil)
+        }
+    }
+    
+    func actionSettingsBtn(sender:UIButton) {
+        
     }
     
     

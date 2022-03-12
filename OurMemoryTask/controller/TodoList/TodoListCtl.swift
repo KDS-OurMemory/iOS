@@ -9,4 +9,7 @@ import UIKit
 
 class TodoListCtl: BaseCtl {
 
+    override func __initWithData__(data: Any?) {
+        
+    }
 }

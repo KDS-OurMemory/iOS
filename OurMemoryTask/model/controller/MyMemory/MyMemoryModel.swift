@@ -10,8 +10,10 @@ import UIKit
 enum MYMEMORYMODELRESULT {
     case UPDATEYEARMONTH
     case CHANGE
-    case UPDATEIDX
-    case UPDATEIDXS
+    case UPDATEIDXSCHEDULE
+    case UPDATEIDXSSCHEDULE
+    case UPDATESELECTDAYSCHEDULE
+    case MOVESCHEDULEDETAILE
 }
 
 class MyMemoryModel: NSObject {
@@ -20,6 +22,7 @@ class MyMemoryModel: NSObject {
     var calData:CalendarData?
     let sharedUserDataModel:SharedUserDataModel = SharedUserDataModel.sharedUserData
     let inqueryScheduleNetModel:InquiryScheduleListNetModel = InquiryScheduleListNetModel()
+    var selectedIndex:Int = -1
     
     func initWithMyMemoryModelBlock(block:@escaping (MYMEMORYMODELRESULT,Any?) -> Void) {
         myMemoryModelBlock = block
@@ -30,19 +33,47 @@ class MyMemoryModel: NSObject {
             block(.UPDATEYEARMONTH,(year,month))
         }
         calData = CalendarData(year: year, month: month, selectDay: selectDates)
+        if var cal = self.calData {
+            if (cal.selectDay.contains(where: {$0.getDateState() == .today})) {
+                self.selectedIndex = (cal.selectDay.firstIndex(where: {$0.getDateState() == .today}))!
+            }else {
+                self.selectedIndex = (cal.selectDay.firstIndex(where: {$0.getDateState() == .current}))!
+            }
+            cal.selectDay[selectedIndex].isSelecte = true
+            self.calData = cal
+            if let block = self.myMemoryModelBlock {
+                block(.UPDATEIDXSCHEDULE,self.selectedIndex)
+                block(.UPDATESELECTDAYSCHEDULE,self.calData?.selectDay[selectedIndex].schedules)
+            }
+        }
+        
     }
     
     func selectIndex(index:Int) {
-        self.calData?.selectDay[index].isSelecte = !(self.calData?.selectDay[index].isSelecte)!
-        if let block = self.myMemoryModelBlock {
-            block(.CHANGE,self.calData?.selectDay)
-            block(.UPDATEIDX,index)
+        if var cal = self.calData {
+            cal.selectDay[self.selectedIndex].isSelecte = false
+            cal.selectDay[index].isSelecte = !(cal.selectDay[index].isSelecte)
+            self.calData = cal
+            if let block = self.myMemoryModelBlock {
+                block(.CHANGE,cal.selectDay)
+                block(.UPDATEIDXSSCHEDULE,[self.selectedIndex,index])
+                block(.UPDATESELECTDAYSCHEDULE,cal.selectDay[index].schedules)
+                selectedIndex = index
+            }
         }
+        
+    }
+    
+    func selectScheduleIndex(index:Int) {
+        if let block = self.myMemoryModelBlock {
+            block(.MOVESCHEDULEDETAILE,self.calData?.selectDay[selectedIndex].schedules[index])
+        }
+        
     }
     
     func tryInqueryScheduleRequest(context:DataContract) {
         self.inqueryScheduleNetModel.setRequestQueryParams(params: [
-            "writerId":self.sharedUserDataModel.userData.privateRoomId
+            "writerId":self.sharedUserDataModel.userData.userId
         ])
         
         self.inqueryScheduleNetModel.reqeustRestFulApi(context: context) { (data:Result<json<[scheduleData]>, Error>) in
@@ -53,17 +84,16 @@ class MyMemoryModel: NSObject {
                     for schedule in response {
                         
                         if let selectCaldays = self.calData?.selectDay {
-                            let strIndex = schedule.firstAlarm!.index(schedule.firstAlarm!.startIndex, offsetBy: 10)
-                            let responseSchedule = schedule.firstAlarm![...strIndex]
-                            guard let findSchedule = selectCaldays.first(where: {$0.dateString == responseSchedule })else {return}
-                            guard let findIndex = selectCaldays.firstIndex(where: {$0.dateString == responseSchedule})else {return}
+                            let strIndex = schedule.startDate.index(schedule.startDate.startIndex, offsetBy: 9)
+                            let responseSchedule = schedule.startDate[...strIndex]
+                            guard let findIndex = selectCaldays.firstIndex(where: {$0.dateString == String(responseSchedule)})else {break}
                             findIdxArr.append(findIndex)
-                            self.calData?.selectDay[findIndex] = findSchedule
+                            self.calData?.selectDay[findIndex].schedules.append(schedule)
                         }
                     }
                     if let block = self.myMemoryModelBlock {
                         block(.CHANGE,self.calData?.selectDay)
-                        block(.UPDATEIDXS,findIdxArr)
+                        block(.UPDATEIDXSSCHEDULE,findIdxArr)
                     }
                 }
                 break

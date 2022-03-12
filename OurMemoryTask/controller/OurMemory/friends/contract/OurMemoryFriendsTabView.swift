@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol OurMemoryFriendsTabView {
+public protocol OurMemoryFriendsTabView:ViewContract {
     
     
 }

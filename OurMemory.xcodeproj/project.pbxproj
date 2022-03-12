@@ -29,7 +29,6 @@
 		738AA88527B4FF37009B85D7 /* FadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA88427B4FF37009B85D7 /* FadeView.swift */; };
 		738AA88B27B62FB0009B85D7 /* SelectBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA88A27B62FB0009B85D7 /* SelectBoxButton.swift */; };
 		738AA89427B6C1E5009B85D7 /* ColorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA89327B6C1E5009B85D7 /* ColorItemView.swift */; };
-		738AA89727B777FD009B85D7 /* FreindAndRoomTabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA89627B777FD009B85D7 /* FreindAndRoomTabbarView.swift */; };
 		738AA89B27B8CC1A009B85D7 /* MakeRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA89927B8CC1A009B85D7 /* MakeRoomViewController.swift */; };
 		738AA89C27B8CC1A009B85D7 /* MakeRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738AA89A27B8CC1A009B85D7 /* MakeRoomViewController.xib */; };
 		738AA89F27B8CC75009B85D7 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA89E27B8CC75009B85D7 /* TopView.swift */; };
@@ -86,6 +85,8 @@
 		73D108BB27CDDA33003E7B54 /* MyMemoryCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D108BA27CDDA33003E7B54 /* MyMemoryCollectionAdapter.swift */; };
 		73D108C027CDDCB0003E7B54 /* MyMemoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D108BF27CDDCB0003E7B54 /* MyMemoryCollectionViewCell.swift */; };
 		73D108C227CE6553003E7B54 /* MyMemoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D108C127CE6553003E7B54 /* MyMemoryCollectionViewCell.xib */; };
+		73D70F1427D25FF400598B0C /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D70F1227D25FF400598B0C /* FriendsViewController.swift */; };
+		73D70F1527D25FF400598B0C /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D70F1327D25FF400598B0C /* FriendsViewController.xib */; };
 		73DBCC9227C2448700B202DF /* OurMemoryFriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DBCC9127C2448700B202DF /* OurMemoryFriendsCollectionViewCell.swift */; };
 		73DBCC9F27C26C2000B202DF /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DBCC9D27C26C2000B202DF /* SearchCollectionViewCell.swift */; };
 		73DBCCA027C26C2000B202DF /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73DBCC9E27C26C2000B202DF /* SearchCollectionViewCell.xib */; };
@@ -170,7 +171,6 @@
 		738AA88427B4FF37009B85D7 /* FadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeView.swift; sourceTree = "<group>"; };
 		738AA88A27B62FB0009B85D7 /* SelectBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBoxButton.swift; sourceTree = "<group>"; };
 		738AA89327B6C1E5009B85D7 /* ColorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorItemView.swift; sourceTree = "<group>"; };
-		738AA89627B777FD009B85D7 /* FreindAndRoomTabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreindAndRoomTabbarView.swift; sourceTree = "<group>"; };
 		738AA89927B8CC1A009B85D7 /* MakeRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomViewController.swift; sourceTree = "<group>"; };
 		738AA89A27B8CC1A009B85D7 /* MakeRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MakeRoomViewController.xib; sourceTree = "<group>"; };
 		738AA89E27B8CC75009B85D7 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
@@ -233,6 +233,8 @@
 		73D108BA27CDDA33003E7B54 /* MyMemoryCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMemoryCollectionAdapter.swift; sourceTree = "<group>"; };
 		73D108BF27CDDCB0003E7B54 /* MyMemoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMemoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		73D108C127CE6553003E7B54 /* MyMemoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMemoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		73D70F1227D25FF400598B0C /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		73D70F1327D25FF400598B0C /* FriendsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 		73DBCC9127C2448700B202DF /* OurMemoryFriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurMemoryFriendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		73DBCC9D27C26C2000B202DF /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		73DBCC9E27C26C2000B202DF /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -442,7 +444,6 @@
 		738AA89527B777BC009B85D7 /* subView */ = {
 			isa = PBXGroup;
 			children = (
-				738AA89627B777FD009B85D7 /* FreindAndRoomTabbarView.swift */,
 			);
 			path = subView;
 			sourceTree = "<group>";
@@ -630,6 +631,7 @@
 		73C03E3325DD3B8200319AC0 /* _controller */ = {
 			isa = PBXGroup;
 			children = (
+				73D70F1127D25FD000598B0C /* FriendsList */,
 				73FC5CFE25E7FE420050D68E /* _Base */,
 				73A452CA27C6217B006265F6 /* AddRoom */,
 				738AA8A027B9101F009B85D7 /* AddFreind */,
@@ -718,6 +720,15 @@
 				73D108C127CE6553003E7B54 /* MyMemoryCollectionViewCell.xib */,
 			);
 			path = MyMemoryCal;
+			sourceTree = "<group>";
+		};
+		73D70F1127D25FD000598B0C /* FriendsList */ = {
+			isa = PBXGroup;
+			children = (
+				73D70F1227D25FF400598B0C /* FriendsViewController.swift */,
+				73D70F1327D25FF400598B0C /* FriendsViewController.xib */,
+			);
+			path = FriendsList;
 			sourceTree = "<group>";
 		};
 		73DBCC9027C2446000B202DF /* OurMemoryFriends */ = {
@@ -1076,6 +1087,7 @@
 				739C01CD25B7221D00C5A2D6 /* Intro.storyboard in Resources */,
 				73FB054027C326AB007243E2 /* OurMemoryFriendsCollectionViewCell.xib in Resources */,
 				735A72DC261B55D30088960F /* RoomDetailCalCollectionViewCell.xib in Resources */,
+				73D70F1527D25FF400598B0C /* FriendsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,12 +1215,12 @@
 				73EA3C9927AE5ED7005AD3FA /* SelectSharedViewController.swift in Sources */,
 				7377B4CA2651251200ADC114 /* BaseCollectionView.swift in Sources */,
 				73D108BB27CDDA33003E7B54 /* MyMemoryCollectionAdapter.swift in Sources */,
+				73D70F1427D25FF400598B0C /* FriendsViewController.swift in Sources */,
 				738AA89B27B8CC1A009B85D7 /* MakeRoomViewController.swift in Sources */,
 				73A452CD27C62193006265F6 /* AddRoomViewController.swift in Sources */,
 				7319C84E2656B48A0080DF5F /* WeekCollectionViewCell.swift in Sources */,
 				73C671B727C3EB4D0013BC42 /* AddFriendsSearchIDCollectionAdapter.swift in Sources */,
 				7319C8462656B3790080DF5F /* BaseCollectionViewCell.swift in Sources */,
-				738AA89727B777FD009B85D7 /* FreindAndRoomTabbarView.swift in Sources */,
 				738AA8A627B93F20009B85D7 /* SignupDatePickerAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1389,7 +1401,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OurMemory/OurMemory.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2L6GNE8467;
 				INFOPLIST_FILE = OurMemory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1415,7 +1427,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = OurMemory/OurMemory.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2L6GNE8467;
 				INFOPLIST_FILE = OurMemory/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

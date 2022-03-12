@@ -19,7 +19,7 @@ class BaseScrollView: UIScrollView {
         subView.frame = CGRect(x: 0, y: lastSubViewYPosition + verPadding, width: viewSize.width, height: viewSize.height)
         
         self.contentSize = CGSize(width: mainWidth, height: self.contentSize.height + viewSize.height + verPadding)
-        lastSubViewYPosition = lastSubViewYPosition + viewSize.height + verPadding
+        lastSubViewYPosition = subView.frame.maxY
     }
     
     func addHorScrollSubView(subView:UIView,viewSize:CGSize ,horPadding:CGFloat) {
@@ -29,12 +29,13 @@ class BaseScrollView: UIScrollView {
         subView.frame = CGRect(x: lastSubViewXPosition + horPadding, y: 0, width: viewSize.width, height: viewSize.height)
         
         self.contentSize = CGSize(width: self.contentSize.width + horPadding , height: viewSize.height)
-        lastSubViewXPosition = lastSubViewXPosition + viewSize.height + horPadding
+        lastSubViewXPosition = lastSubViewXPosition + horPadding
     }
     
     func resetSubViews() {
         lastSubViewYPosition = 0
         lastSubViewXPosition = 0
+        self.contentSize = CGSize.zero
         for view in self.subviews {
             view.removeFromSuperview()
         }

@@ -316,15 +316,20 @@ class DateComponentsModel: NSObject {
         {
             for weekDay in 1...prevWeekday {
                 let day = self.getDayofDate(date: self.prevLastDayOfMonth) - (prevWeekday - weekDay)
-                let data = CalDateData(num: "\(day)", state: dateState.prev, weekDay: WEEKDAYS(rawValue: Int8(weekDay))!, weekPoint: self.monthDateCal.count/7, dateString:"\(self.getYearofDate(date: self.prevLastDayOfMonth))-\(self.getMonthofDate(date: self.prevLastDayOfMonth))-\(day)")
+                let month = self.getMonthofDate(date: self.prevLastDayOfMonth)
+                let year = self.getYearofDate(date: self.prevLastDayOfMonth)
+                let data = CalDateData(num: "\(day)", state: dateState.prev, weekDay: WEEKDAYS(rawValue: Int8(weekDay))!, weekPoint: self.monthDateCal.count/7, dateString:"\(year)-\((month<10 ? "0":"") + "\(month)")-\((day<10 ? "0":"") + "\(day)")")
+                                       
                 self.monthDateCal.append(data);
             }
         }
         
         var currentWeekDay = self.getWeekDayofDate(date: self.startOfMonth)
         for day in self.getDayofDate(date: self.startOfMonth)...self.getDayofDate(date: self.endOfMonth) {
+            let month = self.getMonthofDate(date: self.startOfMonth)
+            let year = self.getYearofDate(date: self.startOfMonth)
             let isToDay = day == self.getToday()!&&self.getYearofDate(date: self.startOfMonth) == self.getCurrentYear()&&self.getMonthofDate(date: self.startOfMonth) == self.getCurrentMonth()
-            let data = CalDateData(num: "\(day)", state: (isToDay ? dateState.today:dateState.current), weekDay: WEEKDAYS(rawValue: Int8(currentWeekDay))!, weekPoint: self.monthDateCal.count/7, dateString: "\(self.getYearofDate(date: self.startOfMonth))-\(self.getMonthofDate(date: self.startOfMonth))-\(day)")
+            let data = CalDateData(num: "\(day)", state: (isToDay ? dateState.today:dateState.current), weekDay: WEEKDAYS(rawValue: Int8(currentWeekDay))!, weekPoint: self.monthDateCal.count/7, dateString: "\(year)-\((month<10 ? "0":"") + "\(month)")-\((day<10 ? "0":"") + "\(day)")")
             if currentWeekDay == 7 {
                 currentWeekDay = 1
             }else {
@@ -337,7 +342,9 @@ class DateComponentsModel: NSObject {
             var day = 1
             for weekDay in self.getWeekDayofDate(date: self.nextFirstDayOfMonth)...7
             {
-                let data = CalDateData(num: "\(day)", state: dateState.next, weekDay: WEEKDAYS(rawValue: Int8(weekDay))!, weekPoint: self.monthDateCal.count/7, dateString: "\(self.getYearofDate(date: self.nextFirstDayOfMonth))-\(self.getMonthofDate(date: self.nextFirstDayOfMonth))-\(day)")
+                let month = self.getMonthofDate(date: self.nextFirstDayOfMonth)
+                let year = self.getYearofDate(date: self.nextFirstDayOfMonth)
+                let data = CalDateData(num: "\(day)", state: dateState.next, weekDay: WEEKDAYS(rawValue: Int8(weekDay))!, weekPoint: self.monthDateCal.count/7, dateString: "\(year)-\((month<10 ? "0":"") + "\(month)")-\((day<10 ? "0":"") + "\(day)")")
                 day += 1
                 self.monthDateCal.append(data)
             }

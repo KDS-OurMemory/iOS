@@ -77,9 +77,16 @@ class MyProfileViewController: BaseViewController {
             myProfileCtl = CtlMaker().createDataControllerWithContract(contract: .eContractMyProFile, view: self, data: data) as? MyProfileContract
             self.myProfileCtl?.setPHPickerControllerAdapter(adapter: imagePickerAdapter)
             self.imagePickerAdapter.setContext(context: self)
-            
+            let svGs = UITapGestureRecognizer(target: self, action: #selector(closeTabbar(sender:)))
+            svGs.numberOfTapsRequired = 1
+            profileItemSv.addGestureRecognizer(svGs)
         }
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.tabbar.updateTabViewState(open: false)
+        super.touchesBegan(touches, with: event)
     }
     
 }
@@ -94,6 +101,10 @@ extension MyProfileViewController: MyProfileView {
     
     func updateNotiCnt(items:[UInt:Int]) {
         
+    }
+    
+    @objc func closeTabbar(sender: UITapGestureRecognizer) {
+        self.tabbar.updateTabViewState(open: false)
     }
     
     func updateProfileImage(profileImg:UIImage) {
