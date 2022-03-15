@@ -6,7 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol RoomDetailContract:BaseCollectionAdapterContract {
-    
+    func selectScheduleIndex(index:Int)
+    func actionCalPlusBtn(sender:UIButton)
+    func actionCalMinusBtn(sender:UIButton)
+    func actionAddSchduleBtn(sender:UIButton)
 }

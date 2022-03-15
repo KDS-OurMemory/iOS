@@ -14,6 +14,7 @@ enum MYMEMORYMODELRESULT {
     case UPDATEIDXSSCHEDULE
     case UPDATESELECTDAYSCHEDULE
     case MOVESCHEDULEDETAILE
+    case UPDATESELECTDAY
 }
 
 class MyMemoryModel: NSObject {
@@ -44,6 +45,7 @@ class MyMemoryModel: NSObject {
             if let block = self.myMemoryModelBlock {
                 block(.UPDATEIDXSCHEDULE,self.selectedIndex)
                 block(.UPDATESELECTDAYSCHEDULE,self.calData?.selectDay[selectedIndex].schedules)
+                block(.UPDATESELECTDAY,self.calData?.selectDay[selectedIndex])
             }
         }
         
@@ -59,6 +61,7 @@ class MyMemoryModel: NSObject {
                 block(.UPDATEIDXSSCHEDULE,[self.selectedIndex,index])
                 block(.UPDATESELECTDAYSCHEDULE,cal.selectDay[index].schedules)
                 selectedIndex = index
+                
             }
         }
         
@@ -68,7 +71,6 @@ class MyMemoryModel: NSObject {
         if let block = self.myMemoryModelBlock {
             block(.MOVESCHEDULEDETAILE,self.calData?.selectDay[selectedIndex].schedules[index])
         }
-        
     }
     
     func tryInqueryScheduleRequest(context:DataContract) {
@@ -88,7 +90,10 @@ class MyMemoryModel: NSObject {
                             let responseSchedule = schedule.startDate[...strIndex]
                             guard let findIndex = selectCaldays.firstIndex(where: {$0.dateString == String(responseSchedule)})else {break}
                             findIdxArr.append(findIndex)
-                            self.calData?.selectDay[findIndex].schedules.append(schedule)
+                            if !selectCaldays[findIndex].schedules.contains(where: {$0.memoryId == schedule.memoryId}) {
+                                self.calData?.selectDay[findIndex].schedules.append(schedule)
+                            }
+                            
                         }
                     }
                     if let block = self.myMemoryModelBlock {

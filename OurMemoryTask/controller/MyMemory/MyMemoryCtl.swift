@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class MyMemoryCtl: BaseCollectionCtl {
     
     let myMemoryModel:MyMemoryModel = MyMemoryModel()
@@ -42,6 +40,9 @@ class MyMemoryCtl: BaseCollectionCtl {
             case .MOVESCHEDULEDETAILE:
                 self.callShowNextVC(view: .NEXTVIEW_ADDSCHEDULE, data: p2 as! scheduleData)
                 break
+            case .UPDATESELECTDAY:
+                self.callUpdateSelectDayInfo(data: p2 as! CalDateData)
+                break
             }
             
         }
@@ -68,6 +69,14 @@ class MyMemoryCtl: BaseCollectionCtl {
             view.updateScheduleDatas(datas: datas)
         }
     }
+    
+    fileprivate func callUpdateSelectDayInfo(data:CalDateData) {
+//        if let view = self.view as? MyMemoryView {
+//            let lunarDate = data.getSelectDateString().dateConvertLunarComponents(dateFormatStr: "yyyy-MM-dd HH:mm")
+//            view.updateSelectDay(day: data.getDateNum())
+//            view.updateSelectDayLunar(lunar: "음력 \(lunarDate.month!).\(lunarDate.day!)")
+//        }
+    }
 }
 
 
@@ -91,15 +100,15 @@ extension MyMemoryCtl:MyMemoryContract {
     }
     
     func selectScheduleIndex(index:Int) {
-        
+        self.myMemoryModel.selectScheduleIndex(index: index)
     }
     
     func actionCalPlusBtn(sender:UIButton) {
-        
+        self.dateModel.changeNextDate()
     }
     
     func actionCalMinusBtn(sender:UIButton) {
-        
+        self.dateModel.changePrevDate()
     }
     
     func actionAddSchduleBtn(sender:UIButton) {

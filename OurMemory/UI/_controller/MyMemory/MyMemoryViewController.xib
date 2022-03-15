@@ -150,12 +150,34 @@
                                         <rect key="frame" x="0.0" y="5" width="414" height="10.5"/>
                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqV-Fl-pli">
+                                        <rect key="frame" x="10" y="20" width="0.0" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Fcq-LO-Olp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MN7-FQ-MCi">
+                                        <rect key="frame" x="15" y="20" width="0.0" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="RZe-LA-Mn7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="MN7-FQ-MCi" firstAttribute="leading" secondItem="xqV-Fl-pli" secondAttribute="trailing" constant="5" id="07a-qq-1ij"/>
                                     <constraint firstAttribute="height" constant="50" id="5RQ-YF-mnA"/>
                                     <constraint firstAttribute="trailing" secondItem="LbC-jS-S8A" secondAttribute="trailing" id="8HQ-4S-9LC"/>
+                                    <constraint firstAttribute="bottom" secondItem="MN7-FQ-MCi" secondAttribute="bottom" constant="5" id="CPu-yy-ETG"/>
                                     <constraint firstAttribute="bottom" secondItem="LbC-jS-S8A" secondAttribute="bottom" constant="30" id="HHD-I7-yte"/>
+                                    <constraint firstItem="xqV-Fl-pli" firstAttribute="leading" secondItem="ywg-KT-dcm" secondAttribute="leading" constant="10" id="Nt6-da-weT"/>
+                                    <constraint firstAttribute="bottom" secondItem="xqV-Fl-pli" secondAttribute="bottom" constant="5" id="h7C-4w-rbQ"/>
                                     <constraint firstItem="LbC-jS-S8A" firstAttribute="top" secondItem="ywg-KT-dcm" secondAttribute="top" id="hQA-HK-gfj"/>
                                     <constraint firstItem="LbC-jS-S8A" firstAttribute="leading" secondItem="ywg-KT-dcm" secondAttribute="leading" id="nDf-nK-9oj"/>
                                 </constraints>
@@ -217,6 +239,8 @@
                 <outlet property="datePickerBtn" destination="GMd-hS-pZ9" id="oyI-Ze-1ah"/>
                 <outlet property="dateRightBtn" destination="nRM-3m-vTG" id="Vii-5v-ofv"/>
                 <outlet property="scheduleSv" destination="peL-Tg-52l" id="XHU-Hj-Wdb"/>
+                <outlet property="selectDayLbl" destination="xqV-Fl-pli" id="ajg-UC-zIQ"/>
+                <outlet property="selectDayLunarLbl" destination="MN7-FQ-MCi" id="jQb-Ns-adQ"/>
                 <outlet property="sharedBtn" destination="sJc-fA-K2n" id="IpM-mp-bdI"/>
                 <outlet property="updownView" destination="7Lf-qL-gV5" id="Pdf-Xl-Mjv"/>
             </connections>

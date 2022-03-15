@@ -71,6 +71,16 @@ extension AddFriendsIDCtl: AddFriendsIDContract {
             setAdapter.setSearchBlock { p1 in
                 self.addFriendsModel.tryRequestAddFriendsSearchId(context: self, searchID: p1)
             }
+            
+            setAdapter.setScrollBlock { p1, p2 in
+                switch p2 {
+                case .SCROLL_DID_SCROLLING:
+                    break
+                case .SCROLL_END_DECELERATING:
+                    break
+                }
+            }
+            
             setAdapter.setOnOffBtnBlock { p1, p2 in
                 switch p2.section {
                 case 1:

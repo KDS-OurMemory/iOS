@@ -39,7 +39,6 @@ class OurMemoryViewController: BaseViewController {
             roomsAdapter.setCollection(collectionView: roomsCollectionView)
             ourMemoryCtl?.setCollectionWithAdpater(adapter: roomsAdapter)
             
-            
             roomsCollectionView.registCell(cellIdentifier: NoItemCollectionViewCell.className())
             roomsCollectionView.registCell(cellIdentifier: SearchCollectionViewCell.className())
             roomsCollectionView.registCell(cellIdentifier: OurMemoryRoomsCollectionViewCell.className())

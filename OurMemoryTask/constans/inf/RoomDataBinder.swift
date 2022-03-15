@@ -10,4 +10,5 @@ import Foundation
 public protocol RoomDataBinder {
     func getUserCnt() -> Int
     func getName() -> String
+    func getMembers() -> [FriendsDataBinder]
 }

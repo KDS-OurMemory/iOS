@@ -60,6 +60,15 @@ extension OurMemoryFriendsTabCtl: OurMemoryFriendsTabContract {
                 self.friendsModel.searchFriendsData(searchStr: p1)
             }
             
+            setAdapter.setScrollBlock { p1, p2 in
+                switch p2 {
+                case .SCROLL_DID_SCROLLING:
+                    break
+                case .SCROLL_END_DECELERATING:
+                    break
+                }
+            }
+            
         }
     }
     

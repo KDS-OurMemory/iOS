@@ -115,6 +115,8 @@ struct userData:Codable,UserDataBinder {
 }
 // MARK: addSchedule response scheduleData,roomData
 struct scheduleData:Codable,ScheduleDateDataBinder {
+    
+    
     let addedRoomId:Int64?
     let bgColor:String? // #FFFFFF
     let contents:String?
@@ -166,6 +168,17 @@ struct scheduleData:Codable,ScheduleDateDataBinder {
         return result
     }
     
+    func getWeekDay() -> String {
+        return self.startDate.getWeekStringWithDateFormatStr(dateFormatStr: "yyyy-MM-dd HH:mm")!
+    }
+    
+    func getDay() -> String {
+        return self.startDate.getDayStringWithDateFormatStr(dateFormatStr: "yyyy-MM-dd HH:mm")!
+    }
+    
+    func getStartLunar() -> DateComponents {
+        self.startDate.dateConvertLunarComponents(dateFormatStr: "yyyy-MM-dd HH:mm")
+    }
 }
 
 struct shareRoomsData:Codable {
@@ -269,6 +282,10 @@ struct roomData:Codable,RoomDataBinder {
     
     func getName() -> String {
         return self.name
+    }
+    
+    func getMembers() -> [FriendsDataBinder] {
+        return members
     }
 }
 

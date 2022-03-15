@@ -8,6 +8,11 @@ import Foundation
 import UIKit
 
 open class BaseCollectionAdapter:NSObject,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+ 
+    public enum scrollState {
+        case SCROLL_END_DECELERATING
+        case SCROLL_DID_SCROLLING
+    }
     
     public var collectionView:UICollectionView?
     var datas:[Int:[Any]?] = [:]
@@ -15,7 +20,8 @@ open class BaseCollectionAdapter:NSObject,UICollectionViewDelegate,UICollectionV
     public var searchBlock:((String) -> Void)?
     public var onOffBtnBlock:((Bool,IndexPath) -> Void)?
     public var orgCollectionSize:CGSize?
-    var cellClickBlock:((IndexPath)->Void)?
+    public var scrollBlock:((UIScrollView,scrollState) -> Void)?
+    public var cellClickBlock:((IndexPath)->Void)?
     
     public func setCollection(collectionView:UICollectionView) {
         
@@ -45,6 +51,10 @@ open class BaseCollectionAdapter:NSObject,UICollectionViewDelegate,UICollectionV
             self.datas[0] = ["search"]
         }
         self.reloadCollectionView()
+    }
+    
+    func setScrollBlock(block:@escaping (UIScrollView,scrollState) -> Void) {
+        scrollBlock = block
     }
     
     func setCellBlock(block:@escaping (IndexPath) -> Void) {
@@ -167,6 +177,23 @@ open class BaseCollectionAdapter:NSObject,UICollectionViewDelegate,UICollectionV
                 block(indexPath)
             }
         }
+    
+    
+}
+
+extension BaseCollectionAdapter: UIScrollViewDelegate {
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if let block = self.scrollBlock {
+            block(scrollView,.SCROLL_END_DECELERATING)
+        }
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let block = self.scrollBlock {
+            block(scrollView,.SCROLL_DID_SCROLLING)
+        }
+    }
     
     
 }

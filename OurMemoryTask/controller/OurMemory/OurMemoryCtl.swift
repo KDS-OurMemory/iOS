@@ -52,8 +52,19 @@ extension OurMemoryCtl: OurMemoryContract {
         if let setAdapter = self.adapter {
             setAdapter.changeSearchItemState(state: false)
             setAdapter.setSearchBlock { p1 in
-                
+                self.roomsModel.searchRoomsData(searchStr: p1)
             }
+            
+            setAdapter.setScrollBlock { p1, p2 in
+                switch p2 {
+                case .SCROLL_DID_SCROLLING:
+                    break
+                case .SCROLL_END_DECELERATING:
+                    break
+                }
+            }
+            
+            
             setAdapter.setCellBlock { p1 in
                 switch p1.section {
                 case 0:

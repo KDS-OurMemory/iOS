@@ -12,4 +12,5 @@ public protocol ScheduleDateDataBinder {
     func getScheduleColor() -> UIColor?
     func getName() -> String
     func getDateSchedule() ->String
+    
 }

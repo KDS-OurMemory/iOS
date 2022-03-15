@@ -1,14 +1,14 @@
 //
-//  MyMemoryCollectionAdapter.swift
+//  RoomDetailCollectionAdapter.swift
 //  OurMemory
 //
-//  Created by 이승기 on 2022/03/01.
+//  Created by 이승기 on 2022/03/15.
 //
 
 import UIKit
 
-class MyMemoryCollectionAdapter: BaseCollectionAdapter {
-    
+class RoomDetailCollectionAdapter: BaseCollectionAdapter {
+
     override func getSectionCnt() -> Int {
         return 1
     }
@@ -37,7 +37,4 @@ class MyMemoryCollectionAdapter: BaseCollectionAdapter {
         
         return CGSize(width: collectionView.frame.width/7, height: collectionView.frame.height/(self.getDataCntAtSection(section: indexPath.section) > 35 ? 6:5))
     }
-    
-    
-    
 }

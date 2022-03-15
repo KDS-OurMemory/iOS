@@ -38,6 +38,12 @@ class RoomsCollectionAdapter: BaseCollectionAdapter {
                 if let roomCell = collectionView.dequeueReusableCell(withReuseIdentifier: OurMemoryRoomsCollectionViewCell.className(), for: indexPath) as? OurMemoryRoomsCollectionViewCell {
                     roomCell.setData(data: data)
                     
+                    roomCell.clickBlock { p1 in
+                        if let cellClickBlock = self.cellClickBlock {
+                            cellClickBlock(collectionView.indexPath(for: p1)!)
+                        }
+                    }
+                    
                     return roomCell
                 }
             }

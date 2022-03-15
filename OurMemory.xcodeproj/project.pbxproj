@@ -90,6 +90,8 @@
 		73DBCC9227C2448700B202DF /* OurMemoryFriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DBCC9127C2448700B202DF /* OurMemoryFriendsCollectionViewCell.swift */; };
 		73DBCC9F27C26C2000B202DF /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DBCC9D27C26C2000B202DF /* SearchCollectionViewCell.swift */; };
 		73DBCCA027C26C2000B202DF /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73DBCC9E27C26C2000B202DF /* SearchCollectionViewCell.xib */; };
+		73E16DC427DF91AB006F1904 /* RoomDetailCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E16DC327DF91AB006F1904 /* RoomDetailCollectionAdapter.swift */; };
+		73E16DC727DFA5AF006F1904 /* RoomUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E16DC627DFA5AF006F1904 /* RoomUserView.swift */; };
 		73EA3C8627AE5897005AD3FA /* AddSchduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3C8427AE5897005AD3FA /* AddSchduleViewController.swift */; };
 		73EA3C8727AE5897005AD3FA /* AddSchduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EA3C8527AE5897005AD3FA /* AddSchduleViewController.xib */; };
 		73EA3C8D27AE5E9C005AD3FA /* SelectAlramTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA3C8B27AE5E9C005AD3FA /* SelectAlramTimeViewController.swift */; };
@@ -238,6 +240,8 @@
 		73DBCC9127C2448700B202DF /* OurMemoryFriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurMemoryFriendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		73DBCC9D27C26C2000B202DF /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		73DBCC9E27C26C2000B202DF /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
+		73E16DC327DF91AB006F1904 /* RoomDetailCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailCollectionAdapter.swift; sourceTree = "<group>"; };
+		73E16DC627DFA5AF006F1904 /* RoomUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomUserView.swift; sourceTree = "<group>"; };
 		73EA3C8427AE5897005AD3FA /* AddSchduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSchduleViewController.swift; sourceTree = "<group>"; };
 		73EA3C8527AE5897005AD3FA /* AddSchduleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddSchduleViewController.xib; sourceTree = "<group>"; };
 		73EA3C8B27AE5E9C005AD3FA /* SelectAlramTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAlramTimeViewController.swift; sourceTree = "<group>"; };
@@ -709,6 +713,7 @@
 				738F7FBD27C5C6B900EE9656 /* AddFriendsSearchNameCollectionAdapter.swift */,
 				73A452CF27C628B3006265F6 /* AddRoomCollectionAdapter.swift */,
 				73D108BA27CDDA33003E7B54 /* MyMemoryCollectionAdapter.swift */,
+				73E16DC327DF91AB006F1904 /* RoomDetailCollectionAdapter.swift */,
 			);
 			path = collection;
 			sourceTree = "<group>";
@@ -747,6 +752,14 @@
 				73DBCC9E27C26C2000B202DF /* SearchCollectionViewCell.xib */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		73E16DC527DFA596006F1904 /* subView */ = {
+			isa = PBXGroup;
+			children = (
+				73E16DC627DFA5AF006F1904 /* RoomUserView.swift */,
+			);
+			path = subView;
 			sourceTree = "<group>";
 		};
 		73EA3C7A27AD1561005AD3FA /* MyMemory */ = {
@@ -913,6 +926,7 @@
 		73FC5D0C25E7FEF30050D68E /* RoomDetail */ = {
 			isa = PBXGroup;
 			children = (
+				73E16DC527DFA596006F1904 /* subView */,
 				7393FFFD2608E84000651586 /* RoomDetailViewController.swift */,
 				7393FFFE2608E84000651586 /* RoomDetailViewController.xib */,
 				735A72D9261B55D30088960F /* RoomDetailCalCollectionViewCell.swift */,
@@ -1170,6 +1184,7 @@
 				7397D19F27C374C30045114C /* FriendsSearchFilterBtnsView.swift in Sources */,
 				73EA3C8D27AE5E9C005AD3FA /* SelectAlramTimeViewController.swift in Sources */,
 				73C671BA27C3EC3C0013BC42 /* AddFriendsCollectionCell.swift in Sources */,
+				73E16DC727DFA5AF006F1904 /* RoomUserView.swift in Sources */,
 				736B192727C521A700B1D321 /* UICollectionView+registCell.swift in Sources */,
 				73EA3CA227AF9340005AD3FA /* TodoListViewController.swift in Sources */,
 				73A452D027C628B3006265F6 /* AddRoomCollectionAdapter.swift in Sources */,
@@ -1196,6 +1211,7 @@
 				739C01C625B7221D00C5A2D6 /* AppDelegate.swift in Sources */,
 				7396075627C8B9340068569D /* KeySwitchView.swift in Sources */,
 				7393FFF92608E81A00651586 /* SharedListViewController.swift in Sources */,
+				73E16DC427DF91AB006F1904 /* RoomDetailCollectionAdapter.swift in Sources */,
 				73EA3CA627AF93BF005AD3FA /* MyMemoryViewController.swift in Sources */,
 				73C7ED76266CC1BB00DADD99 /* myRoomCollectionCtl.swift in Sources */,
 				738F7FBE27C5C6B900EE9656 /* AddFriendsSearchNameCollectionAdapter.swift in Sources */,

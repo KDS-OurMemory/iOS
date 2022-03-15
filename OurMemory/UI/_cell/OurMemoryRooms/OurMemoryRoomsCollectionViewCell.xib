@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,12 +18,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="knf-ct-j0Y">
-                        <rect key="frame" x="0.0" y="1.5" width="60" height="47"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="WK5-4M-W0Z"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-nT-ePf">
                         <rect key="frame" x="355" y="25" width="35" height="0.0"/>
                         <constraints>
@@ -38,29 +33,48 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ptn-eu-0tP">
+                        <rect key="frame" x="60" y="0.0" width="340" height="50"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGa-Mf-WXH">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="UgH-3N-vhD"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal">
+                            <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
+                        </state>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="TGa-Mf-WXH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6lc-Nt-g8C"/>
                 <constraint firstItem="ldb-uf-G80" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7Ds-f1-4s1"/>
+                <constraint firstItem="Ptn-eu-0tP" firstAttribute="leading" secondItem="TGa-Mf-WXH" secondAttribute="trailing" id="7Ef-yG-RcH"/>
                 <constraint firstAttribute="bottom" secondItem="ldb-uf-G80" secondAttribute="bottom" id="9nn-R2-EnA"/>
-                <constraint firstItem="ldb-uf-G80" firstAttribute="leading" secondItem="knf-ct-j0Y" secondAttribute="trailing" id="HwN-IR-Egv"/>
                 <constraint firstAttribute="trailing" secondItem="S0H-nT-ePf" secondAttribute="trailing" constant="10" id="Hzi-Qc-uLd"/>
                 <constraint firstItem="S0H-nT-ePf" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Jir-7M-yxR"/>
-                <constraint firstAttribute="bottom" secondItem="knf-ct-j0Y" secondAttribute="bottom" id="fdL-OA-srg"/>
-                <constraint firstItem="knf-ct-j0Y" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lVK-JQ-ejl"/>
+                <constraint firstItem="Ptn-eu-0tP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Sme-cv-xkz"/>
+                <constraint firstAttribute="bottom" secondItem="Ptn-eu-0tP" secondAttribute="bottom" id="eHp-iW-Zmb"/>
+                <constraint firstItem="TGa-Mf-WXH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hzo-Me-GEu"/>
+                <constraint firstAttribute="bottom" secondItem="TGa-Mf-WXH" secondAttribute="bottom" id="jwP-2B-P9N"/>
+                <constraint firstItem="ldb-uf-G80" firstAttribute="leading" secondItem="TGa-Mf-WXH" secondAttribute="trailing" id="p5M-hX-Q2d"/>
                 <constraint firstItem="S0H-nT-ePf" firstAttribute="leading" secondItem="ldb-uf-G80" secondAttribute="trailing" id="rag-uF-crR"/>
-                <constraint firstItem="knf-ct-j0Y" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tcU-Rt-AUp"/>
+                <constraint firstAttribute="trailing" secondItem="Ptn-eu-0tP" secondAttribute="trailing" id="yjr-r0-86Z"/>
             </constraints>
             <connections>
+                <outlet property="roomCellBtn" destination="Ptn-eu-0tP" id="yd7-Oh-klm"/>
                 <outlet property="roomNameLbl" destination="ldb-uf-G80" id="abu-F5-IUC"/>
-                <outlet property="roomProfileImage" destination="knf-ct-j0Y" id="Top-16-lxb"/>
+                <outlet property="roomProfileBtn" destination="TGa-Mf-WXH" id="8Rz-L4-42v"/>
                 <outlet property="userCntLbl" destination="S0H-nT-ePf" id="SOI-jM-67E"/>
             </connections>
             <point key="canvasLocation" x="139" y="62"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="person" catalog="system" width="128" height="117"/>
     </resources>
 </document>

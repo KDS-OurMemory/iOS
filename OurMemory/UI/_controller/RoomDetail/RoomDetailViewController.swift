@@ -48,11 +48,21 @@ class RoomDetailViewController: BaseViewController {
     @IBOutlet var upandDownView: UIView!
     @IBOutlet weak var weekDaysStackView: UIStackView!
 
-    @IBOutlet weak var calLbl: UILabel!
+
+    @IBOutlet weak var scheduleSv: BaseScrollView!
+    @IBOutlet weak var calPickerBtn: UIButton!
     @IBOutlet weak var topViewContainer: UIView!
     @IBOutlet weak var calLeftBtn: UIButton!
     @IBOutlet weak var calRightBtn: UIButton!
+    @IBOutlet weak var selectDayLbl: UILabel!
+    @IBOutlet weak var selectDayLunarLbl: UILabel!
     let topView:TopView = TopView()
+    @IBOutlet weak var sideMenuUserSv: BaseScrollView!
+    @IBOutlet weak var sideMenuLeftBtn: UIButton!
+    @IBOutlet weak var sideMenuSettingBtn: UIButton!
+    @IBOutlet weak var sideMenuWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sideMenuView: UIView!
     
     var screenWidth:CGFloat!
     var screenHeight:CGFloat!
@@ -64,7 +74,8 @@ class RoomDetailViewController: BaseViewController {
     var movecalOriginSize:CGFloat!
 
     var roomDetailCtl:RoomDetailContract?
-
+    let roomDetailCollectionAdapter:RoomDetailCollectionAdapter = RoomDetailCollectionAdapter()
+    
     override func prepareViewWithData(data: Any?) {
         
         self.moveCal.registCell(cellIdentifier: RoomDetailCalCollectionViewCell.className())
@@ -76,13 +87,25 @@ class RoomDetailViewController: BaseViewController {
             self.showNextVC(vc: .NEXTVIEW_POP, data: nil)
         }
         topView.setRightBtn(btnTitle: nil, btnImage: UIImage(systemName: "line.3.horizontal")) {
-            
+            self.updateSideMenuState(state: true)
         }
         
         roomDetailCtl = CtlMaker().createDataControllerWithContract(contract: .eContractRoomDetail, view: self, data: data) as? RoomDetailContract
+        roomDetailCollectionAdapter.setCollection(collectionView: moveCal)
+        roomDetailCtl?.setCollectionWithAdpater(adapter: roomDetailCollectionAdapter)
+        moveCal.registCell(cellIdentifier: MyMemoryCollectionViewCell.className())
         
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.updateSideMenuState(state: false)
+        super.touchesBegan(touches, with: event)
+    }
+    
+    override func getDataContract() -> DataContract? {
+        return self.roomDetailCtl
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate { _ in
@@ -111,157 +134,79 @@ class RoomDetailViewController: BaseViewController {
 
     func setUpLayout() {
 
-        let calGesture = UIPanGestureRecognizer(target: self, action: #selector(self.wasCalDragged(gestureRecognizer:)))
-        self.moveCal.addGestureRecognizer(calGesture)
-
         self.movecalOriginSize = self.contentsViewCenterY - self.contentsviewTop
         self.moveCalHeightConstraints.constant = self.movecalOriginSize
-        calGesture.delegate = self
-
-        let viewGesture = UIPanGestureRecognizer(target: self, action: #selector(self.wasViewDragged(gestureRecognizer:)))
-        upandDownView.addGestureRecognizer(viewGesture)
-        upandDownView.isUserInteractionEnabled = true
-        viewGesture.delegate = self
+  
     }
 
 
-}
-
-extension RoomDetailViewController:UIGestureRecognizerDelegate {
-
-    @objc func wasCalDragged(gestureRecognizer: UIPanGestureRecognizer) {
-        let translation = gestureRecognizer.translation(in: self.view)
-        if gestureRecognizer.state == UIGestureRecognizer.State.began || gestureRecognizer.state == UIGestureRecognizer.State.changed {
-            if(gestureRecognizer.view!.center.y <= self.contentsViewCenterY) || (gestureRecognizer.view!.center.y >= self.contentsviewTop ) {
-
-                if self.upandDownView.frame.origin.y > self.contentsViewCenterY
-                {
-                    self.moveCalHeightConstraints.constant = self.moveCalHeightConstraints.constant + translation.y
-                }
-                if self.upandDownView.frame.origin.y <= self.screenHeight
-                {
-                    self.upandDownView.frame.origin.y = self.upandDownView.frame.origin.y - translation.y
-                }
-                if self.moveCalHeightConstraints.constant > self.contentScreenHeight {
-                    self.moveCalHeightConstraints.constant = self.contentScreenHeight
-                }
-
-                self.moveCal.reloadData()
-                self.moveCal.collectionViewLayout.invalidateLayout()
-
-            }
-            else {
-                gestureRecognizer.view!.frame.origin.y = self.contentsviewTop
-            }
-
-            gestureRecognizer.setTranslation(CGPoint(x:0,y:0), in: self.view)
-        }else if gestureRecognizer.state == UIGestureRecognizer.State.ended {
-            if (self.contentsViewCenterY..<self.contentsViewCenterY*1.5).contains(self.upandDownView.frame.origin.y)  {
-                UIView.animate(withDuration: 0.5) {
-                    self.moveCalHeightConstraints.constant = self.movecalOriginSize
-                    self.upandDownView.frame.origin.y = self.contentsViewCenterY
-                } completion: { _ in
-                    self.moveCal.reloadData()
-                    self.moveCal.collectionViewLayout.invalidateLayout()
-                }
-
-            }
-            else {
-                UIView.animate(withDuration: 0.5) {
-                    self.moveCalHeightConstraints.constant = self.contentScreenHeight
-                    self.upandDownView.frame.origin.y = self.screenHeight
-                }
-            }
-        }
-    }
-
-    @objc func wasViewDragged(gestureRecognizer: UIPanGestureRecognizer) {
-        let translation = gestureRecognizer.translation(in: self.view)
-           print(translation.y)
-
-//        print(gestureRecognizer.view?.frame.origin.y)
-        if gestureRecognizer.state == UIGestureRecognizer.State.began || gestureRecognizer.state == UIGestureRecognizer.State.changed {
-            if(gestureRecognizer.view!.center.y > self.contentsViewCenterY) {
-                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x, y: gestureRecognizer.view!.center.y+translation.y)
-                if (gestureRecognizer.view?.frame.origin.y)! > self.contentsViewCenterY
-                {
-                    self.moveCalHeightConstraints.constant = self.moveCalHeightConstraints.constant + translation.y
-                    UIView.animate(withDuration: 0.2) {
-                        self.moveCal.reloadData()
-                        self.moveCal.collectionViewLayout.invalidateLayout()
-                    }
-
-                }
-            }
-            else {
-                gestureRecognizer.view!.center = CGPoint(x:gestureRecognizer.view!.center.x, y:self.contentsViewCenterY+1)
-               }
-
-            gestureRecognizer.setTranslation(CGPoint(x:0,y:0), in: self.view)
-        }else if gestureRecognizer.state == UIGestureRecognizer.State.ended {
-            if (self.contentsviewTop..<self.contentsViewCenterY/1.5).contains(gestureRecognizer.view!.frame.origin.y) {
-                UIView.animate(withDuration: 0.5) {
-                    gestureRecognizer.view?.frame.origin.y = self.contentsviewTop
-                }
-            }else if (self.contentsViewCenterY/1.5..<self.contentsViewCenterY).contains((gestureRecognizer.view?.frame.origin.y)!)  {
-                UIView.animate(withDuration: 0.5) {
-                    gestureRecognizer.view?.frame.origin.y = self.contentsViewCenterY
-                    self.moveCalHeightConstraints.constant = (gestureRecognizer.view?.frame.origin.y)! - self.contentsviewTop
-                    UIView.animate(withDuration: 0.5) {
-                        self.moveCal.reloadData()
-                        self.moveCal.collectionViewLayout.invalidateLayout()
-                    }
-                }
-            }else if (self.contentsViewCenterY..<self.contentsViewCenterY*1.5).contains((gestureRecognizer.view?.frame.origin.y)!)  {
-                UIView.animate(withDuration: 0.5) {
-                    self.moveCalHeightConstraints.constant = self.movecalOriginSize
-                    gestureRecognizer.view?.frame.origin.y = self.contentsViewCenterY
-                } completion: { _ in
-                    UIView.animate(withDuration: 0.5) {
-                        self.moveCal.reloadData()
-                        self.moveCal.collectionViewLayout.invalidateLayout()
-                    }
-                }
-
-            }
-            else {
-                UIView.animate(withDuration: 0.5) {
-                    gestureRecognizer.view?.frame.origin.y = self.screenHeight
-                    self.moveCalHeightConstraints.constant = (gestureRecognizer.view?.frame.origin.y)! - self.contentsviewTop
-                    UIView.animate(withDuration: 0.5) {
-                        self.moveCal.reloadData()
-                        self.moveCal.collectionViewLayout.invalidateLayout()
-                    }
-                }
-            }
-        }
-
-    }
-
-    func checkScrollPoint(ypoint:CGFloat) -> ROOMDETAILSCROLLPOINT {
-
-        if (ypoint == self.contentsViewCenterY)
-        {
-            return ROOMDETAILSCROLLPOINT.MID
-        }
-        if (self.contentsviewTop..<self.contentsViewCenterY/1.5).contains(ypoint) {
-            return ROOMDETAILSCROLLPOINT.TOPMIDTOP
-        }else if (self.contentsViewCenterY/1.5..<self.contentsViewCenterY).contains(ypoint) {
-            return ROOMDETAILSCROLLPOINT.TOPMIDBOT
-        }else if (self.contentsViewCenterY..<self.contentsViewCenterY*1.5).contains(ypoint) {
-            return ROOMDETAILSCROLLPOINT.BOTMIDTOP
-        }else if (self.contentsViewCenterY*1.5..<self.screenHeight).contains(ypoint) {
-            return ROOMDETAILSCROLLPOINT.BOTMIDBOT
-        }else{
-            return ROOMDETAILSCROLLPOINT.OUTSCREEN
-        }
-
-    }
 }
 
 extension RoomDetailViewController:RoomDetailView {
+    func updateYearMonth(yearMonth: (String, String)) {
+        self.calPickerBtn.setTitle("\(yearMonth.0).\(yearMonth.1)", for: .normal)
+    }
+    
+    func updateScheduleDatas(datas: [ScheduleDateDataBinder]?) {
+        self.scheduleSv.resetSubViews()
+        if (datas == nil || datas?.count == 0) {
+            let noitemLbl = UILabel(frame: CGRect(x: 0, y: 0, width: mainWidth, height: 30))
+            noitemLbl.textColor = .black
+            noitemLbl.text = "일정이 존재하지 않습니다."
+            self.scheduleSv.addVerScrollSubView(subView: noitemLbl, viewSize: noitemLbl.frame.size, verPadding: 10)
+        }else {
+            for data in datas! {
+                let scheduleView = MyMemoryScheduleView()
+                scheduleView.setData(data: data)
+                self.scheduleSv.addVerScrollSubView(subView: scheduleView, viewSize: scheduleView.frame.size, verPadding: 50)
+                scheduleView.setClickBLock { p1 in
+                    if let ctl = self.getDataContract() as? RoomDetailContract {
+                        ctl.selectScheduleIndex(index: p1)
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateSelectDay(day: String) {
+        self.selectDayLbl.text = day
+    }
+    
+    func updateSelectDayLunar(lunar: String) {
+        self.selectDayLunarLbl.text = lunar
+    }
+    
     func updateRoomData(data:RoomDataBinder) {
         topView.setTitle(title: data.getName())
+        self.updateRoomMembers(members: data.getMembers())
+    }
+    
+    func updateSideMenuState(state:Bool) {
+        UIView.animate(withDuration: 1) {
+//            self.sideMenuLeadingConstraint.constant =
+            self.sideMenuView.frame = CGRect(x: (state ? mainWidth-self.sideMenuView.frame.width:mainWidth+self.sideMenuView.frame.width), y: 0, width: self.sideMenuView.frame.width, height: self.sideMenuView.frame.height)
+        } completion: { _ in
+            self.sideMenuView.layoutIfNeeded()
+        }
+    }
+    
+    func updateRoomMembers(members:[FriendsDataBinder]) {
+        self.sideMenuUserSv.resetSubViews()
+        for member in members {
+            let userView:RoomUserView = RoomUserView()
+            userView.setId(id: member.getName())
+            member.getProfileImage { p1 in
+                userView.setProfileImg(img: p1 ?? UIImage.init(systemName: "person.circle")!)
+            }
+            
+            self.sideMenuUserSv.addVerScrollSubView(subView: userView, viewSize: userView.frame.size, verPadding: 10)
+            userView.clickProfileBlock { p1 in
+                self.sideMenuUserSv.subviews.firstIndex(of: p1)
+            }
+            userView.clickUserBlock { p1 in
+                self.sideMenuUserSv.subviews.firstIndex(of: p1)
+            }
+        }
     }
 }
 

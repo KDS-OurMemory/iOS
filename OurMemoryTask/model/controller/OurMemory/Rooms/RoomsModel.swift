@@ -30,7 +30,7 @@ class RoomsModel: NSObject {
         
     }
     
-    func searchFriendsData(searchStr:String) {
+    func searchRoomsData(searchStr:String) {
         if searchStr == "" {
             if let callback = self.roomsModelCallback,let orgData = self.orgRoomsData {
                 searchRoomsData = nil

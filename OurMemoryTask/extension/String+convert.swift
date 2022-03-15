@@ -99,6 +99,16 @@ extension String {
         return String(result)
     }
     
+    func getWeekStringWithDateFormatStr(dateFormatStr:String) -> String? {
+        let cal = Calendar.current
+        let dateformat = DateFormatter()
+        if let date = dateformat.date(from: dateFormatStr) {
+            return self.weekDayConvertStr(weekDay: cal.dateComponents([.year,.month,.day,.weekday], from: date).weekday!)
+        }
+        return nil
+    }
+    
+    
     func getDayStringWithDateFormatStr(dateFormatStr:String) -> String? {
         guard let startIdx = dateFormatStr.firstIndex(of: "d") else { return nil }
         guard let endIdx = dateFormatStr.lastIndex(of: "d") else { return nil }
@@ -118,5 +128,37 @@ extension String {
         guard let endIdx = dateFormatStr.lastIndex(of: "m") else { return nil }
         let result = self[startIdx...endIdx]
         return String(result)
+    }
+    
+    private func weekDayConvertStr(weekDay:Int) -> String {
+        switch weekDay {
+        case 0:
+            return "일"
+        case 1:
+            return "월"
+        case 2:
+            return "화"
+        case 3:
+            return "수"
+        case 4:
+            return "목"
+        case 5:
+            return "금"
+        case 6:
+            return "토"
+        default:
+            return ""
+        }
+    }
+    
+    func dateConvertLunarComponents(dateFormatStr:String) -> DateComponents {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = dateFormatStr
+        dateFormat.locale = Locale(identifier: "zh-Tw_POSIX")
+        dateFormat.dateStyle = .medium
+        let cal = Calendar(identifier: .chinese)
+        
+        return cal.dateComponents([.year,.month,.day], from: dateFormat.date(from: self)!)
+        
     }
 }

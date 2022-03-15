@@ -10,4 +10,7 @@ import Foundation
 public protocol MyMemoryView:TabbarContract {
     func updateYearMonth(yearMonth:(String,String))
     func updateScheduleDatas(datas:[ScheduleDateDataBinder]?)
+    func updateSelectDay(day:String)
+    func updateSelectDayLunar(lunar:String)
+    
 }

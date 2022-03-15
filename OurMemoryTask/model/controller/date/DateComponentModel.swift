@@ -24,16 +24,28 @@ class DateComponentsModel: NSObject {
         self.setMonthofCal()
     }
     
-    func getComponentsDate() -> Date {
+    func getCurrentDate() -> DateComponents {
+        return self.cal.dateComponents([.year,.month,.day,.hour,.minute,.second], from: self.date)
+    }
+    
+    func changePrevDate() {
+        self.date = self.cal.date(byAdding: .month, value: -1, to: self.date)!
+        self.components = self.cal.dateComponents(self.getCalComponent(), from: self.date)
+        self.setMonthofCal()
+    }
+    
+    func changeNextDate() {
+        self.date = self.cal.date(byAdding: .month, value: 1, to: self.date)!
+        self.components = self.cal.dateComponents(self.getCalComponent(), from: self.date)
+        self.setMonthofCal()
+    }
+    
+    private func getComponentsDate() -> Date {
         if let date = self.cal.date(from: self.components)
         {
             return date
         }
         return Date()
-    }
-    
-    func getCurrentDate() -> DateComponents {
-        return self.cal.dateComponents([.year,.month,.day,.hour,.minute,.second], from: self.date)
     }
     
     var startOfDay:Date {
@@ -62,14 +74,14 @@ class DateComponentsModel: NSObject {
         return Calendar(identifier: .gregorian).date(byAdding: components, to: self.startOfMonth)!
     }
     
-    var prevLastDayOfMonth: Date {
+    private var prevLastDayOfMonth: Date {
         let calendar = Calendar(identifier: .gregorian)
         var components = calendar.dateComponents([.year, .month, .day], from: self.date)
         components.day = 0
         return calendar.date(from: components)!
     }
     
-    var nextFirstDayOfMonth: Date {
+    private var nextFirstDayOfMonth: Date {
         let calendar = Calendar(identifier: .gregorian)
         var components = calendar.dateComponents([.year, .month, .day], from: self.date)
         components.month = components.month! + 1
@@ -77,7 +89,7 @@ class DateComponentsModel: NSObject {
         return calendar.date(from: components)!
     }
     
-    func isMonday() -> Bool {
+    private func isMonday() -> Bool {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.weekday], from:  self.date)
         return components.weekday == 2
@@ -238,6 +250,10 @@ class DateComponentsModel: NSObject {
         if let date = self.cal.date(from: self.components) {
             self.date = date
         }
+    }
+    
+    func getCalComponent() -> Set<Calendar.Component> {
+        return [.year,.month,.day,.weekday,.hour,.minute,.second]
     }
     
     func setDateStrForDateFormatStr(dateStr:String,dateformatStr:String) {
