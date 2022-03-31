@@ -8,5 +8,6 @@
 import Foundation
 
 public protocol TodoListContract:DataContract {
-    
+    func actionMenuBtn()
+    func setSelectDate(date:String)
 }

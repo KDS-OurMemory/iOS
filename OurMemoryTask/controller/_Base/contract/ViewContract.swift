@@ -19,6 +19,7 @@ public protocol AlertContract {
     func showAlertMsgWithTitle(title:String,msg:String)
     func showAlertMsgWithTitleAndActions(title:String,msg:String, actions: [String:(UIAlertAction) -> Void])
     func showFadeOutMsgView(msg:String)
+    func showActionSheetWithTitleAndActions(title:String,msg:String, actions:[String:(UIAlertAction) -> Void])
 }
 
 public protocol TabbarContract:ViewContract {

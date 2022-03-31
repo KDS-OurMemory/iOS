@@ -35,8 +35,10 @@ class MyMemoryScheduleView: BaseView {
         scheduleLbl.textColor = .black
     }
     
-    func setClickBLock(block:@escaping (Int) -> Void) {
-        block(self.tag)
+    func setClickBLock(block:@escaping (BaseView) -> Void) {
+        scheduleViewBtn.addAction { p1 in
+            block(self)
+        }
     }
     
     func setData(data:ScheduleDateDataBinder) {

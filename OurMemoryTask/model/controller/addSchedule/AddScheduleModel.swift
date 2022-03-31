@@ -13,6 +13,7 @@ enum SCHEDULERESULT {
     case SCHEDULECOLOR_UPDATE
     case SCHEDULE_UPDATE_SELECTED_DATE
     case SCHEDULECONFIRMBTN_UPDATE
+    case SUCCESS
 }
 
 class AddScheduleModel: NSObject {
@@ -279,8 +280,10 @@ class AddScheduleModel: NSObject {
         self.addScheduleNetModel.reqeustRestFulApi(context: context) {(data: Result<json<scheduleData>,Error >) in
             switch data {
             case .success(let responseData):
-                if let response = responseData.response {
-                    
+                if let _ = responseData.response {
+                    if let block = self.scheduleBlock {
+                        block(.SUCCESS,nil)
+                    }
                 }
                 break
             default:

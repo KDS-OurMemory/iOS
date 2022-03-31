@@ -16,8 +16,7 @@ enum ROOMDETAIL_RESULT {
     case UPDATESELECTDAY
     case CHANGE
     case MOVESCHEDULEDETAILE
-    case UPDATEMEMBERS
-    
+    case UPDATEROOMSDATA
 }
 
 class RoomDetailModel: NSObject {
@@ -29,7 +28,12 @@ class RoomDetailModel: NSObject {
     
     func initRoomDetailDataWithBlock(data:Any?, block:@escaping (ROOMDETAIL_RESULT,Any?) -> Void) {
         roomDetailBlock = block
-        roomData = data as? roomData
+        
+        if let data = data as? roomData,let block = self.roomDetailBlock {
+            roomData = data
+            block(.UPDATEROOMSDATA,data)
+        }
+        
     }
     
     func setCalenderData(year:String,month:String,selectDates:[CalDateData]) {

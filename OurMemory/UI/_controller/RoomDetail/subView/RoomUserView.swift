@@ -25,6 +25,7 @@ class RoomUserView: BaseView {
         self.userBtn.frame = CGRect(x: viewHeight+5, y: 0, width: mainWidth-viewHeight, height: viewHeight)
         
         self.profileBtn.layer.cornerRadius = viewHeight/2
+        self.profileBtn.imageView?.layer.cornerRadius = viewHeight/2
         self.userIdLbl.textColor = .black
         
         self.profileBtn.setImage(UIImage.init(systemName: "person.circle"), for: .normal)

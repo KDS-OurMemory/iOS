@@ -25,7 +25,7 @@ class DateComponentsModel: NSObject {
     }
     
     func getCurrentDate() -> DateComponents {
-        return self.cal.dateComponents([.year,.month,.day,.hour,.minute,.second], from: self.date)
+        return self.cal.dateComponents([.year,.month,.day,.hour,.minute,.second], from: Date())
     }
     
     func changePrevDate() {
@@ -40,12 +40,16 @@ class DateComponentsModel: NSObject {
         self.setMonthofCal()
     }
     
-    private func getComponentsDate() -> Date {
+    func getComponentsDate() -> Date {
         if let date = self.cal.date(from: self.components)
         {
             return date
         }
         return Date()
+    }
+    
+    func getDateComponents() -> DateComponents {
+        return self.cal.dateComponents([.year,.month,.day,.hour,.minute,.second], from: self.date)
     }
     
     var startOfDay:Date {

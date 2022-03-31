@@ -175,7 +175,8 @@ extension MyMemoryViewController: MyMemoryView {
                 self.scheduleSv.addVerScrollSubView(subView: scheduleView, viewSize: scheduleView.frame.size, verPadding: 50)
                 scheduleView.setClickBLock { p1 in
                     if let ctl = self.getDataContract() as? MyMemoryContract {
-                        ctl.selectScheduleIndex(index: p1)
+                        let index = self.scheduleSv.subviews.firstIndex(of: p1)!
+                        ctl.selectScheduleIndex(index: index)
                     }
                 }
             }
@@ -212,23 +213,11 @@ extension MyMemoryViewController:UIGestureRecognizerDelegate {
         else if gestureRecognizer.state == UIGestureRecognizer.State.ended {
             
             if gestureRecognizer.view!.frame.maxY < self.orgCalCenterY {
-                self.calHeightConstraint.constant = 0
+                self.reloadContents(contentsHeight: 0)
             }else if gestureRecognizer.view!.frame.maxY < self.orgMoveViewCenterY||gestureRecognizer.view!.frame.maxY <= self.orgMoveViewYPOI {
-                UIView.animate(withDuration: 0.5) {
-                    self.calHeightConstraint.constant = self.orgCalHeight
-                } completion: { _ in
-                    self.updownView.layoutIfNeeded()
-                    self.calCollectionView.reloadData()
-                    self.calCollectionView.collectionViewLayout.invalidateLayout()
-                }
+                self.reloadContents(contentsHeight: self.orgCalHeight)
             }else {
-                UIView.animate(withDuration: 0.5) {
-                    self.calHeightConstraint.constant = self.contentsArea
-                } completion: { _ in
-                    self.updownView.layoutIfNeeded()
-                    self.calCollectionView.reloadData()
-                    self.calCollectionView.collectionViewLayout.invalidateLayout()
-                }
+                self.reloadContents(contentsHeight: self.contentsArea)
             }
         }
         
@@ -252,28 +241,33 @@ extension MyMemoryViewController:UIGestureRecognizerDelegate {
                 gestureRecognizer.view!.frame.origin.y = self.orgCalYPOI
             }
             
-            if gestureRecognizer.view!.frame.minY >= self.orgMoveViewYPOI{
+            if gestureRecognizer.view!.frame.minY > self.orgMoveViewYPOI{
                 self.calCollectionView.reloadData()
+                self.calCollectionView.collectionViewLayout.invalidateLayout()
             }
             
             gestureRecognizer.setTranslation(CGPoint(x:0,y:0), in: self.view)
         }else if gestureRecognizer.state == UIGestureRecognizer.State.ended {
             UIView.animate(withDuration: 0.5) {
                 if gestureRecognizer.view!.frame.minY < self.orgCalCenterY {
-                    self.calHeightConstraint.constant = 0
-                }else if gestureRecognizer.view!.frame.minY <= self.orgMoveViewYPOI {
-                    self.calHeightConstraint.constant = self.orgCalHeight
-                }else if gestureRecognizer.view!.frame.minY < self.orgMoveViewCenterY {
-                    self.calHeightConstraint.constant = self.orgCalHeight
+                    self.reloadContents(contentsHeight: 0)
+                }else if gestureRecognizer.view!.frame.minY <= self.orgMoveViewYPOI || gestureRecognizer.view!.frame.minY < self.orgMoveViewCenterY  {
+                    self.reloadContents(contentsHeight: self.orgCalHeight)
                 }else if gestureRecognizer.view!.frame.minY < gestureRecognizer.view!.frame.maxY{
-                    self.calHeightConstraint.constant = self.contentsArea
+                    self.reloadContents(contentsHeight: self.contentsArea)
                 }
             }
         }
         
     }
     
-    func checkScrollPoint(ypoint:CGFloat)  {
-        
+    func reloadContents(contentsHeight:CGFloat) {
+        self.calHeightConstraint.constant = contentsHeight
+        UIView.animate(withDuration: 0.5) {
+            self.updownView.layoutIfNeeded()
+            self.calCollectionView.collectionViewLayout.invalidateLayout()
+        } completion: { _ in
+            self.calCollectionView.reloadData()
+        }
     }
 }

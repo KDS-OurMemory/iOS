@@ -45,7 +45,8 @@ class RoomDetailCtl:BaseCollectionCtl
             case .UPDATESELECTDAY:
                 self.callUpdateSelectDayInfo(data: p2 as! CalDateData)
                 break
-            case .UPDATEMEMBERS:
+            case .UPDATEROOMSDATA:
+                self.callUpdateRoomData(data: p2 as! RoomDataBinder)
                 break
             }
         }

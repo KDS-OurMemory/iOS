@@ -30,6 +30,7 @@ public enum ctls {
     case eContractSelectColor
     case eContractSelectShared
     case eContractSelectDate
+    case eContractSelectCal
     case eContractAddFriend
     case eContractAddFriendSearchID
     case eContractAddFriendSearchName
@@ -175,6 +176,11 @@ open class CtlMaker: NSObject {
         case .eContractAddRoom:
             if let _ = view as? AddRoomView {
                 retVal = AddRoomCtl(view: view as! ViewContract, data: data)
+            }
+            break
+        case .eContractSelectCal:
+            if let _ = view as? SelectCalView {
+                retVal = SelectCalCtl(view: view as! ViewContract, data: data)
             }
             break
         }

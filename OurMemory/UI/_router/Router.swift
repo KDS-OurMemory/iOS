@@ -131,8 +131,8 @@ struct MyAppNavigation: AppNavigation {
                 return AddFreindViewController().initiailizeSubViewClass()
             case .NEXTVIEW_ADDROOMS:
                 return AddRoomViewController().initiailizeSubViewClass()
-            
-            
+            case .NEXTVIEW_SELECTCAL:
+                return SelectCalenderViewController().initiailizeSubViewClass()
             default:
                 break
             }

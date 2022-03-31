@@ -43,9 +43,10 @@ class MyMemoryModel: NSObject {
             cal.selectDay[selectedIndex].isSelecte = true
             self.calData = cal
             if let block = self.myMemoryModelBlock {
+                block(.CHANGE,cal.selectDay)
                 block(.UPDATEIDXSCHEDULE,self.selectedIndex)
-                block(.UPDATESELECTDAYSCHEDULE,self.calData?.selectDay[selectedIndex].schedules)
-                block(.UPDATESELECTDAY,self.calData?.selectDay[selectedIndex])
+                block(.UPDATESELECTDAYSCHEDULE,cal.selectDay[selectedIndex].schedules)
+                block(.UPDATESELECTDAY,cal.selectDay[selectedIndex])
             }
         }
         
@@ -64,7 +65,6 @@ class MyMemoryModel: NSObject {
                 
             }
         }
-        
     }
     
     func selectScheduleIndex(index:Int) {
@@ -88,7 +88,7 @@ class MyMemoryModel: NSObject {
                         if let selectCaldays = self.calData?.selectDay {
                             let strIndex = schedule.startDate.index(schedule.startDate.startIndex, offsetBy: 9)
                             let responseSchedule = schedule.startDate[...strIndex]
-                            guard let findIndex = selectCaldays.firstIndex(where: {$0.dateString == String(responseSchedule)})else {break}
+                            guard let findIndex = selectCaldays.firstIndex(where: {$0.dateString == String(responseSchedule)})else {continue}
                             findIdxArr.append(findIndex)
                             if !selectCaldays[findIndex].schedules.contains(where: {$0.memoryId == schedule.memoryId}) {
                                 self.calData?.selectDay[findIndex].schedules.append(schedule)

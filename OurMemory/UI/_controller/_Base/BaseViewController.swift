@@ -99,5 +99,18 @@ class BaseViewController: UIViewController {
         msgView.fadeOut()
         
     }
+    
+    func showActionSheetWithTitleAndActions(title:String,msg:String, actions:[String:(UIAlertAction) -> Void]) {
+        var alertActions:[UIAlertAction] = []
+        for (key,action) in actions {
+            let action:UIAlertAction = UIAlertAction(title: key, style: .default, handler: action)
+            alertActions.append(action)
+        }
+        let alertCtl:UIAlertController = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.actionSheet)
+        for alertAction in alertActions {
+            alertCtl.addAction(alertAction)
+        }
+        self.present(alertCtl, animated: false, completion: nil)
+    }
 
 }

@@ -25,3 +25,8 @@ public protocol ScheduleTimeDataBinder {
     func getWeekDay() -> String?
     func getComponents() -> DateComponents?
 }
+
+public protocol ToDoListDataBinder {
+    func getDate() -> String
+    func getItems() -> [String]
+}

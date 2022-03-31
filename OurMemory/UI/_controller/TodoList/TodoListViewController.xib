@@ -24,15 +24,34 @@
                         </constraints>
                     </view>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6p-WG-gCF">
-                        <rect key="frame" x="0.0" y="104" width="414" height="688"/>
+                        <rect key="frame" x="0.0" y="104" width="414" height="722"/>
                     </scrollView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3X-rU-rdE">
+                        <rect key="frame" x="0.0" y="826" width="414" height="70"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-FZ-yo0">
+                                <rect key="frame" x="5" y="10" width="21" height="22"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="line.3.horizontal" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bIW-FZ-yo0" firstAttribute="top" secondItem="A3X-rU-rdE" secondAttribute="top" constant="10" id="1Q1-rR-Z18"/>
+                            <constraint firstAttribute="height" constant="70" id="D6s-mz-coR"/>
+                            <constraint firstItem="bIW-FZ-yo0" firstAttribute="leading" secondItem="A3X-rU-rdE" secondAttribute="leading" constant="5" id="j5s-z6-SxC"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="fga-Bp-N8c"/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="A3X-rU-rdE" firstAttribute="top" secondItem="s6p-WG-gCF" secondAttribute="bottom" id="ALg-42-BvM"/>
+                    <constraint firstItem="A3X-rU-rdE" firstAttribute="leading" secondItem="fga-Bp-N8c" secondAttribute="leading" id="Avg-WO-QlG"/>
+                    <constraint firstAttribute="bottom" secondItem="A3X-rU-rdE" secondAttribute="bottom" id="Cch-Np-wgY"/>
                     <constraint firstItem="417-tu-Xby" firstAttribute="top" secondItem="fga-Bp-N8c" secondAttribute="top" id="E7C-Nk-8TD"/>
                     <constraint firstItem="417-tu-Xby" firstAttribute="leading" secondItem="fga-Bp-N8c" secondAttribute="leading" id="Exw-VX-iXR"/>
-                    <constraint firstItem="fga-Bp-N8c" firstAttribute="bottom" secondItem="s6p-WG-gCF" secondAttribute="bottom" constant="70" id="IO7-EP-Wf1"/>
+                    <constraint firstItem="fga-Bp-N8c" firstAttribute="trailing" secondItem="A3X-rU-rdE" secondAttribute="trailing" id="GAS-Dn-Vry"/>
                     <constraint firstItem="fga-Bp-N8c" firstAttribute="trailing" secondItem="s6p-WG-gCF" secondAttribute="trailing" id="TaX-qo-cPG"/>
                     <constraint firstItem="s6p-WG-gCF" firstAttribute="leading" secondItem="fga-Bp-N8c" secondAttribute="leading" id="XVA-hM-Bz5"/>
                     <constraint firstItem="fga-Bp-N8c" firstAttribute="trailing" secondItem="417-tu-Xby" secondAttribute="trailing" id="xJf-1L-0Bk"/>
@@ -40,6 +59,7 @@
                 </constraints>
             </view>
             <connections>
+                <outlet property="todoListBtnContainer" destination="A3X-rU-rdE" id="GW9-QM-Ujd"/>
                 <outlet property="todoListItemSv" destination="s6p-WG-gCF" id="x5b-l1-49l"/>
                 <outlet property="topViewContainer" destination="417-tu-Xby" id="LvT-ws-mF0"/>
             </connections>
@@ -47,6 +67,7 @@
         </viewController>
     </objects>
     <resources>
+        <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -29,6 +29,9 @@ class AddScheduleCtl: BaseCtl {
             case .SCHEDULECONFIRMBTN_UPDATE:
                 self.callUpdateConfirmBtnState(state: p2 as! Bool)
                 break
+            case .SUCCESS:
+                self.callShowNextVC(view: .NEXTVIEW_POP, data: nil)
+                break
             }
         }
         

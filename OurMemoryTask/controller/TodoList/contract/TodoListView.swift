@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol TodoListView:ViewContract {
-    
+public protocol TodoListView:AlertContract {
+    func showInsertPopup()
 }

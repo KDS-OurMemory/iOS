@@ -16,9 +16,10 @@ class OurMemoryRoomsCollectionViewCell: BaseCollectionViewCell {
     
 
     func setData(data:RoomDataBinder) {
-        roomNameLbl.text = data.getName()
-        userCntLbl.text = "\(data.getUserCnt())"
-        roomProfileBtn.setImage(UIImage(systemName: (data.getUserCnt() > 1 ? "person.3.fill":"person.fill")), for: .normal)
+        self.roomNameLbl.text = data.getName()
+        self.userCntLbl.text = "\(data.getUserCnt())"
+        self.roomProfileBtn.setImage(UIImage(systemName: (data.getUserCnt() > 1 ? "person.3.fill":"person.fill")), for: .normal)
+
     }
     
     func clickBlock(block:@escaping (UICollectionViewCell) -> Void) {

@@ -75,17 +75,16 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
             } else if componentMode.contains(.mm_MODE) {
                 if let min = self.dateModel.getMin() {
                     self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.MINUTE, row: min - 1)
-                    selectedRow[COMPONENT_TYPE.MINUTE] = min - 1
+                    selectedRow[COMPONENT_TYPE.MINUTE] = min
                 }
             } else if componentMode.contains(.ss_MODE) {
                 if let sec = self.dateModel.getSecond() {
                     self.selectComponentofRow(selectToComponent: COMPONENT_TYPE.SECONDS, row: sec - 1)
-                    selectedRow[COMPONENT_TYPE.SECONDS] = sec - 1
+                    selectedRow[COMPONENT_TYPE.SECONDS] = sec
                 }
             }
         }
         
-        self.getSelectedDate()
         
     }
     
@@ -136,7 +135,7 @@ open class BaseDatePickerAdapter:NSObject,UIPickerViewDelegate,UIPickerViewDataS
         }
         
         if let callback = callback {
-            callback(RESULT_DATE.RESULT_DATECOMPONENTS.rawValue,self.dateModel.getCurrentDate())
+            callback(RESULT_DATE.RESULT_DATECOMPONENTS.rawValue,self.dateModel.getDateComponents())
         }
     }
     

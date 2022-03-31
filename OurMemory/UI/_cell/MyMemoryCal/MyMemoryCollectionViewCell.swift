@@ -56,7 +56,7 @@ class MyMemoryCollectionViewCell: BaseCollectionViewCell {
         self.dateNumLbl.layer.masksToBounds = true
         self.dateNumLbl.text = data.getDateNum()
         self.dateBtn.isSelected = data.getIsSelcted()
-        scheduleDotView.alpha = opecity
+        scheduleDotView.alpha = (opecity <= 0.122 ? 0:opecity) 
         scheduleListView.alpha = 1-opecity
         self.setSelectedBackground()
         

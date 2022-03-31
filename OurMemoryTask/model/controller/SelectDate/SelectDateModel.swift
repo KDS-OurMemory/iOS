@@ -98,7 +98,7 @@ class SelectDateModel: NSObject {
             
         }else {
             if let block = self.callback {
-                block(.VALIDECHECK_CONFIRMBTN,false)
+                block(.VALIDECHECK_CONFIRMBTN,true)
             }
         }
     }

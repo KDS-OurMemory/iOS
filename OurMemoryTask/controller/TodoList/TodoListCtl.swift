@@ -7,9 +7,39 @@
 
 import UIKit
 
-class TodoListCtl: BaseCtl {
+class TodoListCtl: BaseCollectionCtl {
+    
+    let todoListModel:TodoListModel = TodoListModel()
+    let dateModel:DateComponentsModel = DateComponentsModel()
 
     override func __initWithData__(data: Any?) {
         
+        
     }
+    
+    
+    
+}
+
+extension TodoListCtl:TodoListContract {
+    
+    func setSelectDate(date:String) {
+        
+    }
+    
+    func actionMenuBtn() {
+        if let view = self.view as? TodoListView {
+            view.showActionSheetWithTitleAndActions(title: "할일", msg: "", actions: [
+                "앞으로 할 일":{ p1 in
+                
+            },
+                "오늘 할 일":{ p1 in
+                    
+                },
+                "모든 할 일":{ p1 in
+                    
+                }])
+        }
+    }
+    
 }

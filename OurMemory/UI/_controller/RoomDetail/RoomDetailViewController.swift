@@ -161,7 +161,8 @@ extension RoomDetailViewController:RoomDetailView {
                 self.scheduleSv.addVerScrollSubView(subView: scheduleView, viewSize: scheduleView.frame.size, verPadding: 50)
                 scheduleView.setClickBLock { p1 in
                     if let ctl = self.getDataContract() as? RoomDetailContract {
-                        ctl.selectScheduleIndex(index: p1)
+                        let index = self.scheduleSv.subviews.firstIndex(of: p1)!
+                        ctl.selectScheduleIndex(index: index)
                     }
                 }
             }

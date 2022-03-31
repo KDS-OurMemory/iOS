@@ -51,11 +51,10 @@ class MyMemoryCtl: BaseCollectionCtl {
             switch p1 {
             case .SELECTDATE:
                 self.myMemoryModel.setCalenderData(year: "\(self.dateModel.getYear()!)", month: "\(self.dateModel.getMonth()!)", selectDates: p2 as! [CalDateData])
+                self.reloadView()
                 break
             }
         }
-        
-        self.myMemoryModel.tryInqueryScheduleRequest(context: self)
     }
     
     fileprivate func callUpdateYearMonth(yearMonth:(String,String)) {
@@ -71,11 +70,11 @@ class MyMemoryCtl: BaseCollectionCtl {
     }
     
     fileprivate func callUpdateSelectDayInfo(data:CalDateData) {
-//        if let view = self.view as? MyMemoryView {
+        if let view = self.view as? MyMemoryView {
+            view.updateSelectDay(day: data.getDateNum())
 //            let lunarDate = data.getSelectDateString().dateConvertLunarComponents(dateFormatStr: "yyyy-MM-dd HH:mm")
-//            view.updateSelectDay(day: data.getDateNum())
 //            view.updateSelectDayLunar(lunar: "음력 \(lunarDate.month!).\(lunarDate.day!)")
-//        }
+        }
     }
 }
 

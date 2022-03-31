@@ -63,7 +63,11 @@ extension SelectDateCtl:SelectDateContract {
     }
     
     func actionConfirmBtn(sender: UIButton) {
-        selectDateModel.tryGetScheduleTimeData()
+        if let setAdapter = self.datePickerAdapter {
+            setAdapter.getSelectedDate()
+            selectDateModel.tryGetScheduleTimeData()
+        }
+        
     }
     
     func actionCancelBtn(sender: UIButton) {
